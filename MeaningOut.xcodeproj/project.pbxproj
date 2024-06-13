@@ -13,6 +13,7 @@
 		BE3FE3822C1B01B800F58754 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE3FE3812C1B01B800F58754 /* Assets.xcassets */; };
 		BE3FE3852C1B01B800F58754 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = BE3FE3842C1B01B800F58754 /* Base */; };
 		BE3FE3962C1B153300F58754 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BE3FE3952C1B153300F58754 /* .gitignore */; };
+		BE3FE3982C1B15DD00F58754 /* .gitmessage.txt in Resources */ = {isa = PBXBuildFile; fileRef = BE3FE3972C1B15DD00F58754 /* .gitmessage.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		BE3FE3842C1B01B800F58754 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE3FE3862C1B01B800F58754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE3FE3952C1B153300F58754 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		BE3FE3972C1B15DD00F58754 /* .gitmessage.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitmessage.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +43,7 @@
 			isa = PBXGroup;
 			children = (
 				BE3FE3952C1B153300F58754 /* .gitignore */,
+				BE3FE3972C1B15DD00F58754 /* .gitmessage.txt */,
 				BE3FE3772C1B01B600F58754 /* MeaningOut */,
 				BE3FE3762C1B01B600F58754 /* Products */,
 			);
@@ -165,6 +168,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE3FE3982C1B15DD00F58754 /* .gitmessage.txt in Resources */,
 				BE3FE3822C1B01B800F58754 /* Assets.xcassets in Resources */,
 				BE3FE3962C1B153300F58754 /* .gitignore in Resources */,
 				BE3FE3852C1B01B800F58754 /* Base in Resources */,
