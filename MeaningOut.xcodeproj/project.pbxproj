@@ -17,6 +17,7 @@
 		BE3FE39B2C1B17B800F58754 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BE3FE39A2C1B17B800F58754 /* Alamofire */; };
 		BE3FE39E2C1B17C700F58754 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BE3FE39D2C1B17C700F58754 /* Kingfisher */; };
 		BE3FE3A12C1B17D600F58754 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE3FE3A02C1B17D600F58754 /* SnapKit */; };
+		BE3FE3A32C1B181F00F58754 /* UIKitPreviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3A22C1B181F00F58754 /* UIKitPreviewHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		BE3FE3862C1B01B800F58754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE3FE3952C1B153300F58754 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		BE3FE3972C1B15DD00F58754 /* .gitmessage.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitmessage.txt; sourceTree = "<group>"; };
+		BE3FE3A22C1B181F00F58754 /* UIKitPreviewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitPreviewHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 		BE3FE3942C1B136800F58754 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				BE3FE3A22C1B181F00F58754 /* UIKitPreviewHelper.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				BE3FE37D2C1B01B600F58754 /* ViewController.swift in Sources */,
 				BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */,
 				BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */,
+				BE3FE3A32C1B181F00F58754 /* UIKitPreviewHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
