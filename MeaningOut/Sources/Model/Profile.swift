@@ -16,6 +16,15 @@ enum Profile {
         defaultValue: "profile_\((0...11).randomElement() ?? 0)"
     )
     static var imageName: String
+    
+    static var isjoined: Bool {
+        _nickName.isSaved && _imageName.isSaved
+    }
+    
+    static func removeProfile() {
+        _nickName.removeValue()
+        _imageName.removeValue()
+    }
 }
 
 extension Profile {

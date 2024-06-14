@@ -44,4 +44,12 @@ struct UserDefaultsWrapper<T: Codable> {
         self.key = key
         self.defaultValue = defaultValue
     }
+    
+    var isSaved: Bool {
+        UserDefaults.standard.data(forKey: key.rawValue) != nil
+    }
+    
+    func removeValue() {
+        UserDefaults.standard.removeObject(forKey: key.rawValue)
+    }
 }
