@@ -10,10 +10,10 @@ import SwiftUI
 
 extension UIView {
     var swiftUIView: some View {
-        UIViewPreview(self)
+        UIViewSwiftUIView(self)
     }
     
-    var swiftUIViewWithRandomColor: some View {
+    var randomColorForHierarchy: some View {
         self.setRandomBackground().swiftUIView
     }
     
@@ -35,10 +35,10 @@ extension UIView {
 
 extension UIViewController {
     var swiftUIView: some View {
-        UIViewControllerPreview(self)
+        UIViewControllerSwiftUIView(self)
     }
     
-    var swiftUIViewWithRandomColor: some View {
+    var randomColorForHierarchy: some View {
         view.setRandomBackground()
         return swiftUIView
     }
@@ -56,7 +56,7 @@ extension UIViewController {
     }
 }
 
-fileprivate struct UIViewControllerPreview: UIViewControllerRepresentable {
+fileprivate struct UIViewControllerSwiftUIView: UIViewControllerRepresentable {
     private let viewController: UIViewController
     
     init(_ viewController: UIViewController) {
@@ -74,7 +74,7 @@ fileprivate struct UIViewControllerPreview: UIViewControllerRepresentable {
     }
 }
 
-fileprivate struct UIViewPreview: UIViewRepresentable {
+fileprivate struct UIViewSwiftUIView: UIViewRepresentable {
     private let view: UIView
     
     init(_ view: UIView) {
