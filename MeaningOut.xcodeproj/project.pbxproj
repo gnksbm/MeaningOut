@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3782C1B01B600F58754 /* AppDelegate.swift */; };
 		BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE37A2C1B01B600F58754 /* SceneDelegate.swift */; };
-		BE3FE37D2C1B01B600F58754 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE37C2C1B01B600F58754 /* ViewController.swift */; };
+		BE3FE37D2C1B01B600F58754 /* OnboardingMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE37C2C1B01B600F58754 /* OnboardingMainViewController.swift */; };
 		BE3FE3822C1B01B800F58754 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE3FE3812C1B01B800F58754 /* Assets.xcassets */; };
 		BE3FE3852C1B01B800F58754 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = BE3FE3842C1B01B800F58754 /* Base */; };
 		BE3FE3962C1B153300F58754 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BE3FE3952C1B153300F58754 /* .gitignore */; };
@@ -28,7 +28,7 @@
 		BE3FE3752C1B01B600F58754 /* MeaningOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeaningOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE3FE3782C1B01B600F58754 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE3FE37A2C1B01B600F58754 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BE3FE37C2C1B01B600F58754 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BE3FE37C2C1B01B600F58754 /* OnboardingMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingMainViewController.swift; sourceTree = "<group>"; };
 		BE3FE3812C1B01B800F58754 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE3FE3842C1B01B800F58754 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE3FE3862C1B01B800F58754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 		BE3FE38F2C1B020200F58754 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BE3FE37C2C1B01B600F58754 /* ViewController.swift */,
+				BE3FE3B82C1C2C1400F58754 /* Onboarding */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -137,6 +137,14 @@
 				BE3FE3AD2C1BC96500F58754 /* Profile.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		BE3FE3B82C1C2C1400F58754 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE37C2C1B01B600F58754 /* OnboardingMainViewController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,7 +229,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE3FE37D2C1B01B600F58754 /* ViewController.swift in Sources */,
+				BE3FE37D2C1B01B600F58754 /* OnboardingMainViewController.swift in Sources */,
 				BE3FE3AE2C1BC96500F58754 /* Profile.swift in Sources */,
 				BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */,
 				BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */,

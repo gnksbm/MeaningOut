@@ -43,4 +43,3 @@ struct Builder<Base: AnyObject> {
         base
     }
 }
-
