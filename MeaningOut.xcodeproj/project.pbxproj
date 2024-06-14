@@ -19,6 +19,7 @@
 		BE3FE3A12C1B17D600F58754 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE3FE3A02C1B17D600F58754 /* SnapKit */; };
 		BE3FE3A32C1B181F00F58754 /* UIKitPreviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3A22C1B181F00F58754 /* UIKitPreviewHelper.swift */; };
 		BE3FE3A52C1B1A2600F58754 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3A42C1B1A2600F58754 /* Builder.swift */; };
+		BE3FE3A92C1BC4BE00F58754 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3A82C1BC4BE00F58754 /* UserDefaultsWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		BE3FE3972C1B15DD00F58754 /* .gitmessage.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitmessage.txt; sourceTree = "<group>"; };
 		BE3FE3A22C1B181F00F58754 /* UIKitPreviewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitPreviewHelper.swift; sourceTree = "<group>"; };
 		BE3FE3A42C1B1A2600F58754 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		BE3FE3A82C1BC4BE00F58754 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			children = (
 				BE3FE3A22C1B181F00F58754 /* UIKitPreviewHelper.swift */,
 				BE3FE3A42C1B1A2600F58754 /* Builder.swift */,
+				BE3FE3A82C1BC4BE00F58754 /* UserDefaultsWrapper.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 				BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */,
 				BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */,
 				BE3FE3A32C1B181F00F58754 /* UIKitPreviewHelper.swift in Sources */,
+				BE3FE3A92C1BC4BE00F58754 /* UserDefaultsWrapper.swift in Sources */,
 				BE3FE3A52C1B1A2600F58754 /* Builder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
