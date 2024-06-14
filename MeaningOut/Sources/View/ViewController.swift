@@ -13,3 +13,11 @@ final class ViewController: UIViewController {
     }
 }
 
+#if DEBUG
+import SwiftUI
+struct ViewControllerPreview: PreviewProvider {
+    static var previews: some View {
+        ViewController().swiftUIView
+    }
+}
+#endif

@@ -10,7 +10,7 @@ import Foundation
 enum Logger {
     static func debugging(
         _ content: Any,
-        file: String = #filePath,
+        file: String = #fileID,
         line: Int = #line,
         function: String = #function
     ) {
@@ -19,7 +19,7 @@ enum Logger {
     
     static func error(
         _ error: Error,
-        file: String = #filePath,
+        file: String = #fileID,
         line: Int = #line,
         function: String = #function
     ) {
