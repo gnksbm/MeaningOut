@@ -20,16 +20,13 @@ struct UserDefaultsWrapper<T: Codable> {
         get {
             guard let data = UserDefaults.standard.data(forKey: key.rawValue)
             else {
-                print("저장된 데이터 없음")
+                Logger.debugging("\(key.rawValue): 저장된 데이터 없음")
                 return defaultValue
             }
             do {
                 return try JSONDecoder().decode(T.self, from: data)
             } catch {
-                print(
-                    String(describing: T.self),
-                    "디코딩 에러: \(error.localizedDescription)"
-                )
+                Logger.error(error)
                 return defaultValue
             }
         }
@@ -38,10 +35,7 @@ struct UserDefaultsWrapper<T: Codable> {
                 let data = try JSONEncoder().encode(newValue)
                 UserDefaults.standard.set(data, forKey: key.rawValue)
             } catch {
-                print(
-                    String(describing: T.self),
-                    "인코딩 에러: \(error.localizedDescription)"
-                )
+                Logger.error(error)
             }
         }
     }

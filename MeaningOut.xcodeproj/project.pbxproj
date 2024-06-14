@@ -20,6 +20,7 @@
 		BE3FE3A32C1B181F00F58754 /* UIKitPreviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3A22C1B181F00F58754 /* UIKitPreviewHelper.swift */; };
 		BE3FE3A52C1B1A2600F58754 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3A42C1B1A2600F58754 /* Builder.swift */; };
 		BE3FE3A92C1BC4BE00F58754 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3A82C1BC4BE00F58754 /* UserDefaultsWrapper.swift */; };
+		BE3FE3AB2C1BC5AA00F58754 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3AA2C1BC5AA00F58754 /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		BE3FE3A22C1B181F00F58754 /* UIKitPreviewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitPreviewHelper.swift; sourceTree = "<group>"; };
 		BE3FE3A42C1B1A2600F58754 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		BE3FE3A82C1BC4BE00F58754 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
+		BE3FE3AA2C1BC5AA00F58754 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				BE3FE3A22C1B181F00F58754 /* UIKitPreviewHelper.swift */,
 				BE3FE3A42C1B1A2600F58754 /* Builder.swift */,
 				BE3FE3A82C1BC4BE00F58754 /* UserDefaultsWrapper.swift */,
+				BE3FE3AA2C1BC5AA00F58754 /* Logger.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */,
 				BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */,
 				BE3FE3A32C1B181F00F58754 /* UIKitPreviewHelper.swift in Sources */,
+				BE3FE3AB2C1BC5AA00F58754 /* Logger.swift in Sources */,
 				BE3FE3A92C1BC4BE00F58754 /* UserDefaultsWrapper.swift in Sources */,
 				BE3FE3A52C1B1A2600F58754 /* Builder.swift in Sources */,
 			);
