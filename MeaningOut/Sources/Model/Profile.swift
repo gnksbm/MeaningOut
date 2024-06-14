@@ -17,6 +17,8 @@ enum Profile {
     )
     static var imageName: String
     
+    static var nicknamePlaceholder: String = "닉네임을 입력해주세요 :)"
+    
     static var isjoined: Bool {
         _nickName.isSaved && _imageName.isSaved
     }
@@ -24,11 +26,5 @@ enum Profile {
     static func removeProfile() {
         _nickName.removeValue()
         _imageName.removeValue()
-    }
-}
-
-extension Profile {
-    var nicknamePlaceholder: String {
-        "닉네임을 입력해주세요 :)"
     }
 }

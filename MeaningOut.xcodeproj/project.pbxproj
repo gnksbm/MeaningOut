@@ -22,6 +22,11 @@
 		BE3FE3B12C1C204200F58754 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE3FE3B02C1C204200F58754 /* SnapKit */; };
 		BE3FE3B42C1C204E00F58754 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BE3FE3B32C1C204E00F58754 /* Kingfisher */; };
 		BE3FE3B72C1C205900F58754 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BE3FE3B62C1C205900F58754 /* Alamofire */; };
+		BE3FE3BA2C1C2C5000F58754 /* OnboardingProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3B92C1C2C5000F58754 /* OnboardingProfileViewController.swift */; };
+		BE3FE3BD2C1C301400F58754 /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3BC2C1C301400F58754 /* LargeButton.swift */; };
+		BE3FE3BF2C1C33F100F58754 /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3BE2C1C33F100F58754 /* ProfileButton.swift */; };
+		BE3FE3C22C1C34AC00F58754 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3C12C1C34AC00F58754 /* Constant.swift */; };
+		BE3FE3C42C1C4BA000F58754 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3C32C1C4BA000F58754 /* Appearance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +44,11 @@
 		BE3FE3A82C1BC4BE00F58754 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		BE3FE3AA2C1BC5AA00F58754 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		BE3FE3AD2C1BC96500F58754 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		BE3FE3B92C1C2C5000F58754 /* OnboardingProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingProfileViewController.swift; sourceTree = "<group>"; };
+		BE3FE3BC2C1C301400F58754 /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
+		BE3FE3BE2C1C33F100F58754 /* ProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButton.swift; sourceTree = "<group>"; };
+		BE3FE3C12C1C34AC00F58754 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		BE3FE3C32C1C4BA000F58754 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +118,7 @@
 			children = (
 				BE3FE3782C1B01B600F58754 /* AppDelegate.swift */,
 				BE3FE37A2C1B01B600F58754 /* SceneDelegate.swift */,
+				BE3FE3C32C1C4BA000F58754 /* Appearance.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -115,6 +126,7 @@
 		BE3FE38F2C1B020200F58754 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BE3FE3BB2C1C2FDE00F58754 /* Common */,
 				BE3FE3B82C1C2C1400F58754 /* Onboarding */,
 			);
 			path = View;
@@ -127,6 +139,7 @@
 				BE3FE3A42C1B1A2600F58754 /* Builder.swift */,
 				BE3FE3A82C1BC4BE00F58754 /* UserDefaultsWrapper.swift */,
 				BE3FE3AA2C1BC5AA00F58754 /* Logger.swift */,
+				BE3FE3C12C1C34AC00F58754 /* Constant.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -143,8 +156,18 @@
 			isa = PBXGroup;
 			children = (
 				BE3FE37C2C1B01B600F58754 /* OnboardingMainViewController.swift */,
+				BE3FE3B92C1C2C5000F58754 /* OnboardingProfileViewController.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		BE3FE3BB2C1C2FDE00F58754 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3BC2C1C301400F58754 /* LargeButton.swift */,
+				BE3FE3BE2C1C33F100F58754 /* ProfileButton.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,13 +253,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE3FE37D2C1B01B600F58754 /* OnboardingMainViewController.swift in Sources */,
+				BE3FE3BD2C1C301400F58754 /* LargeButton.swift in Sources */,
 				BE3FE3AE2C1BC96500F58754 /* Profile.swift in Sources */,
+				BE3FE3BF2C1C33F100F58754 /* ProfileButton.swift in Sources */,
+				BE3FE3C42C1C4BA000F58754 /* Appearance.swift in Sources */,
 				BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */,
 				BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */,
 				BE3FE3A32C1B181F00F58754 /* UIKitPreviewHelper.swift in Sources */,
 				BE3FE3AB2C1BC5AA00F58754 /* Logger.swift in Sources */,
 				BE3FE3A92C1BC4BE00F58754 /* UserDefaultsWrapper.swift in Sources */,
+				BE3FE3BA2C1C2C5000F58754 /* OnboardingProfileViewController.swift in Sources */,
 				BE3FE3A52C1B1A2600F58754 /* Builder.swift in Sources */,
+				BE3FE3C22C1C34AC00F58754 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

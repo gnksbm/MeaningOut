@@ -21,26 +21,14 @@ final class OnboardingMainViewController: UIViewController {
             .contentMode(.scaleAspectFit)
     }
     
-    private let startButton = UIButton().build { builder in
-        builder.configuration(UIButton.Configuration.bordered())
-            .action {
-                var container = AttributeContainer()
-                container.font = UIFont.systemFont(ofSize: 20, weight: .black)
-                $0.configuration?.attributedTitle = AttributedString(
-                    "시작하기",
-                    attributes: container
-                )
-                $0.configuration?.cornerStyle = .capsule
-                $0.configuration?.baseForegroundColor = .white
-                let padding: CGFloat = 15
-                $0.configuration?.baseBackgroundColor = .orange
-                $0.configuration?.contentInsets = NSDirectionalEdgeInsets(
-                    top: padding,
-                    leading: 0,
-                    bottom: padding,
-                    trailing: 0
-                )
-            }
+    private lazy var startButton = LargeButton(title: "시작하기").build { builder in
+        builder.action {
+            $0.addTarget(
+                self,
+                action: #selector(startButtonTapped),
+                for: .touchUpInside
+            )
+        }
     }
     
     override func viewDidLoad() {
@@ -69,13 +57,20 @@ final class OnboardingMainViewController: UIViewController {
             make.width.equalTo(safeArea).multipliedBy(0.9)
         }
     }
+    
+    @objc private func startButtonTapped() {
+        navigationController?.pushViewController(
+            OnboardingProfileViewController(viewMode: .join),
+            animated: true
+        )
+    }
 }
 
 #if DEBUG
 import SwiftUI
 struct ViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        OnboardingMainViewController().swiftUIView
+        OnboardingMainViewController().swiftUIViewWithNavigation
     }
 }
 #endif
