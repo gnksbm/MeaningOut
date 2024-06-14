@@ -11,7 +11,10 @@ enum Profile {
     @UserDefaultsWrapper(key: .profileNickname, defaultValue: "")
     static var nickName: String
     
-    @UserDefaultsWrapper(key: .profileImageName, defaultValue: "")
+    @UserDefaultsWrapper(
+        key: .profileImageName,
+        defaultValue: "profile_\((0...11).randomElement() ?? 0)"
+    )
     static var imageName: String
 }
 
