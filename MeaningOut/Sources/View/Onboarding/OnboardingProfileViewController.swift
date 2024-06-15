@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class OnboardingProfileViewController: UIViewController {
+final class OnboardingProfileViewController: BaseViewController {
     private var profileImageName = Profile.imageName
     private let viewMode: ViewMode
     

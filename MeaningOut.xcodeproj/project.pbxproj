@@ -28,6 +28,7 @@
 		BE3FE3C22C1C34AC00F58754 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3C12C1C34AC00F58754 /* Constant.swift */; };
 		BE3FE3C42C1C4BA000F58754 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3C32C1C4BA000F58754 /* Appearance.swift */; };
 		BE3FE3CA2C1D7D4B00F58754 /* NicknameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3C92C1D7D4B00F58754 /* NicknameValidator.swift */; };
+		BE3FE3CC2C1D7D8B00F58754 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3CB2C1D7D8B00F58754 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		BE3FE3C12C1C34AC00F58754 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BE3FE3C32C1C4BA000F58754 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		BE3FE3C92C1D7D4B00F58754 /* NicknameValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NicknameValidator.swift; sourceTree = "<group>"; };
+		BE3FE3CB2C1D7D8B00F58754 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 			children = (
 				BE3FE3BC2C1C301400F58754 /* LargeButton.swift */,
 				BE3FE3BE2C1C33F100F58754 /* ProfileButton.swift */,
+				BE3FE3CB2C1D7D8B00F58754 /* BaseViewController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				BE3FE3CA2C1D7D4B00F58754 /* NicknameValidator.swift in Sources */,
 				BE3FE3AE2C1BC96500F58754 /* Profile.swift in Sources */,
 				BE3FE3BF2C1C33F100F58754 /* ProfileButton.swift in Sources */,
+				BE3FE3CC2C1D7D8B00F58754 /* BaseViewController.swift in Sources */,
 				BE3FE3C42C1C4BA000F58754 /* Appearance.swift in Sources */,
 				BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */,
 				BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */,

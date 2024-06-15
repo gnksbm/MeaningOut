@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class OnboardingMainViewController: UIViewController {
+final class OnboardingMainViewController: BaseViewController {
     private let appNameLabel = UILabel().build { builder in
         builder.text("MeaningOut")
             .font(.systemFont(ofSize: 50, weight: .black))
