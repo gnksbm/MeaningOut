@@ -49,13 +49,15 @@ final class SearchViewController: BaseViewController {
                 )
             }
         }
-        dataSource.apply(snapshot)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     private func configureNavigation() {
         let searchController = UISearchController()
+        searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "브랜드, 상품 등을 입력하세요."
         navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     private func configureUI() {
@@ -76,12 +78,39 @@ final class SearchViewController: BaseViewController {
         dataSource = DataSource(
             tableView: tableView,
             cellProvider: { tableView, indexPath, item in
-                let cell = tableView.dequeueReusableCell(
+                tableView.dequeueReusableCell(
                     cellType: SearchHistoryItemTVCell.self,
                     for: indexPath
-                )
-                cell.configureCell(data: item)
-                return cell
+                ).build { builder in
+                    builder.removeButtonHandler(
+                        { [weak self] in
+                            guard let self else { return }
+                            SearchHistoryItem.currentHistory =
+                            SearchHistoryItem.currentHistory.filter {
+                                $0 != item
+                            }
+                            updateSnapshot(
+                                items: SearchHistoryItem.currentHistory
+                            )
+                        }
+                    )
+                    .action {
+                        $0.configureCell(data: item)
+                    }
+                }
+            }
+        )
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    func searchBar(
+        _ searchBar: UISearchBar,
+        textDidChange searchText: String
+    ) {
+        updateSnapshot(
+            items: SearchHistoryItem.currentHistory.filter {
+                $0.query.contains(searchText)
             }
         )
     }

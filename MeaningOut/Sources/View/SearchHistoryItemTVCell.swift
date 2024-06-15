@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 
 final class SearchHistoryItemTVCell: UITableViewCell {
+    var removeButtonHandler: () -> Void = { }
+    
     private let clockImageView = UIImageView().build { builder in
         builder.tintColor(.meaningBlack)
             .image(
@@ -28,7 +30,7 @@ final class SearchHistoryItemTVCell: UITableViewCell {
         builder.font(Constant.Font.mediumFont.font.with(weight: .medium))
     }
     
-    private let removeButton = UIButton().build { builder in
+    private lazy var removeButton = UIButton().build { builder in
         builder.tintColor(.meaningBlack)
             .action {
                 $0.setImage(
@@ -39,6 +41,11 @@ final class SearchHistoryItemTVCell: UITableViewCell {
                             )
                         ),
                     for: .normal
+                )
+                $0.addTarget(
+                    self,
+                    action: #selector(removeButtonTapped),
+                    for: .touchUpInside
                 )
             }
     }
@@ -89,6 +96,10 @@ final class SearchHistoryItemTVCell: UITableViewCell {
             make.trailing.equalTo(contentView).offset(-20)
             make.width.equalTo(clockImageView.snp.height)
         }
+    }
+    
+    @objc private func removeButtonTapped() {
+        removeButtonHandler()
     }
 }
 
