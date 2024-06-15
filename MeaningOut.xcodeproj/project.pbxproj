@@ -9,23 +9,37 @@
 /* Begin PBXBuildFile section */
 		BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3782C1B01B600F58754 /* AppDelegate.swift */; };
 		BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE37A2C1B01B600F58754 /* SceneDelegate.swift */; };
-		BE3FE37D2C1B01B600F58754 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE37C2C1B01B600F58754 /* ViewController.swift */; };
+		BE3FE37D2C1B01B600F58754 /* OnboardingMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE37C2C1B01B600F58754 /* OnboardingMainViewController.swift */; };
 		BE3FE3822C1B01B800F58754 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE3FE3812C1B01B800F58754 /* Assets.xcassets */; };
 		BE3FE3852C1B01B800F58754 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = BE3FE3842C1B01B800F58754 /* Base */; };
 		BE3FE3962C1B153300F58754 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = BE3FE3952C1B153300F58754 /* .gitignore */; };
 		BE3FE3982C1B15DD00F58754 /* .gitmessage.txt in Resources */ = {isa = PBXBuildFile; fileRef = BE3FE3972C1B15DD00F58754 /* .gitmessage.txt */; };
-		BE3FE39B2C1B17B800F58754 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BE3FE39A2C1B17B800F58754 /* Alamofire */; };
-		BE3FE39E2C1B17C700F58754 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BE3FE39D2C1B17C700F58754 /* Kingfisher */; };
-		BE3FE3A12C1B17D600F58754 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE3FE3A02C1B17D600F58754 /* SnapKit */; };
 		BE3FE3A32C1B181F00F58754 /* UIKitPreviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3A22C1B181F00F58754 /* UIKitPreviewHelper.swift */; };
 		BE3FE3A52C1B1A2600F58754 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3A42C1B1A2600F58754 /* Builder.swift */; };
+		BE3FE3A92C1BC4BE00F58754 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3A82C1BC4BE00F58754 /* UserDefaultsWrapper.swift */; };
+		BE3FE3AB2C1BC5AA00F58754 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3AA2C1BC5AA00F58754 /* Logger.swift */; };
+		BE3FE3AE2C1BC96500F58754 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3AD2C1BC96500F58754 /* Profile.swift */; };
+		BE3FE3B12C1C204200F58754 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE3FE3B02C1C204200F58754 /* SnapKit */; };
+		BE3FE3B42C1C204E00F58754 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BE3FE3B32C1C204E00F58754 /* Kingfisher */; };
+		BE3FE3B72C1C205900F58754 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BE3FE3B62C1C205900F58754 /* Alamofire */; };
+		BE3FE3BA2C1C2C5000F58754 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3B92C1C2C5000F58754 /* ProfileViewController.swift */; };
+		BE3FE3BD2C1C301400F58754 /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3BC2C1C301400F58754 /* LargeButton.swift */; };
+		BE3FE3BF2C1C33F100F58754 /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3BE2C1C33F100F58754 /* ProfileButton.swift */; };
+		BE3FE3C22C1C34AC00F58754 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3C12C1C34AC00F58754 /* Constant.swift */; };
+		BE3FE3C42C1C4BA000F58754 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3C32C1C4BA000F58754 /* Appearance.swift */; };
+		BE3FE3CA2C1D7D4B00F58754 /* NicknameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3C92C1D7D4B00F58754 /* NicknameValidator.swift */; };
+		BE3FE3CC2C1D7D8B00F58754 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3CB2C1D7D8B00F58754 /* BaseViewController.swift */; };
+		BE3FE3CE2C1D811500F58754 /* ProfileImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3CD2C1D811500F58754 /* ProfileImageViewController.swift */; };
+		BE3FE3D02C1D87F000F58754 /* ProfileImageCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3CF2C1D87F000F58754 /* ProfileImageCVCell.swift */; };
+		BE3FE3D22C1D883A00F58754 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3D12C1D883A00F58754 /* ProfileImage.swift */; };
+		BE3FE3D42C1D894D00F58754 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3D32C1D894D00F58754 /* ProfileImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BE3FE3752C1B01B600F58754 /* MeaningOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeaningOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE3FE3782C1B01B600F58754 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE3FE37A2C1B01B600F58754 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		BE3FE37C2C1B01B600F58754 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BE3FE37C2C1B01B600F58754 /* OnboardingMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingMainViewController.swift; sourceTree = "<group>"; };
 		BE3FE3812C1B01B800F58754 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE3FE3842C1B01B800F58754 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE3FE3862C1B01B800F58754 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -33,6 +47,20 @@
 		BE3FE3972C1B15DD00F58754 /* .gitmessage.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitmessage.txt; sourceTree = "<group>"; };
 		BE3FE3A22C1B181F00F58754 /* UIKitPreviewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitPreviewHelper.swift; sourceTree = "<group>"; };
 		BE3FE3A42C1B1A2600F58754 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		BE3FE3A82C1BC4BE00F58754 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
+		BE3FE3AA2C1BC5AA00F58754 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		BE3FE3AD2C1BC96500F58754 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		BE3FE3B92C1C2C5000F58754 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		BE3FE3BC2C1C301400F58754 /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
+		BE3FE3BE2C1C33F100F58754 /* ProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButton.swift; sourceTree = "<group>"; };
+		BE3FE3C12C1C34AC00F58754 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		BE3FE3C32C1C4BA000F58754 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
+		BE3FE3C92C1D7D4B00F58754 /* NicknameValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NicknameValidator.swift; sourceTree = "<group>"; };
+		BE3FE3CB2C1D7D8B00F58754 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		BE3FE3CD2C1D811500F58754 /* ProfileImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageViewController.swift; sourceTree = "<group>"; };
+		BE3FE3CF2C1D87F000F58754 /* ProfileImageCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageCVCell.swift; sourceTree = "<group>"; };
+		BE3FE3D12C1D883A00F58754 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
+		BE3FE3D32C1D894D00F58754 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,9 +68,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE3FE3A12C1B17D600F58754 /* SnapKit in Frameworks */,
-				BE3FE39E2C1B17C700F58754 /* Kingfisher in Frameworks */,
-				BE3FE39B2C1B17B800F58754 /* Alamofire in Frameworks */,
+				BE3FE3B72C1C205900F58754 /* Alamofire in Frameworks */,
+				BE3FE3B42C1C204E00F58754 /* Kingfisher in Frameworks */,
+				BE3FE3B12C1C204200F58754 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				BE3FE38F2C1B020200F58754 /* View */,
+				BE3FE3AC2C1BC95C00F58754 /* Model */,
 				BE3FE3942C1B136800F58754 /* Utility */,
 				BE3FE38E2C1B01EC00F58754 /* App */,
 			);
@@ -101,6 +130,7 @@
 			children = (
 				BE3FE3782C1B01B600F58754 /* AppDelegate.swift */,
 				BE3FE37A2C1B01B600F58754 /* SceneDelegate.swift */,
+				BE3FE3C32C1C4BA000F58754 /* Appearance.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -108,7 +138,11 @@
 		BE3FE38F2C1B020200F58754 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BE3FE37C2C1B01B600F58754 /* ViewController.swift */,
+				BE3FE3BB2C1C2FDE00F58754 /* Common */,
+				BE3FE37C2C1B01B600F58754 /* OnboardingMainViewController.swift */,
+				BE3FE3B92C1C2C5000F58754 /* ProfileViewController.swift */,
+				BE3FE3CD2C1D811500F58754 /* ProfileImageViewController.swift */,
+				BE3FE3CF2C1D87F000F58754 /* ProfileImageCVCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -118,8 +152,32 @@
 			children = (
 				BE3FE3A22C1B181F00F58754 /* UIKitPreviewHelper.swift */,
 				BE3FE3A42C1B1A2600F58754 /* Builder.swift */,
+				BE3FE3A82C1BC4BE00F58754 /* UserDefaultsWrapper.swift */,
+				BE3FE3AA2C1BC5AA00F58754 /* Logger.swift */,
+				BE3FE3C92C1D7D4B00F58754 /* NicknameValidator.swift */,
+				BE3FE3C12C1C34AC00F58754 /* Constant.swift */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		BE3FE3AC2C1BC95C00F58754 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3AD2C1BC96500F58754 /* Profile.swift */,
+				BE3FE3D12C1D883A00F58754 /* ProfileImage.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BE3FE3BB2C1C2FDE00F58754 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3BC2C1C301400F58754 /* LargeButton.swift */,
+				BE3FE3D32C1D894D00F58754 /* ProfileImageView.swift */,
+				BE3FE3BE2C1C33F100F58754 /* ProfileButton.swift */,
+				BE3FE3CB2C1D7D8B00F58754 /* BaseViewController.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,9 +197,9 @@
 			);
 			name = MeaningOut;
 			packageProductDependencies = (
-				BE3FE39A2C1B17B800F58754 /* Alamofire */,
-				BE3FE39D2C1B17C700F58754 /* Kingfisher */,
-				BE3FE3A02C1B17D600F58754 /* SnapKit */,
+				BE3FE3B02C1C204200F58754 /* SnapKit */,
+				BE3FE3B32C1C204E00F58754 /* Kingfisher */,
+				BE3FE3B62C1C205900F58754 /* Alamofire */,
 			);
 			productName = MeaningOut;
 			productReference = BE3FE3752C1B01B600F58754 /* MeaningOut.app */;
@@ -172,9 +230,9 @@
 			);
 			mainGroup = BE3FE36C2C1B01B600F58754;
 			packageReferences = (
-				BE3FE3992C1B17B800F58754 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				BE3FE39C2C1B17C700F58754 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				BE3FE39F2C1B17D600F58754 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				BE3FE3AF2C1C204200F58754 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				BE3FE3B22C1C204E00F58754 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				BE3FE3B52C1C205900F58754 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = BE3FE3762C1B01B600F58754 /* Products */;
 			projectDirPath = "";
@@ -204,11 +262,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE3FE37D2C1B01B600F58754 /* ViewController.swift in Sources */,
+				BE3FE37D2C1B01B600F58754 /* OnboardingMainViewController.swift in Sources */,
+				BE3FE3BD2C1C301400F58754 /* LargeButton.swift in Sources */,
+				BE3FE3CA2C1D7D4B00F58754 /* NicknameValidator.swift in Sources */,
+				BE3FE3AE2C1BC96500F58754 /* Profile.swift in Sources */,
+				BE3FE3BF2C1C33F100F58754 /* ProfileButton.swift in Sources */,
+				BE3FE3CC2C1D7D8B00F58754 /* BaseViewController.swift in Sources */,
+				BE3FE3C42C1C4BA000F58754 /* Appearance.swift in Sources */,
+				BE3FE3D42C1D894D00F58754 /* ProfileImageView.swift in Sources */,
 				BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */,
 				BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */,
 				BE3FE3A32C1B181F00F58754 /* UIKitPreviewHelper.swift in Sources */,
+				BE3FE3AB2C1BC5AA00F58754 /* Logger.swift in Sources */,
+				BE3FE3A92C1BC4BE00F58754 /* UserDefaultsWrapper.swift in Sources */,
+				BE3FE3D02C1D87F000F58754 /* ProfileImageCVCell.swift in Sources */,
+				BE3FE3D22C1D883A00F58754 /* ProfileImage.swift in Sources */,
+				BE3FE3CE2C1D811500F58754 /* ProfileImageViewController.swift in Sources */,
+				BE3FE3BA2C1C2C5000F58754 /* ProfileViewController.swift in Sources */,
 				BE3FE3A52C1B1A2600F58754 /* Builder.swift in Sources */,
+				BE3FE3C22C1C34AC00F58754 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,23 +507,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		BE3FE3992C1B17B800F58754 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.9.1;
-			};
-		};
-		BE3FE39C2C1B17C700F58754 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.12.0;
-			};
-		};
-		BE3FE39F2C1B17D600F58754 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		BE3FE3AF2C1C204200F58754 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -459,23 +515,39 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		BE3FE3B22C1C204E00F58754 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
+		BE3FE3B52C1C205900F58754 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BE3FE39A2C1B17B800F58754 /* Alamofire */ = {
+		BE3FE3B02C1C204200F58754 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BE3FE3992C1B17B800F58754 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
+			package = BE3FE3AF2C1C204200F58754 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
-		BE3FE39D2C1B17C700F58754 /* Kingfisher */ = {
+		BE3FE3B32C1C204E00F58754 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BE3FE39C2C1B17C700F58754 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = BE3FE3B22C1C204E00F58754 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
-		BE3FE3A02C1B17D600F58754 /* SnapKit */ = {
+		BE3FE3B62C1C205900F58754 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BE3FE39F2C1B17D600F58754 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
+			package = BE3FE3B52C1C205900F58754 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
