@@ -41,6 +41,9 @@
 		BE3FE3E02C1DBBC000F58754 /* ReuseIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3DF2C1DBBC000F58754 /* ReuseIdentifiable.swift */; };
 		BE3FE3E22C1DBC0300F58754 /* SearchHistoryItemTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3E12C1DBC0300F58754 /* SearchHistoryItemTVCell.swift */; };
 		BE3FE3E42C1DC4F200F58754 /* SearchHistoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3E32C1DC4F200F58754 /* SearchHistoryHeaderView.swift */; };
+		BE3FE3E62C1E035400F58754 /* EndpointRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3E52C1E035400F58754 /* EndpointRepresentable.swift */; };
+		BE3FE3E92C1E055700F58754 /* NaverSearchEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3E82C1E055700F58754 /* NaverSearchEndpoint.swift */; };
+		BE3FE3EC2C1E0B7B00F58754 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3EB2C1E0B7B00F58754 /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +80,10 @@
 		BE3FE3DF2C1DBBC000F58754 /* ReuseIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifiable.swift; sourceTree = "<group>"; };
 		BE3FE3E12C1DBC0300F58754 /* SearchHistoryItemTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryItemTVCell.swift; sourceTree = "<group>"; };
 		BE3FE3E32C1DC4F200F58754 /* SearchHistoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryHeaderView.swift; sourceTree = "<group>"; };
+		BE3FE3E52C1E035400F58754 /* EndpointRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointRepresentable.swift; sourceTree = "<group>"; };
+		BE3FE3E82C1E055700F58754 /* NaverSearchEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverSearchEndpoint.swift; sourceTree = "<group>"; };
+		BE3FE3EA2C1E0AF400F58754 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		BE3FE3EB2C1E0B7B00F58754 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +133,7 @@
 				BE3FE3812C1B01B800F58754 /* Assets.xcassets */,
 				BE3FE3832C1B01B800F58754 /* LaunchScreen.storyboard */,
 				BE3FE3862C1B01B800F58754 /* Info.plist */,
+				BE3FE3EA2C1E0AF400F58754 /* Debug.xcconfig */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -179,6 +187,8 @@
 				BE3FE3C92C1D7D4B00F58754 /* NicknameValidator.swift */,
 				BE3FE3C12C1C34AC00F58754 /* Constant.swift */,
 				BE3FE3DF2C1DBBC000F58754 /* ReuseIdentifiable.swift */,
+				BE3FE3EB2C1E0B7B00F58754 /* APIKey.swift */,
+				BE3FE3E72C1E04ED00F58754 /* Endpoint */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -202,6 +212,15 @@
 				BE3FE3CB2C1D7D8B00F58754 /* BaseViewController.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		BE3FE3E72C1E04ED00F58754 /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3E52C1E035400F58754 /* EndpointRepresentable.swift */,
+				BE3FE3E82C1E055700F58754 /* NaverSearchEndpoint.swift */,
+			);
+			path = Endpoint;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,6 +309,7 @@
 				BE3FE3DE2C1DBB5600F58754 /* SearchHistoryItem.swift in Sources */,
 				BE3FE3DA2C1DB6F800F58754 /* SettingViewController.swift in Sources */,
 				BE3FE3BD2C1C301400F58754 /* LargeButton.swift in Sources */,
+				BE3FE3EC2C1E0B7B00F58754 /* APIKey.swift in Sources */,
 				BE3FE3CA2C1D7D4B00F58754 /* NicknameValidator.swift in Sources */,
 				BE3FE3DC2C1DB95C00F58754 /* EmptySearchHistoryView.swift in Sources */,
 				BE3FE3AE2C1BC96500F58754 /* Profile.swift in Sources */,
@@ -301,7 +321,9 @@
 				BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */,
 				BE3FE3E02C1DBBC000F58754 /* ReuseIdentifiable.swift in Sources */,
 				BE3FE3A32C1B181F00F58754 /* UIKitPreviewHelper.swift in Sources */,
+				BE3FE3E62C1E035400F58754 /* EndpointRepresentable.swift in Sources */,
 				BE3FE3AB2C1BC5AA00F58754 /* Logger.swift in Sources */,
+				BE3FE3E92C1E055700F58754 /* NaverSearchEndpoint.swift in Sources */,
 				BE3FE3A92C1BC4BE00F58754 /* UserDefaultsWrapper.swift in Sources */,
 				BE3FE3D62C1DB65C00F58754 /* TabBarController.swift in Sources */,
 				BE3FE3D02C1D87F000F58754 /* ProfileImageCVCell.swift in Sources */,
@@ -332,6 +354,7 @@
 /* Begin XCBuildConfiguration section */
 		BE3FE3872C1B01B800F58754 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE3FE3EA2C1E0AF400F58754 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -382,7 +405,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -439,7 +462,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -451,6 +474,7 @@
 		};
 		BE3FE38A2C1B01B800F58754 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE3FE3EA2C1E0AF400F58754 /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
