@@ -15,16 +15,17 @@ final class OnboardingProfileViewController: UIViewController {
         image: UIImage(named: profileImageName)
     )
     
-    private let nicknameTextField = UITextField().build { builder in
-        builder.attributedPlaceholder(
-            NSAttributedString(
-                string: Profile.nicknamePlaceholder,
-                attributes: [
-                    .foregroundColor: UIColor.meaningGray,
-                    .font: Constant.Font.largeFont
-                ]
+    private lazy var nicknameTextField = UITextField().build { builder in
+        builder.delegate(self)
+            .attributedPlaceholder(
+                NSAttributedString(
+                    string: Profile.nicknamePlaceholder,
+                    attributes: [
+                        .foregroundColor: UIColor.meaningGray,
+                        .font: Constant.Font.largeFont
+                    ]
+                )
             )
-        )
     }
     
     private let textFieldUnderlineView = UIView().build { builder in
@@ -95,6 +96,27 @@ final class OnboardingProfileViewController: UIViewController {
             make.top.equalTo(validationLabel.snp.bottom).offset(20)
             make.centerX.width.equalTo(textFieldUnderlineView)
         }
+    }
+}
+
+extension OnboardingProfileViewController: UITextFieldDelegate {
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
+        guard let newNickname = (textField.text as? NSString)?
+            .replacingCharacters(in: range, with: string)
+        else {
+            Logger.debugging("\(textField)의 text nil")
+            return true
+        }
+        do {
+            try NicknameValidator.checkValidationWithRegex(text: newNickname)
+        } catch {
+            validationLabel.text = error.localizedDescription
+        }
+        return true
     }
 }
 

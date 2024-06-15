@@ -27,6 +27,7 @@
 		BE3FE3BF2C1C33F100F58754 /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3BE2C1C33F100F58754 /* ProfileButton.swift */; };
 		BE3FE3C22C1C34AC00F58754 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3C12C1C34AC00F58754 /* Constant.swift */; };
 		BE3FE3C42C1C4BA000F58754 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3C32C1C4BA000F58754 /* Appearance.swift */; };
+		BE3FE3CA2C1D7D4B00F58754 /* NicknameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3C92C1D7D4B00F58754 /* NicknameValidator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		BE3FE3BE2C1C33F100F58754 /* ProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButton.swift; sourceTree = "<group>"; };
 		BE3FE3C12C1C34AC00F58754 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		BE3FE3C32C1C4BA000F58754 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
+		BE3FE3C92C1D7D4B00F58754 /* NicknameValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NicknameValidator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				BE3FE3A42C1B1A2600F58754 /* Builder.swift */,
 				BE3FE3A82C1BC4BE00F58754 /* UserDefaultsWrapper.swift */,
 				BE3FE3AA2C1BC5AA00F58754 /* Logger.swift */,
+				BE3FE3C92C1D7D4B00F58754 /* NicknameValidator.swift */,
 				BE3FE3C12C1C34AC00F58754 /* Constant.swift */,
 			);
 			path = Utility;
@@ -254,6 +257,7 @@
 			files = (
 				BE3FE37D2C1B01B600F58754 /* OnboardingMainViewController.swift in Sources */,
 				BE3FE3BD2C1C301400F58754 /* LargeButton.swift in Sources */,
+				BE3FE3CA2C1D7D4B00F58754 /* NicknameValidator.swift in Sources */,
 				BE3FE3AE2C1BC96500F58754 /* Profile.swift in Sources */,
 				BE3FE3BF2C1C33F100F58754 /* ProfileButton.swift in Sources */,
 				BE3FE3C42C1C4BA000F58754 /* Appearance.swift in Sources */,
