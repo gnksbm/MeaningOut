@@ -41,7 +41,7 @@ final class ProfileViewController: BaseViewController {
     }
     private let validationLabel = UILabel().build { builder in
         builder.textColor(.meaningOrange)
-            .font(Constant.Font.mediumFont.with(weight: .medium))
+            .font(Constant.Font.mediumFont.font.with(weight: .medium))
             .text("2글자 이상 10글자 미만으로 입력해주세요.")
     }
     private let finishButton = LargeButton(title: "완료")
@@ -141,7 +141,7 @@ extension ProfileViewController: UITextFieldDelegate {
                 string: error.localizedDescription,
                 attributes: [
                     .foregroundColor: UIColor.meaningOrange,
-                    .font: Constant.Font.mediumFont
+                    .font: Constant.Font.mediumFont.font
                         .with(weight: .medium)
                 ]
             )
