@@ -10,13 +10,10 @@ import UIKit
 import SnapKit
 
 final class ProfileButton: UIButton {
-    private let profileImageView = UIImageView().build { builder in
-        builder.clipsToBounds(true)
-            .action {
-                $0.layer.borderWidth = 5
-                $0.layer.borderColor = UIColor.meaningOrange.cgColor
-            }
-    }
+    private let profileImageView = ProfileImageView(borderWidth: 3)
+        .build { builder in
+            builder.action { $0.setBorderColor(color: .meaningOrange) }
+        }
     
     private let cameraImageView = UIImageView().build { builder in
         builder.contentMode(.scaleAspectFit)
@@ -31,9 +28,10 @@ final class ProfileButton: UIButton {
     
     init(image: UIImage?) {
         super.init(frame: .zero)
-//        configureUI()
         configureLayout()
-        profileImageView.image = image
+        profileImageView.configureView(
+            item: ProfileImage(image: image)
+        )
     }
     
     required init?(coder: NSCoder) {
@@ -42,12 +40,13 @@ final class ProfileButton: UIButton {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        [profileImageView, cameraImageBackgroundView].forEach {
+        [cameraImageBackgroundView].forEach {
             $0.layer.cornerRadius = $0.bounds.width / 2
         }
     }
     
-    private func configureUI() {
+    func updateImage(image: UIImage?) {
+        profileImageView.image = image
     }
     
     private func configureLayout() {
@@ -78,8 +77,10 @@ import SwiftUI
 struct ProfileButtonPreview: PreviewProvider {
     static var previews: some View {
         
-        ProfileButton(image: UIImage(named: Profile.imageName)).swiftUIView
-            .frame(width: 300, height: 300, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        ProfileButton(
+            image: UIImage(named: Profile.imageName))
+        .swiftUIView
+        .frame(width: 300, height: 300)
     }
 }
 #endif

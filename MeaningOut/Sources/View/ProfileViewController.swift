@@ -1,5 +1,5 @@
 //
-//  OnboardingProfileViewController.swift
+//  ProfileViewController.swift
 //  MeaningOut
 //
 //  Created by gnksbm on 6/14/24.
@@ -7,13 +7,21 @@
 
 import UIKit
 
-final class OnboardingProfileViewController: BaseViewController {
+final class ProfileViewController: BaseViewController {
     private var profileImageName = Profile.imageName
-    private let viewMode: ViewMode
+    private let viewMode: ProfileViewMode
     
     private lazy var profileImageButton = ProfileButton(
         image: UIImage(named: profileImageName)
-    )
+    ).build { builder in
+        builder.action {
+            $0.addTarget(
+                self,
+                action: #selector(profileButtonTapped),
+                for: .touchUpInside
+            )
+        }
+    }
     
     private lazy var nicknameTextField = UITextField().build { builder in
         builder.delegate(self)
@@ -33,7 +41,7 @@ final class OnboardingProfileViewController: BaseViewController {
     }
     private let validationLabel = UILabel().build { builder in
         builder.textColor(.meaningOrange)
-            .font(Constant.Font.mediumFont)
+            .font(Constant.Font.mediumFont.with(weight: .medium))
             .text("2글자 이상 10글자 미만으로 입력해주세요.")
     }
     private let finishButton = LargeButton(title: "완료")
@@ -44,9 +52,9 @@ final class OnboardingProfileViewController: BaseViewController {
         configureLayout()
     }
     
-    init(viewMode: ViewMode) {
+    init(viewMode: ProfileViewMode) {
         self.viewMode = viewMode
-        super.init(nibName: nil, bundle: nil)
+        super.init()
     }
     
     required init?(coder: NSCoder) {
@@ -98,9 +106,16 @@ final class OnboardingProfileViewController: BaseViewController {
             make.centerX.width.equalTo(textFieldUnderlineView)
         }
     }
+    
+    @objc private func profileButtonTapped() {
+        navigationController?.pushViewController(
+            ProfileImageViewController(viewMode: viewMode),
+            animated: true
+        )
+    }
 }
 
-extension OnboardingProfileViewController: UITextFieldDelegate {
+extension ProfileViewController: UITextFieldDelegate {
     func textField(
         _ textField: UITextField,
         shouldChangeCharactersIn range: NSRange,
@@ -114,24 +129,36 @@ extension OnboardingProfileViewController: UITextFieldDelegate {
         }
         do {
             try NicknameValidator.checkValidationWithRegex(text: newNickname)
+            validationLabel.attributedText = NSAttributedString(
+                string: Profile.validatedNicknameMessage,
+                attributes: [
+                    .foregroundColor: UIColor.black,
+                    .font: Constant.Font.mediumFont
+                ]
+            )
         } catch {
-            validationLabel.text = error.localizedDescription
+            validationLabel.attributedText = NSAttributedString(
+                string: error.localizedDescription,
+                attributes: [
+                    .foregroundColor: UIColor.meaningOrange,
+                    .font: Constant.Font.mediumFont
+                        .with(weight: .medium)
+                ]
+            )
         }
         return true
     }
 }
 
-extension OnboardingProfileViewController {
-    enum ViewMode {
-        case join, edit
-        
-        var title: String {
-            switch self {
-            case .join:
-                "PROFILE SETTING"
-            case .edit:
-                "EDIT PROFILE"
-            }
+enum ProfileViewMode {
+    case join, edit
+    
+    var title: String {
+        switch self {
+        case .join:
+            "PROFILE SETTING"
+        case .edit:
+            "EDIT PROFILE"
         }
     }
 }
@@ -140,7 +167,7 @@ extension OnboardingProfileViewController {
 import SwiftUI
 struct OnboardingNicknameViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        OnboardingProfileViewController(viewMode: .edit).swiftUIView
+        ProfileViewController(viewMode: .edit).swiftUIView
     }
 }
 #endif

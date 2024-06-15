@@ -61,7 +61,7 @@ final class OnboardingMainViewController: BaseViewController {
     
     @objc private func startButtonTapped() {
         navigationController?.pushViewController(
-            OnboardingProfileViewController(viewMode: .join),
+            ProfileViewController(viewMode: .join),
             animated: true
         )
     }

@@ -97,7 +97,7 @@ enum NicknameValidator {
             do {
                 try NicknameValidator.checkValidation(text: str)
             } catch {
-                print("Swift", str, error)
+                Logger.debugging("Swift \(str) \(error)")
             }
         }
         test(str: shortStr)
@@ -112,7 +112,7 @@ enum NicknameValidator {
             do {
                 try NicknameValidator.checkValidationWithRegex(text: str)
             } catch {
-                print("Regex:", str, error)
+                Logger.debugging("Regex \(str) \(error)")
             }
         }
         testRegex(str: shortStr)
