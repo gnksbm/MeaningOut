@@ -71,7 +71,7 @@ final class OnboardingProfileViewController: BaseViewController {
         profileImageButton.snp.makeConstraints { make in
             make.top.equalTo(safeArea).offset(20)
             make.centerX.equalTo(safeArea)
-            make.width.height.equalTo(safeArea.snp.width).multipliedBy(0.3)
+            make.width.height.equalTo(safeArea.snp.width).multipliedBy(Constant.Size.profileButtonSizeRatio)
         }
         
         nicknameTextField.snp.makeConstraints { make in
@@ -83,7 +83,8 @@ final class OnboardingProfileViewController: BaseViewController {
         textFieldUnderlineView.snp.makeConstraints { make in
             make.top.equalTo(nicknameTextField.snp.bottom).offset(20)
             make.centerX.equalTo(safeArea)
-            make.width.equalTo(safeArea).multipliedBy(0.9)
+            make.width.equalTo(safeArea)
+                .multipliedBy(Constant.Size.largeButtonWidthRatio)
             make.height.equalTo(1)
         }
         

@@ -54,7 +54,8 @@ final class OnboardingMainViewController: BaseViewController {
         startButton.snp.makeConstraints { make in
             make.bottom.equalTo(safeArea).inset(20)
             make.centerX.equalTo(safeArea)
-            make.width.equalTo(safeArea).multipliedBy(0.9)
+            make.width.equalTo(safeArea)
+                .multipliedBy(Constant.Size.largeButtonWidthRatio)
         }
     }
     

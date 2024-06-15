@@ -8,6 +8,10 @@
 import UIKit
 
 enum Constant {
+    enum Size {
+        static let largeButtonWidthRatio = 0.9
+        static let profileButtonSizeRatio = 0.3
+    }
     enum Font {
         static let smallFont = UIFont.systemFont(ofSize: 13)
         static let regularFont = UIFont.systemFont(ofSize: 14)
