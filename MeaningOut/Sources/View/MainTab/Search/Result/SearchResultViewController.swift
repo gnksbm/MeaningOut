@@ -8,8 +8,10 @@
 import UIKit
 
 import SnapKit
+import Alamofire
 
 final class SearchResultViewController: BaseViewController {
+    private var endpoint: NaverSearchEndpoint
     private var selectedFilter = NaverSearchEndpoint.Filter.sim
     private var dataSource: DataSource!
     
@@ -45,14 +47,31 @@ final class SearchResultViewController: BaseViewController {
         builder.action { $0.register(SearchResultCVCell.self) }
     }
     
+    init(endpoint: NaverSearchEndpoint) {
+        self.endpoint = endpoint
+        super.init()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDataSource()
         configureLayout()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        AF.request(endpoint)
+            .responseDecodable(
+                of: NaverSearchResponse.self
+            ) { [weak self] response in
+                guard let self else { return }
+                switch response.result {
+                case .success(let response):
+                    updateSnapshot(items: response.items)
+                case .failure(let error):
+                    Logger.error(error)
+                }
+            }
     }
     
     private func configureLayout() {
@@ -82,7 +101,7 @@ final class SearchResultViewController: BaseViewController {
         selectedFilter.rawValue == tag
     }
     
-    private func updateSnapshot(items: [String]) {
+    private func updateSnapshot(items: [NaverSearchResponse.Item]) {
         var snapshot = Snapshot()
         let allCases = Section.allCases
         snapshot.appendSections(allCases)
@@ -122,7 +141,7 @@ final class SearchResultViewController: BaseViewController {
             let vGroup = NSCollectionLayoutGroup.vertical(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1),
-                    heightDimension: .fractionalWidth(1.2)
+                    heightDimension: .fractionalWidth(1.5)
                 ),
                 subitems: [hGroup]
             )
@@ -153,8 +172,8 @@ final class SearchResultViewController: BaseViewController {
     }
     
     private func makeMainRegistration() -> MainRegistration {
-        MainRegistration { cell, indexPath, itemIdentifier in
-            
+        MainRegistration { cell, indexPath, item in
+            cell.configureCell(data: item)
         }
     }
     
@@ -168,13 +187,16 @@ final class SearchResultViewController: BaseViewController {
 
 extension SearchResultViewController {
     typealias DataSource =
-    UICollectionViewDiffableDataSource<Section, String>
+    UICollectionViewDiffableDataSource<Section, NaverSearchResponse.Item>
         
     typealias Snapshot =
-    NSDiffableDataSourceSnapshot<Section, String>
+    NSDiffableDataSourceSnapshot<Section, NaverSearchResponse.Item>
         
     typealias MainRegistration =
-    UICollectionView.CellRegistration<SearchResultCVCell, String>
+    UICollectionView.CellRegistration<
+        SearchResultCVCell,
+        NaverSearchResponse.Item
+    >
         
     enum Section: CaseIterable {
         case main
@@ -185,7 +207,14 @@ extension SearchResultViewController {
 import SwiftUI
 struct SearchResultViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        SearchResultViewController().swiftUIViewPushed
+        SearchResultViewController(
+            endpoint: NaverSearchEndpoint(
+                query: "새싹",
+                filter: .sim,
+                display: 10,
+                page: 1
+            )
+        ).swiftUIViewPushed
     }
 }
 #endif

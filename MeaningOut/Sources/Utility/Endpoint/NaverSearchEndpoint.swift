@@ -35,6 +35,18 @@ struct NaverSearchEndpoint: EndpointRepresentable {
     private var start: Int {
         return (Int(page) - 1) * display + 1
     }
+    
+    init(
+        query: String,
+        filter: Filter = .sim,
+        display: Int = 15,
+        page: UInt = 1
+    ) {
+        self.query = query
+        self.filter = filter
+        self.display = display
+        self.page = page
+    }
 }
 
 extension NaverSearchEndpoint {

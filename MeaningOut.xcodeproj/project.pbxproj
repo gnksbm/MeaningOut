@@ -47,6 +47,9 @@
 		BE3FE3EE2C1EB4CD00F58754 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3ED2C1EB4CD00F58754 /* SearchResultViewController.swift */; };
 		BE3FE3F02C1EBCFC00F58754 /* SearchResultFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3EF2C1EBCFC00F58754 /* SearchResultFilterButton.swift */; };
 		BE3FE3F22C1ECAFB00F58754 /* SearchResultCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3F12C1ECAFB00F58754 /* SearchResultCVCell.swift */; };
+		BE3FE3FA2C1EDDA300F58754 /* NaverSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3F92C1EDDA300F58754 /* NaverSearchResponse.swift */; };
+		BE3FE4002C1EE40000F58754 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3FF2C1EE40000F58754 /* String+.swift */; };
+		BE3FE4032C1EE7B200F58754 /* NaverSearchResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = BE3FE4022C1EE7B200F58754 /* NaverSearchResponse.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +93,9 @@
 		BE3FE3ED2C1EB4CD00F58754 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		BE3FE3EF2C1EBCFC00F58754 /* SearchResultFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultFilterButton.swift; sourceTree = "<group>"; };
 		BE3FE3F12C1ECAFB00F58754 /* SearchResultCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCVCell.swift; sourceTree = "<group>"; };
+		BE3FE3F92C1EDDA300F58754 /* NaverSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverSearchResponse.swift; sourceTree = "<group>"; };
+		BE3FE3FF2C1EE40000F58754 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		BE3FE4022C1EE7B200F58754 /* NaverSearchResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NaverSearchResponse.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +193,7 @@
 				BE3FE3C12C1C34AC00F58754 /* Constant.swift */,
 				BE3FE3DF2C1DBBC000F58754 /* ReuseIdentifiable.swift */,
 				BE3FE3EB2C1E0B7B00F58754 /* APIKey.swift */,
+				BE3FE3FE2C1EE3E500F58754 /* Extension */,
 				BE3FE3E72C1E04ED00F58754 /* Endpoint */,
 			);
 			path = Utility;
@@ -198,6 +205,8 @@
 				BE3FE3AD2C1BC96500F58754 /* Profile.swift */,
 				BE3FE3D12C1D883A00F58754 /* ProfileImage.swift */,
 				BE3FE3DD2C1DBB5600F58754 /* SearchHistoryItem.swift */,
+				BE3FE3F92C1EDDA300F58754 /* NaverSearchResponse.swift */,
+				BE3FE4012C1EE7A500F58754 /* Mock */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -280,6 +289,22 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		BE3FE3FE2C1EE3E500F58754 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3FF2C1EE40000F58754 /* String+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		BE3FE4012C1EE7A500F58754 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE4022C1EE7B200F58754 /* NaverSearchResponse.json */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -349,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE3FE3982C1B15DD00F58754 /* .gitmessage.txt in Resources */,
+				BE3FE4032C1EE7B200F58754 /* NaverSearchResponse.json in Resources */,
 				BE3FE3822C1B01B800F58754 /* Assets.xcassets in Resources */,
 				BE3FE3962C1B153300F58754 /* .gitignore in Resources */,
 				BE3FE3852C1B01B800F58754 /* Base in Resources */,
@@ -374,6 +400,7 @@
 				BE3FE3BF2C1C33F100F58754 /* ProfileButton.swift in Sources */,
 				BE3FE3CC2C1D7D8B00F58754 /* BaseViewController.swift in Sources */,
 				BE3FE3F22C1ECAFB00F58754 /* SearchResultCVCell.swift in Sources */,
+				BE3FE4002C1EE40000F58754 /* String+.swift in Sources */,
 				BE3FE3C42C1C4BA000F58754 /* Appearance.swift in Sources */,
 				BE3FE3D42C1D894D00F58754 /* ProfileImageView.swift in Sources */,
 				BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */,
@@ -389,6 +416,7 @@
 				BE3FE3D02C1D87F000F58754 /* ProfileImageCVCell.swift in Sources */,
 				BE3FE3E22C1DBC0300F58754 /* SearchHistoryItemTVCell.swift in Sources */,
 				BE3FE3E42C1DC4F200F58754 /* SearchHistoryHeaderView.swift in Sources */,
+				BE3FE3FA2C1EDDA300F58754 /* NaverSearchResponse.swift in Sources */,
 				BE3FE3D82C1DB6CA00F58754 /* SearchViewController.swift in Sources */,
 				BE3FE3D22C1D883A00F58754 /* ProfileImage.swift in Sources */,
 				BE3FE3CE2C1D811500F58754 /* ProfileImageViewController.swift in Sources */,

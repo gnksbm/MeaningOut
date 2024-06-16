@@ -15,7 +15,7 @@ protocol SearchResultCVCellData {
     var isLiked: Bool { get }
     var storeName: String { get }
     var productDescription: String { get }
-    var price: Int { get }
+    var price: String { get }
 }
 
 final class SearchResultCVCell: UICollectionViewCell {
@@ -46,6 +46,7 @@ final class SearchResultCVCell: UICollectionViewCell {
     
     private let productDescriptionLabel = UILabel().build { builder in
         builder.font(Constant.Font.mediumFont.font)
+            .numberOfLines(2)
     }
     
     private let priceLabel = UILabel().build { builder in
@@ -70,7 +71,7 @@ final class SearchResultCVCell: UICollectionViewCell {
         configureBasketButton(isLiked: data.isLiked)
         storeNameLabel.text = data.storeName
         productDescriptionLabel.text = data.productDescription
-        priceLabel.text = data.price.formatted() + "원"
+        priceLabel.text = data.price
     }
     
     private func configureBasketButton(isLiked: Bool) {
@@ -129,7 +130,7 @@ struct SearchResultCVCellPreview: PreviewProvider {
         let isLiked: Bool = false
         let storeName: String = "네이버"
         let productDescription: String = "<b>아이폰</b> 15 프로 맥스 256GB [자급제]"
-        let price: Int = 1720474
+        let price: String = "1,720,474원"
     }
     
     static var previews: some View {

@@ -105,8 +105,14 @@ final class SearchViewController: BaseViewController {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text else {
+            Logger.debugging("searchBar.text 옵셔널 바인딩 실패")
+            return
+        }
         navigationController?.pushViewController(
-            UIViewController(),
+            SearchResultViewController(
+                endpoint: NaverSearchEndpoint(query: query)
+            ),
             animated: true
         )
     }
