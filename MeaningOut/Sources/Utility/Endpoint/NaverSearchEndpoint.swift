@@ -28,7 +28,7 @@ struct NaverSearchEndpoint: EndpointRepresentable {
             "query": query,
             "display": "\(display)",
             "start": "\(start)",
-            "filter": filter.rawValue
+            "filter": filter.toQuery
         ]
     }
     
@@ -38,15 +38,32 @@ struct NaverSearchEndpoint: EndpointRepresentable {
 }
 
 extension NaverSearchEndpoint {
-    enum Filter: String {
+    enum Filter: Int, CaseIterable, FiltarableOption {
         /// 정확도순으로 내림차순 정렬(기본값)
         case sim
         /// 날짜순으로 내림차순 정렬
         case date
-        /// 가격순으로 오름차순 정렬
-        case asc
         /// 가격순으로 내림차순 정렬
         case dsc
+        /// 가격순으로 오름차순 정렬
+        case asc
+        
+        var title: String {
+            switch self {
+            case .sim:
+                "정확도순"
+            case .date:
+                "날짜순"
+            case .dsc:
+                "가격높은순"
+            case .asc:
+                "가격낮은순"
+            }
+        }
+        
+        var toQuery: String {
+            String(describing: self)
+        }
     }
 }
 

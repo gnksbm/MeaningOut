@@ -104,6 +104,13 @@ final class SearchViewController: BaseViewController {
 }
 
 extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        navigationController?.pushViewController(
+            UIViewController(),
+            animated: true
+        )
+    }
+    
     func searchBar(
         _ searchBar: UISearchBar,
         textDidChange searchText: String

@@ -44,6 +44,9 @@
 		BE3FE3E62C1E035400F58754 /* EndpointRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3E52C1E035400F58754 /* EndpointRepresentable.swift */; };
 		BE3FE3E92C1E055700F58754 /* NaverSearchEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3E82C1E055700F58754 /* NaverSearchEndpoint.swift */; };
 		BE3FE3EC2C1E0B7B00F58754 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3EB2C1E0B7B00F58754 /* APIKey.swift */; };
+		BE3FE3EE2C1EB4CD00F58754 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3ED2C1EB4CD00F58754 /* SearchResultViewController.swift */; };
+		BE3FE3F02C1EBCFC00F58754 /* SearchResultFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3EF2C1EBCFC00F58754 /* SearchResultFilterButton.swift */; };
+		BE3FE3F22C1ECAFB00F58754 /* SearchResultCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3F12C1ECAFB00F58754 /* SearchResultCVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +87,9 @@
 		BE3FE3E82C1E055700F58754 /* NaverSearchEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverSearchEndpoint.swift; sourceTree = "<group>"; };
 		BE3FE3EA2C1E0AF400F58754 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		BE3FE3EB2C1E0B7B00F58754 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		BE3FE3ED2C1EB4CD00F58754 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		BE3FE3EF2C1EBCFC00F58754 /* SearchResultFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultFilterButton.swift; sourceTree = "<group>"; };
+		BE3FE3F12C1ECAFB00F58754 /* SearchResultCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCVCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,17 +168,10 @@
 		BE3FE38F2C1B020200F58754 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BE3FE3F32C1ECF0000F58754 /* Onboarding */,
+				BE3FE3F42C1ECF1D00F58754 /* MainTab */,
+				BE3FE3F82C1ECF8200F58754 /* Profile */,
 				BE3FE3BB2C1C2FDE00F58754 /* Common */,
-				BE3FE37C2C1B01B600F58754 /* OnboardingMainViewController.swift */,
-				BE3FE3B92C1C2C5000F58754 /* ProfileViewController.swift */,
-				BE3FE3CD2C1D811500F58754 /* ProfileImageViewController.swift */,
-				BE3FE3CF2C1D87F000F58754 /* ProfileImageCVCell.swift */,
-				BE3FE3D52C1DB65C00F58754 /* TabBarController.swift */,
-				BE3FE3D72C1DB6CA00F58754 /* SearchViewController.swift */,
-				BE3FE3E32C1DC4F200F58754 /* SearchHistoryHeaderView.swift */,
-				BE3FE3E12C1DBC0300F58754 /* SearchHistoryItemTVCell.swift */,
-				BE3FE3DB2C1DB95C00F58754 /* EmptySearchHistoryView.swift */,
-				BE3FE3D92C1DB6F800F58754 /* SettingViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -221,6 +220,64 @@
 				BE3FE3E82C1E055700F58754 /* NaverSearchEndpoint.swift */,
 			);
 			path = Endpoint;
+			sourceTree = "<group>";
+		};
+		BE3FE3F32C1ECF0000F58754 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE37C2C1B01B600F58754 /* OnboardingMainViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		BE3FE3F42C1ECF1D00F58754 /* MainTab */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3D52C1DB65C00F58754 /* TabBarController.swift */,
+				BE3FE3F52C1ECF4700F58754 /* Search */,
+				BE3FE3F62C1ECF4C00F58754 /* Setting */,
+			);
+			path = MainTab;
+			sourceTree = "<group>";
+		};
+		BE3FE3F52C1ECF4700F58754 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3F72C1ECF5900F58754 /* Result */,
+				BE3FE3D72C1DB6CA00F58754 /* SearchViewController.swift */,
+				BE3FE3DB2C1DB95C00F58754 /* EmptySearchHistoryView.swift */,
+				BE3FE3E32C1DC4F200F58754 /* SearchHistoryHeaderView.swift */,
+				BE3FE3E12C1DBC0300F58754 /* SearchHistoryItemTVCell.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		BE3FE3F62C1ECF4C00F58754 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3D92C1DB6F800F58754 /* SettingViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		BE3FE3F72C1ECF5900F58754 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3EF2C1EBCFC00F58754 /* SearchResultFilterButton.swift */,
+				BE3FE3ED2C1EB4CD00F58754 /* SearchResultViewController.swift */,
+				BE3FE3F12C1ECAFB00F58754 /* SearchResultCVCell.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		BE3FE3F82C1ECF8200F58754 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3B92C1C2C5000F58754 /* ProfileViewController.swift */,
+				BE3FE3CD2C1D811500F58754 /* ProfileImageViewController.swift */,
+				BE3FE3CF2C1D87F000F58754 /* ProfileImageCVCell.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,15 +368,18 @@
 				BE3FE3BD2C1C301400F58754 /* LargeButton.swift in Sources */,
 				BE3FE3EC2C1E0B7B00F58754 /* APIKey.swift in Sources */,
 				BE3FE3CA2C1D7D4B00F58754 /* NicknameValidator.swift in Sources */,
+				BE3FE3EE2C1EB4CD00F58754 /* SearchResultViewController.swift in Sources */,
 				BE3FE3DC2C1DB95C00F58754 /* EmptySearchHistoryView.swift in Sources */,
 				BE3FE3AE2C1BC96500F58754 /* Profile.swift in Sources */,
 				BE3FE3BF2C1C33F100F58754 /* ProfileButton.swift in Sources */,
 				BE3FE3CC2C1D7D8B00F58754 /* BaseViewController.swift in Sources */,
+				BE3FE3F22C1ECAFB00F58754 /* SearchResultCVCell.swift in Sources */,
 				BE3FE3C42C1C4BA000F58754 /* Appearance.swift in Sources */,
 				BE3FE3D42C1D894D00F58754 /* ProfileImageView.swift in Sources */,
 				BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */,
 				BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */,
 				BE3FE3E02C1DBBC000F58754 /* ReuseIdentifiable.swift in Sources */,
+				BE3FE3F02C1EBCFC00F58754 /* SearchResultFilterButton.swift in Sources */,
 				BE3FE3A32C1B181F00F58754 /* UIKitPreviewHelper.swift in Sources */,
 				BE3FE3E62C1E035400F58754 /* EndpointRepresentable.swift in Sources */,
 				BE3FE3AB2C1BC5AA00F58754 /* Logger.swift in Sources */,
