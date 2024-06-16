@@ -9,9 +9,9 @@ import Foundation
 
 struct NaverSearchEndpoint: EndpointRepresentable {
     let query: String
-    let filter: Filter
-    let display: Int
-    let page: UInt
+    var filter: Filter
+    var display: Int
+    var page: UInt
     
     var httpMethod: HTTPMethod { .get }
     var scheme: Scheme { .https }
@@ -28,7 +28,7 @@ struct NaverSearchEndpoint: EndpointRepresentable {
             "query": query,
             "display": "\(display)",
             "start": "\(start)",
-            "filter": filter.toQuery
+            "sort": filter.toQuery
         ]
     }
     

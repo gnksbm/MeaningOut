@@ -115,17 +115,7 @@ extension SearchViewController: UISearchBarDelegate {
             ),
             animated: true
         )
-    }
-    
-    func searchBar(
-        _ searchBar: UISearchBar,
-        textDidChange searchText: String
-    ) {
-        updateSnapshot(
-            items: SearchHistoryItem.currentHistory.filter {
-                $0.query.contains(searchText)
-            }
-        )
+        SearchHistoryItem.addNewHistoryItem(query: query)
     }
 }
 

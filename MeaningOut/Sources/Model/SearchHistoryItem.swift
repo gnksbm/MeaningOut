@@ -11,12 +11,25 @@ struct SearchHistoryItem: Hashable, Codable {
     @UserDefaultsWrapper(key: .searchHistory, defaultValue: [])
     static var currentHistory: [SearchHistoryItem]
     
+    static func addNewHistoryItem(query: String) {
+        let newSearchItem = SearchHistoryItem(query: query)
+        currentHistory = currentHistory + [newSearchItem]
+    }
+    
     static func removeHistory() {
         _currentHistory.removeValue()
     }
     
     let query: String
     let date: Date
+    
+    init(
+        query: String,
+        date: Date = .now
+    ) {
+        self.query = query
+        self.date = date
+    }
 }
 
 #if DEBUG

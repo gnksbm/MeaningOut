@@ -12,8 +12,9 @@ import Alamofire
 
 final class SearchResultViewController: BaseViewController {
     private var endpoint: NaverSearchEndpoint
-    private var selectedFilter = NaverSearchEndpoint.Filter.sim
     private var dataSource: DataSource!
+    
+    private var isFetching = false
     
     private let resultCountLabel = UILabel().build { builder in
         builder.textColor(.meaningOrange)
@@ -44,7 +45,8 @@ final class SearchResultViewController: BaseViewController {
         frame: .zero,
         collectionViewLayout: makeLayout()
     ).build { builder in
-        builder.action { $0.register(SearchResultCVCell.self) }
+        builder.delegate(self)
+            .action { $0.register(SearchResultCVCell.self) }
     }
     
     init(endpoint: NaverSearchEndpoint) {
@@ -60,6 +62,11 @@ final class SearchResultViewController: BaseViewController {
         super.viewDidLoad()
         configureDataSource()
         configureLayout()
+        callSearchRequest()
+        navigationItem.title = endpoint.query
+    }
+    
+    private func callSearchRequest() {
         AF.request(endpoint)
             .responseDecodable(
                 of: NaverSearchResponse.self
@@ -71,6 +78,23 @@ final class SearchResultViewController: BaseViewController {
                 case .failure(let error):
                     Logger.error(error)
                 }
+            }
+    }
+    
+    private func callNextPageRequest() {
+        isFetching = true
+        AF.request(endpoint)
+            .responseDecodable(
+                of: NaverSearchResponse.self
+            ) { [weak self] response in
+                guard let self else { return }
+                switch response.result {
+                case .success(let response):
+                    appendSnapshot(items: response.items)
+                case .failure(let error):
+                    Logger.error(error)
+                }
+                isFetching = false
             }
     }
     
@@ -98,13 +122,25 @@ final class SearchResultViewController: BaseViewController {
     }
     
     private func isSelectedButton(tag: Int) -> Bool {
-        selectedFilter.rawValue == tag
+        endpoint.filter.rawValue == tag
     }
     
     private func updateSnapshot(items: [NaverSearchResponse.Item]) {
         var snapshot = Snapshot()
         let allCases = Section.allCases
         snapshot.appendSections(allCases)
+        allCases.forEach {
+            switch $0 {
+            case .main:
+                snapshot.appendItems(items, toSection: $0)
+            }
+        }
+        dataSource.apply(snapshot, animatingDifferences: false)
+    }
+    
+    private func appendSnapshot(items: [NaverSearchResponse.Item]) {
+        var snapshot = dataSource.snapshot()
+        let allCases = Section.allCases
         allCases.forEach {
             switch $0 {
             case .main:
@@ -178,9 +214,23 @@ final class SearchResultViewController: BaseViewController {
     }
     
     @objc private func filterButtonTapped(_ sender: UIButton) {
-        selectedFilter = NaverSearchEndpoint.Filter.allCases[sender.tag]
+        endpoint.filter = NaverSearchEndpoint.Filter.allCases[sender.tag]
         filterButtons.forEach {
             $0.updateState(isSelected: isSelectedButton(tag: $0.tag))
+        }
+        endpoint.page = 1
+        callSearchRequest()
+    }
+}
+
+extension SearchResultViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let scrollViewContentHeight =
+        scrollView.contentSize.height - scrollView.bounds.height
+        if !isFetching,
+            scrollView.contentOffset.y > scrollViewContentHeight * 0.8 {
+            endpoint.page += 1
+            callNextPageRequest()
         }
     }
 }
@@ -209,7 +259,7 @@ struct SearchResultViewControllerPreview: PreviewProvider {
     static var previews: some View {
         SearchResultViewController(
             endpoint: NaverSearchEndpoint(
-                query: "새싹",
+                query: "아이폰",
                 filter: .sim,
                 display: 10,
                 page: 1
