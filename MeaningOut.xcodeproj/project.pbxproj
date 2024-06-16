@@ -263,8 +263,8 @@
 		BE3FE3F72C1ECF5900F58754 /* Result */ = {
 			isa = PBXGroup;
 			children = (
-				BE3FE3EF2C1EBCFC00F58754 /* SearchResultFilterButton.swift */,
 				BE3FE3ED2C1EB4CD00F58754 /* SearchResultViewController.swift */,
+				BE3FE3EF2C1EBCFC00F58754 /* SearchResultFilterButton.swift */,
 				BE3FE3F12C1ECAFB00F58754 /* SearchResultCVCell.swift */,
 			);
 			path = Result;
