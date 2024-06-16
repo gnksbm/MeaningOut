@@ -45,7 +45,7 @@
 		BE3FE3E92C1E055700F58754 /* NaverSearchEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3E82C1E055700F58754 /* NaverSearchEndpoint.swift */; };
 		BE3FE3EC2C1E0B7B00F58754 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3EB2C1E0B7B00F58754 /* APIKey.swift */; };
 		BE3FE3EE2C1EB4CD00F58754 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3ED2C1EB4CD00F58754 /* SearchResultViewController.swift */; };
-		BE3FE3F02C1EBCFC00F58754 /* SearchResultFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3EF2C1EBCFC00F58754 /* SearchResultFilterButton.swift */; };
+		BE3FE3F02C1EBCFC00F58754 /* SearchResultSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3EF2C1EBCFC00F58754 /* SearchResultSortButton.swift */; };
 		BE3FE3F22C1ECAFB00F58754 /* SearchResultCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3F12C1ECAFB00F58754 /* SearchResultCVCell.swift */; };
 		BE3FE3FA2C1EDDA300F58754 /* NaverSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3F92C1EDDA300F58754 /* NaverSearchResponse.swift */; };
 		BE3FE4002C1EE40000F58754 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3FF2C1EE40000F58754 /* String+.swift */; };
@@ -91,7 +91,7 @@
 		BE3FE3EA2C1E0AF400F58754 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		BE3FE3EB2C1E0B7B00F58754 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		BE3FE3ED2C1EB4CD00F58754 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
-		BE3FE3EF2C1EBCFC00F58754 /* SearchResultFilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultFilterButton.swift; sourceTree = "<group>"; };
+		BE3FE3EF2C1EBCFC00F58754 /* SearchResultSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSortButton.swift; sourceTree = "<group>"; };
 		BE3FE3F12C1ECAFB00F58754 /* SearchResultCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCVCell.swift; sourceTree = "<group>"; };
 		BE3FE3F92C1EDDA300F58754 /* NaverSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverSearchResponse.swift; sourceTree = "<group>"; };
 		BE3FE3FF2C1EE40000F58754 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
@@ -273,7 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				BE3FE3ED2C1EB4CD00F58754 /* SearchResultViewController.swift */,
-				BE3FE3EF2C1EBCFC00F58754 /* SearchResultFilterButton.swift */,
+				BE3FE3EF2C1EBCFC00F58754 /* SearchResultSortButton.swift */,
 				BE3FE3F12C1ECAFB00F58754 /* SearchResultCVCell.swift */,
 			);
 			path = Result;
@@ -406,7 +406,7 @@
 				BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */,
 				BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */,
 				BE3FE3E02C1DBBC000F58754 /* ReuseIdentifiable.swift in Sources */,
-				BE3FE3F02C1EBCFC00F58754 /* SearchResultFilterButton.swift in Sources */,
+				BE3FE3F02C1EBCFC00F58754 /* SearchResultSortButton.swift in Sources */,
 				BE3FE3A32C1B181F00F58754 /* UIKitPreviewHelper.swift in Sources */,
 				BE3FE3E62C1E035400F58754 /* EndpointRepresentable.swift in Sources */,
 				BE3FE3AB2C1BC5AA00F58754 /* Logger.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  SearchResultFilterButton.swift
+//  SearchResultSortButton.swift
 //  MeaningOut
 //
 //  Created by gnksbm on 6/16/24.
@@ -9,16 +9,16 @@ import UIKit
 
 import SnapKit
 
-protocol FiltarableOption: RawRepresentable where RawValue == Int {
+protocol SortOption: RawRepresentable where RawValue == Int {
     var title: String { get }
 }
 
-final class SearchResultFilterButton: UIButton {
-    init<T: FiltarableOption>(filter: T) {
+final class SearchResultSortButton: UIButton {
+    init<T: SortOption>(filter: T) {
         super.init(frame: .zero)
         var configuration = UIButton.Configuration.filled()
         let horizontalInset: CGFloat = 15
-        let verticalInset: CGFloat = 12
+        let verticalInset: CGFloat = 10
         configuration.contentInsets = NSDirectionalEdgeInsets(
             top: verticalInset,
             leading: horizontalInset,
@@ -69,13 +69,13 @@ final class SearchResultFilterButton: UIButton {
 import SwiftUI
 struct SearchResultFilterButtonPreview: PreviewProvider {
     static var previews: some View {
-        SearchResultFilterButton(
+        SearchResultSortButton(
             filter: NaverSearchEndpoint.Filter.asc
         ).build { builder in
             builder.action { $0.updateState(isSelected: true) }
         }.swiftUIView
             .frame(width: 80, height: 30)
-        SearchResultFilterButton(
+        SearchResultSortButton(
             filter: NaverSearchEndpoint.Filter.asc
         ).build { builder in
             builder.action { $0.updateState(isSelected: false) }

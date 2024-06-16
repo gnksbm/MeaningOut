@@ -50,7 +50,7 @@ struct NaverSearchEndpoint: EndpointRepresentable {
 }
 
 extension NaverSearchEndpoint {
-    enum Filter: Int, CaseIterable, FiltarableOption {
+    enum Filter: Int, CaseIterable, SortOption {
         /// 정확도순으로 내림차순 정렬(기본값)
         case sim
         /// 날짜순으로 내림차순 정렬

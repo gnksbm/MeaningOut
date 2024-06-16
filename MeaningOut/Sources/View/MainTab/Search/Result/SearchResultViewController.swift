@@ -21,8 +21,8 @@ final class SearchResultViewController: BaseViewController {
             .font(Constant.Font.mediumFont.font.with(weight: .bold))
     }
  
-    private lazy var filterButtons = NaverSearchEndpoint.Filter.allCases.map {
-        SearchResultFilterButton(filter: $0).build { builder in
+    private lazy var sortButtons = NaverSearchEndpoint.Filter.allCases.map {
+        SearchResultSortButton(filter: $0).build { builder in
             builder.action { 
                 $0.updateState(isSelected: isSelectedButton(tag: $0.tag))
                 $0.addTarget(
@@ -35,7 +35,7 @@ final class SearchResultViewController: BaseViewController {
     }
     
     private lazy var filterStackView = UIStackView(
-        arrangedSubviews: filterButtons
+        arrangedSubviews: sortButtons
     ).build { builder in
         builder.spacing(10)
             .distribution(.fillProportionally)
@@ -75,6 +75,14 @@ final class SearchResultViewController: BaseViewController {
                 switch response.result {
                 case .success(let response):
                     updateSnapshot(items: response.items)
+                    if collectionView.numberOfSections > 0,
+                       collectionView.numberOfItems(inSection: 0) > 0 {
+                        collectionView.scrollToItem(
+                            at: IndexPath(row: 0, section: 0),
+                            at: .top,
+                            animated: false
+                        )
+                    }
                 case .failure(let error):
                     Logger.error(error)
                 }
@@ -215,7 +223,7 @@ final class SearchResultViewController: BaseViewController {
     
     @objc private func filterButtonTapped(_ sender: UIButton) {
         endpoint.filter = NaverSearchEndpoint.Filter.allCases[sender.tag]
-        filterButtons.forEach {
+        sortButtons.forEach {
             $0.updateState(isSelected: isSelectedButton(tag: $0.tag))
         }
         endpoint.page = 1
@@ -227,7 +235,8 @@ extension SearchResultViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let scrollViewContentHeight =
         scrollView.contentSize.height - scrollView.bounds.height
-        if !isFetching,
+        if scrollViewContentHeight > 0,
+            !isFetching,
             scrollView.contentOffset.y > scrollViewContentHeight * 0.8 {
             endpoint.page += 1
             callNextPageRequest()
@@ -259,7 +268,7 @@ struct SearchResultViewControllerPreview: PreviewProvider {
     static var previews: some View {
         SearchResultViewController(
             endpoint: NaverSearchEndpoint(
-                query: "아이폰",
+                query: "새싹",
                 filter: .sim,
                 display: 10,
                 page: 1
