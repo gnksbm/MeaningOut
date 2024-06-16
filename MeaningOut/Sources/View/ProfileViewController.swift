@@ -8,11 +8,10 @@
 import UIKit
 
 final class ProfileViewController: BaseViewController {
-    private var profileImageName = Profile.imageName
     private let viewMode: ProfileViewMode
     
     private lazy var profileImageButton = ProfileButton(
-        image: UIImage(named: profileImageName)
+        image: UIImage(named: Profile.imageName)
     ).build { builder in
         builder.action {
             $0.addTarget(
@@ -30,7 +29,7 @@ final class ProfileViewController: BaseViewController {
                     string: Profile.nicknamePlaceholder,
                     attributes: [
                         .foregroundColor: UIColor.meaningGray,
-                        .font: Constant.Font.largeFont
+                        .font: Constant.Font.largeFont.font
                     ]
                 )
             )
@@ -39,18 +38,14 @@ final class ProfileViewController: BaseViewController {
     private let textFieldUnderlineView = UIView().build { builder in
         builder.backgroundColor(.meaningLightGray)
     }
+    
     private let validationLabel = UILabel().build { builder in
         builder.textColor(.meaningOrange)
             .font(Constant.Font.mediumFont.font.with(weight: .medium))
             .text("2글자 이상 10글자 미만으로 입력해주세요.")
     }
-    private let finishButton = LargeButton(title: "완료")
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureUI()
-        configureLayout()
-    }
+    private let finishButton = LargeButton(title: "완료")
     
     init(viewMode: ProfileViewMode) {
         self.viewMode = viewMode
@@ -59,6 +54,20 @@ final class ProfileViewController: BaseViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureUI()
+        configureLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        nicknameTextField.text = Profile.nickName
+        profileImageButton.updateImage(
+            image: UIImage(named: Profile.imageName)
+        )
     }
     
     private func configureUI() {
@@ -168,6 +177,13 @@ import SwiftUI
 struct OnboardingNicknameViewControllerPreview: PreviewProvider {
     static var previews: some View {
         ProfileViewController(viewMode: .edit).swiftUIView
+            .onAppear {
+                Profile.nickName = ""
+            }
+        ProfileViewController(viewMode: .edit).swiftUIView
+            .onAppear {
+                Profile.nickName = "닉네임"
+            }
     }
 }
 #endif
