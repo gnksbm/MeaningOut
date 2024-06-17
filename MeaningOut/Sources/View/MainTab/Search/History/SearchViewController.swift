@@ -12,6 +12,16 @@ import SnapKit
 final class SearchViewController: BaseViewController {
     private var dataSource: DataSource!
     
+    private lazy var headerView = SearchHistoryHeaderView().build { builder in
+        builder.removeHandler(
+            { [weak self] in
+                guard let self else { return  }
+                SearchHistoryItem.removeHistory()
+                updateSnapshot(items: SearchHistoryItem.currentHistory)
+            }
+        )
+    }
+    
     private lazy var tableView = UITableView().build { builder in
         builder.backgroundView(EmptySearchHistoryView())
             .delegate(self)
@@ -44,7 +54,9 @@ final class SearchViewController: BaseViewController {
             switch $0 {
             case .main:
                 snapshot.appendItems(
-                    items.sorted(using: KeyPathComparator(\.date)),
+                    items.sorted(
+                        using: KeyPathComparator(\.date, order: .reverse)
+                    ),
                     toSection: $0
                 )
             }
@@ -65,12 +77,17 @@ final class SearchViewController: BaseViewController {
     }
     
     private func configureLayout() {
-        [tableView].forEach { view.addSubview($0) }
+        [headerView, tableView].forEach { view.addSubview($0) }
         
         let safeArea = view.safeAreaLayoutGuide
         
+        headerView.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(safeArea)
+        }
+        
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(safeArea)
+            make.top.equalTo(headerView.snp.bottom)
+            make.horizontalEdges.bottom.equalTo(safeArea)
         }
     }
     
@@ -124,21 +141,6 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 extension SearchViewController: UITableViewDelegate {
-    func tableView(
-        _ tableView: UITableView,
-        viewForHeaderInSection section: Int
-    ) -> UIView? {
-        SearchHistoryHeaderView().build { builder in
-            builder.removeHandler(
-                { [weak self] in
-                    guard let self else { return  }
-                    SearchHistoryItem.removeHistory()
-                    updateSnapshot(items: SearchHistoryItem.currentHistory)
-                }
-            )
-        }
-    }
-    
     func tableView(
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath

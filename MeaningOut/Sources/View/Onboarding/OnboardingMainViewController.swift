@@ -36,6 +36,11 @@ final class OnboardingMainViewController: BaseViewController {
         configureLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        User.removeProfile()
+    }
+    
     private func configureLayout() {
         [appNameLabel, imageView, startButton].forEach { view.addSubview($0) }
         

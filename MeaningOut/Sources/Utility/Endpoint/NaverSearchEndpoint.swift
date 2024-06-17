@@ -40,7 +40,7 @@ struct NaverSearchEndpoint: EndpointRepresentable {
     init(
         query: String,
         sort: Sort = .sim,
-        display: Int = 15,
+        display: Int = 30,
         page: Int = 1
     ) {
         self.query = query

@@ -54,13 +54,13 @@ final class SearchHistoryHeaderView: UIView {
         [titleLabel, removeButton].forEach { addSubview($0) }
         
         titleLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(self)
-            make.leading.equalTo(self).offset(20)
+            make.verticalEdges.equalTo(self).inset(20)
+            make.leading.equalTo(self).inset(20)
         }
         
         removeButton.snp.makeConstraints { make in
             make.centerY.equalTo(self)
-            make.trailing.equalTo(self).offset(-20)
+            make.trailing.equalTo(self).inset(20)
         }
     }
     

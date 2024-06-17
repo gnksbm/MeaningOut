@@ -78,9 +78,9 @@ enum NicknameValidator {
             case .outOfRange:
                 "2글자 이상 10글자 미만으로 입력해주세요."
             case .containNumber:
-                "닉네임은 숫자를 포함할 수 없습니다."
+                "닉네임은 숫자는 포함할 수 없어요."
             case .invalidWord(let string):
-                "특수문자 \(string)은 포함할 수 없습니다."
+                "닉네임에 \(string) 는 포함할 수 없어요."
             }
         }
     }

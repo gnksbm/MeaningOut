@@ -42,6 +42,10 @@ final class SettingViewController: BaseViewController {
         dataSource.applySnapshotUsingReloadData(dataSource.snapshot())
     }
     
+    private func configureNavigation() {
+        navigationItem.title = "SETTING"
+    }
+    
     private func configureLayout() {
         [tableView].forEach { view.addSubview($0) }
         

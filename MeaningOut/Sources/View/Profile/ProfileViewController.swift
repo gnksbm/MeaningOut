@@ -165,6 +165,12 @@ final class ProfileViewController: BaseViewController {
         }
     }
     
+    private func setValidation(isValidate: Bool) {
+        actionButton.isEnabled = isValidate
+        textFieldUnderlineView.backgroundColor =
+        isValidate ? .meaningBlack : .meaningLightGray
+    }
+    
     @objc private func profileButtonTapped() {
         navigationController?.pushViewController(
             ProfileImageViewController(viewMode: viewMode),
@@ -183,13 +189,7 @@ final class ProfileViewController: BaseViewController {
         case .join:
             view.window?.rootViewController = .makeRootViewController()
         case .edit:
-            validationLabel.attributedText = NSAttributedString(
-                string: "닉네임이 저장되었습니다.",
-                attributes: [
-                    .foregroundColor: UIColor.meaningBlack,
-                    .font: Constant.Font.mediumFont.font.with(weight: .medium)
-                ]
-            )
+            navigationController?.popViewController(animated: true)
         }
     }
 }
@@ -224,9 +224,9 @@ extension ProfileViewController: UITextFieldDelegate {
                         .font: Constant.Font.mediumFont.font
                     ]
                 )
-                actionButton.isEnabled = false
+                setValidation(isValidate: false)
             } else {
-                actionButton.isEnabled = true
+                setValidation(isValidate: true)
             }
         } catch {
             validationLabel.attributedText = NSAttributedString(
@@ -237,7 +237,7 @@ extension ProfileViewController: UITextFieldDelegate {
                         .with(weight: .medium)
                 ]
             )
-            actionButton.isEnabled = false
+            setValidation(isValidate: false)
         }
         return true
     }
