@@ -199,15 +199,14 @@
 		BE3FE3942C1B136800F58754 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				BE3FE3A22C1B181F00F58754 /* UIKitPreviewHelper.swift */,
 				BE3FE3A42C1B1A2600F58754 /* Builder.swift */,
-				BE3FE3A82C1BC4BE00F58754 /* UserDefaultsWrapper.swift */,
-				BE3FE3AA2C1BC5AA00F58754 /* Logger.swift */,
-				BE3FE3C92C1D7D4B00F58754 /* NicknameValidator.swift */,
-				BE3FE3C12C1C34AC00F58754 /* DesignConstant.swift */,
-				BE3FE3DF2C1DBBC000F58754 /* ReuseIdentifiable.swift */,
-				BE3FE3EB2C1E0B7B00F58754 /* APIKey.swift */,
 				BEF7F95B2C20133A00136FBA /* DateFormat.swift */,
+				BE3FE3A82C1BC4BE00F58754 /* UserDefaultsWrapper.swift */,
+				BE3FE3DF2C1DBBC000F58754 /* ReuseIdentifiable.swift */,
+				BE3FE3C12C1C34AC00F58754 /* DesignConstant.swift */,
+				BE3FE3C92C1D7D4B00F58754 /* NicknameValidator.swift */,
+				BEF7F9692C2065F900136FBA /* Secret */,
+				BEF7F9682C2065E500136FBA /* Debugging */,
 				BE3FE3FE2C1EE3E500F58754 /* Extension */,
 				BE3FE3E72C1E04ED00F58754 /* Endpoint */,
 			);
@@ -396,6 +395,23 @@
 				BE3FE3BE2C1C33F100F58754 /* ProfileButton.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		BEF7F9682C2065E500136FBA /* Debugging */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3A22C1B181F00F58754 /* UIKitPreviewHelper.swift */,
+				BE3FE3AA2C1BC5AA00F58754 /* Logger.swift */,
+			);
+			path = Debugging;
+			sourceTree = "<group>";
+		};
+		BEF7F9692C2065F900136FBA /* Secret */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3EB2C1E0B7B00F58754 /* APIKey.swift */,
+			);
+			path = Secret;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
