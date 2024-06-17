@@ -32,6 +32,7 @@ final class SettingViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureNavigation()
         configureDataSource()
         updateSnapshot()
         configureLayout()
@@ -100,6 +101,31 @@ final class SettingViewController: BaseViewController {
             }
         )
     }
+    
+    private func removeAccount() {
+        let alertController = UIAlertController(
+            title: "탈퇴하기",
+            message: "탈퇴를 하면 데이터가 모두 초기화됩니다. 탈퇴 하시겠습니까?",
+            preferredStyle: .alert
+        ).build { builder in
+            builder.action {
+                let okAction = UIAlertAction(
+                    title: "확인",
+                    style: .destructive
+                ) { _ in
+                    User.removeProfile()
+                    self.view.window?.rootViewController = .makeRootViewController()
+                }
+                let cancelAction = UIAlertAction(
+                    title: "취소",
+                    style: .cancel
+                )
+                $0.addAction(okAction)
+                $0.addAction(cancelAction)
+            }
+        }
+        present(alertController, animated: true)
+    }
 }
 
 extension SettingViewController: UITableViewDelegate { 
@@ -122,8 +148,7 @@ extension SettingViewController: UITableViewDelegate {
         case .notification:
             break
         case .removeAccount:
-            User.removeProfile()
-            view.window?.rootViewController = .makeRootViewController()
+            removeAccount()
         }
     }
 }

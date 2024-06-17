@@ -12,6 +12,9 @@ import SnapKit
 final class SearchViewController: BaseViewController {
     private var dataSource: DataSource!
     
+    private lazy var headerViewHeightConstraint =
+    headerView.heightAnchor.constraint(equalToConstant: 0)
+    
     private lazy var headerView = SearchHistoryHeaderView().build { builder in
         builder.removeHandler(
             { [weak self] in
@@ -48,6 +51,7 @@ final class SearchViewController: BaseViewController {
         var snapshot = Snapshot()
         tableView.backgroundView = items.isEmpty ?
         EmptySearchHistoryView() : nil
+        headerViewHeightConstraint.isActive = items.isEmpty
         let allSection = Section.allCases
         snapshot.appendSections(allSection)
         allSection.forEach {
