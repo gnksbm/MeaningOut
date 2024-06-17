@@ -7,39 +7,164 @@
 
 import UIKit
 
+import SnapKit
+
 final class SettingViewController: BaseViewController {
+    private var dataSource: DataSource!
+    
+    private lazy var tableView = UITableView().build { builder in
+        builder.delegate(self)
+            .separatorColor(.meaningBlack)
+            .separatorInset(
+                UIEdgeInsets(
+                    top: 0,
+                    left: 20,
+                    bottom: 0,
+                    right: 20
+                )
+            )
+            .action {
+                $0.register(SettingProfileInfoTVCell.self)
+                $0.register(SettingTableViewMinCell.self)
+                $0.register(SettingTableViewCountCell.self)
+            }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureDataSource()
+        updateSnapshot()
         configureLayout()
     }
     
     private func configureLayout() {
+        [tableView].forEach { view.addSubview($0) }
         
+        let safeArea = view.safeAreaLayoutGuide
+        tableView.snp.makeConstraints { make in
+            make.edges.equalTo(safeArea)
+        }
+    }
+    
+    private func updateSnapshot() {
+        var snapshot = Snapshot()
+        let allSection = TableViewSection.allCases
+        snapshot.appendSections(allSection)
+        allSection.forEach { 
+            switch $0 {
+            case .main:
+                snapshot.appendItems(TableViewItem.allCases, toSection: $0)
+            }
+        }
+        dataSource.apply(snapshot)
+    }
+    
+    private func configureDataSource() {
+        dataSource = DataSource(
+            tableView: tableView,
+            cellProvider: { tableView, indexPath, item in
+                switch item {
+                case .profile:
+                    tableView.dequeueReusableCell(
+                        cellType: SettingProfileInfoTVCell.self,
+                        for: indexPath
+                    ).build { builder in
+                        builder
+                    }
+                case .shopBasket:
+                    tableView.dequeueReusableCell(
+                        cellType: SettingTableViewCountCell.self,
+                        for: indexPath
+                    ).build { builder in
+                        builder.action {
+                            $0.configureCell(data: ShopBasket())
+                        }
+                    }
+                default:
+                    tableView.dequeueReusableCell(
+                        cellType: SettingTableViewMinCell.self,
+                        for: indexPath
+                    ).build { builder in
+                        builder.action { $0.configureCell(data: item.title) }
+                    }
+                }
+            }
+        )
+    }
+}
+
+extension SettingViewController: UITableViewDelegate { 
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        switch TableViewItem.allCases[indexPath.row] {
+        case .profile:
+            break
+        case .shopBasket:
+            break
+        case .faq:
+            break
+        case .contact:
+            break
+        case .notification:
+            break
+        case .removeAccount:
+            User.removeProfile()
+            view.window?.rootViewController = .makeRootViewController()
+        }
     }
 }
 
 extension SettingViewController {
-    enum UserSettingsOption: Int, CaseIterable {
-        case myCart
+    typealias DataSource =
+    UITableViewDiffableDataSource<TableViewSection, TableViewItem>
+    typealias Snapshot =
+    NSDiffableDataSourceSnapshot<TableViewSection, TableViewItem>
+    
+    enum TableViewSection: CaseIterable {
+        case main
+    }
+    
+    enum TableViewItem: Int, CaseIterable {
+        case profile
+        case shopBasket
         case faq
-        case contactUs
-        case notificationSettings
-        case deleteAccount
+        case contact
+        case notification
+        case removeAccount
 
         var title: String {
             switch self {
-            case .myCart:
+            case .profile:
+                ""
+            case .shopBasket:
                 "나의 장바구니 목록"
             case .faq:
                 "자주 묻는 질문"
-            case .contactUs:
+            case .contact:
                 "1:1 문의"
-            case .notificationSettings:
+            case .notification:
                 "알림 설정"
-            case .deleteAccount:
+            case .removeAccount:
                 "탈퇴하기"
             }
         }
     }
-
+    
+    struct ShopBasket: CountCellData {
+        let title = TableViewItem.shopBasket.title
+        let image: UIImage? = UIImage.likeSelected
+        let count = User.favoriteProductID.count
+        let itemName = "상품"
+    }
 }
+
+#if DEBUG
+import SwiftUI
+struct SettingViewControllerPreview: PreviewProvider {
+    static var previews: some View {
+        SettingViewController().swiftUIView
+    }
+}
+#endif

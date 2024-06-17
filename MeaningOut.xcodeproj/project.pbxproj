@@ -53,7 +53,10 @@
 		BEF7F9292C1EF9DA00136FBA /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F9282C1EF9DA00136FBA /* SearchDetailViewController.swift */; };
 		BEF7F92B2C1FB52A00136FBA /* BasketButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F92A2C1FB52A00136FBA /* BasketButton.swift */; };
 		BEF7F9582C20030900136FBA /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F9572C20030900136FBA /* UIViewController+.swift */; };
-		BEF7F95A2C2009B000136FBA /* SettingProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F9592C2009B000136FBA /* SettingProfileInfoCell.swift */; };
+		BEF7F95A2C2009B000136FBA /* SettingProfileInfoTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F9592C2009B000136FBA /* SettingProfileInfoTVCell.swift */; };
+		BEF7F95C2C20133A00136FBA /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F95B2C20133A00136FBA /* DateFormat.swift */; };
+		BEF7F95E2C2015CC00136FBA /* SettingTableViewMinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F95D2C2015CC00136FBA /* SettingTableViewMinCell.swift */; };
+		BEF7F9602C201B0600136FBA /* SettingTableViewCountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F95F2C201B0600136FBA /* SettingTableViewCountCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,7 +106,10 @@
 		BEF7F9282C1EF9DA00136FBA /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
 		BEF7F92A2C1FB52A00136FBA /* BasketButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketButton.swift; sourceTree = "<group>"; };
 		BEF7F9572C20030900136FBA /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
-		BEF7F9592C2009B000136FBA /* SettingProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingProfileInfoCell.swift; sourceTree = "<group>"; };
+		BEF7F9592C2009B000136FBA /* SettingProfileInfoTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingProfileInfoTVCell.swift; sourceTree = "<group>"; };
+		BEF7F95B2C20133A00136FBA /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
+		BEF7F95D2C2015CC00136FBA /* SettingTableViewMinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewMinCell.swift; sourceTree = "<group>"; };
+		BEF7F95F2C201B0600136FBA /* SettingTableViewCountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCountCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +207,7 @@
 				BE3FE3C12C1C34AC00F58754 /* Constant.swift */,
 				BE3FE3DF2C1DBBC000F58754 /* ReuseIdentifiable.swift */,
 				BE3FE3EB2C1E0B7B00F58754 /* APIKey.swift */,
+				BEF7F95B2C20133A00136FBA /* DateFormat.swift */,
 				BE3FE3FE2C1EE3E500F58754 /* Extension */,
 				BE3FE3E72C1E04ED00F58754 /* Endpoint */,
 			);
@@ -272,7 +279,9 @@
 			isa = PBXGroup;
 			children = (
 				BE3FE3D92C1DB6F800F58754 /* SettingViewController.swift */,
-				BEF7F9592C2009B000136FBA /* SettingProfileInfoCell.swift */,
+				BEF7F95F2C201B0600136FBA /* SettingTableViewCountCell.swift */,
+				BEF7F9592C2009B000136FBA /* SettingProfileInfoTVCell.swift */,
+				BEF7F95D2C2015CC00136FBA /* SettingTableViewMinCell.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -432,13 +441,16 @@
 				BE3FE3C42C1C4BA000F58754 /* Appearance.swift in Sources */,
 				BE3FE3D42C1D894D00F58754 /* ProfileImageView.swift in Sources */,
 				BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */,
+				BEF7F9602C201B0600136FBA /* SettingTableViewCountCell.swift in Sources */,
 				BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */,
 				BE3FE3E02C1DBBC000F58754 /* ReuseIdentifiable.swift in Sources */,
-				BEF7F95A2C2009B000136FBA /* SettingProfileInfoCell.swift in Sources */,
+				BEF7F95C2C20133A00136FBA /* DateFormat.swift in Sources */,
+				BEF7F95A2C2009B000136FBA /* SettingProfileInfoTVCell.swift in Sources */,
 				BE3FE3F02C1EBCFC00F58754 /* SearchResultSortButton.swift in Sources */,
 				BE3FE3A32C1B181F00F58754 /* UIKitPreviewHelper.swift in Sources */,
 				BE3FE3E62C1E035400F58754 /* EndpointRepresentable.swift in Sources */,
 				BE3FE3AB2C1BC5AA00F58754 /* Logger.swift in Sources */,
+				BEF7F95E2C2015CC00136FBA /* SettingTableViewMinCell.swift in Sources */,
 				BE3FE3E92C1E055700F58754 /* NaverSearchEndpoint.swift in Sources */,
 				BE3FE3A92C1BC4BE00F58754 /* UserDefaultsWrapper.swift in Sources */,
 				BE3FE3D62C1DB65C00F58754 /* TabBarController.swift in Sources */,

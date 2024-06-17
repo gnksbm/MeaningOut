@@ -56,5 +56,6 @@ enum User {
     static func removeProfile() {
         _nickName.removeValue()
         _imageName.removeValue()
+        SearchHistoryItem.removeHistory()
     }
 }
