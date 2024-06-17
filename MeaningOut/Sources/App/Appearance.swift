@@ -9,17 +9,30 @@ import UIKit
 
 enum Appearance {
     static func configureCommonUI() {
-        // NavigationBar 설정
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground() // 배경 투명도 설정
-        appearance.shadowColor = .meaningLightGray // 그림자 색상 설정
+        configureNavigationBarUI()
+        configureTabBarUI()
+    }
+    
+    private static func configureNavigationBarUI() {
+        let appearance = UINavigationBarAppearance().build { builder in
+            builder.shadowColor(.meaningGray)
+                .action { $0.configureWithOpaqueBackground() }
+        }
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
 
         UINavigationBar.appearance().tintColor = .meaningBlack
-        UINavigationBar.appearance().tintColor = .meaningBlack
         UINavigationBar.appearance().titleTextAttributes = [
             .font: Constant.Font.navigationTitle.font.with(weight: .bold)
         ]
+    }
+    
+    private static func configureTabBarUI() {
+        let appearance = UITabBarAppearance().build { builder in
+            builder.shadowColor(.meaningGray)
+                .action { $0.configureWithOpaqueBackground() }
+        }
+        UITabBar.appearance().standardAppearance = appearance
+        UITabBar.appearance().scrollEdgeAppearance = appearance
     }
 }

@@ -14,6 +14,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions
         : [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
+        sleep(2)
         Appearance.configureCommonUI()
         return true
     }

@@ -13,7 +13,7 @@ final class OnboardingMainViewController: BaseViewController {
     private let appNameLabel = UILabel().build { builder in
         builder.text("MeaningOut")
             .font(Constant.Font.onboardingTitle.font.with(weight: .black))
-            .textColor(.orange)
+            .textColor(.meaningOrange)
     }
     
     private let imageView = UIImageView().build { builder in

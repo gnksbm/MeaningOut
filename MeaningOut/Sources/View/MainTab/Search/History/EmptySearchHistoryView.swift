@@ -12,13 +12,13 @@ import SnapKit
 final class EmptySearchHistoryView: UIView {
     private let imageView = UIImageView().build { builder in
         builder.image(.empty)
-            .contentMode(.scaleAspectFit)
+            .contentMode(.scaleToFill)
     }
     
     private let descriptionLabel = UILabel().build { builder in
         builder.text("최근 검색어가 없어요")
             .textColor(.meaningBlack)
-            .font(Constant.Font.emptyHistory.font.with(weight: .black))
+            .font(Constant.Font.navigationTitle.font.with(weight: .black))
             .textAlignment(.center)
     }
     
@@ -36,11 +36,11 @@ final class EmptySearchHistoryView: UIView {
         
         imageView.snp.makeConstraints { make in
             make.center.equalTo(self)
-            make.size.equalTo(self.snp.width).multipliedBy(0.9)
+            make.width.equalTo(self).multipliedBy(0.8)
         }
         
         descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(imageView.snp.bottom)
+            make.top.equalTo(imageView.snp.bottom).offset(10)
             make.centerX.equalTo(self)
         }
     }
