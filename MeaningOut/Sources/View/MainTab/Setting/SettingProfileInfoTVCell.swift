@@ -12,20 +12,19 @@ import SnapKit
 final class SettingProfileInfoTVCell: UITableViewCell {
     private let profileImageView = ProfileImageView(borderType: .large)
         .build { builder in
-            builder.image(UIImage(named: User.imageName))
-                .action { $0.setBorderColor(color: .meaningOrange) }
+            builder.action { $0.setBorderColor(color: .meaningOrange) }
         }
     
     private let nicknameLabel = UILabel().build { builder in
-        builder.text(User.nickName)
+        builder.text("닉네임")
             .font(Constant.Font.largeFont.font.with(weight: .bold))
             .textColor(.meaningBlack)
     }
     
     private let joinedDateLabel = UILabel().build { builder in
-        builder.text(User.joinedDate.formatted(dateFormat: .joinedDateOutput))
+        builder.text("가입일")
             .font(Constant.Font.smallFont.font)
-            .textColor(.meaningLightGray)
+            .textColor(.meaningGray)
     }
     
     private let disclosureIndicatorView = UIImageView().build { builder in
@@ -52,6 +51,13 @@ final class SettingProfileInfoTVCell: UITableViewCell {
         super.prepareForReuse()
     }
     
+    func configureCell() {
+        profileImageView.image = UIImage(named: User.imageName)
+        nicknameLabel.text = User.nickname
+        joinedDateLabel.text = 
+        User.joinedDate.formatted(dateFormat: .joinedDateOutput)
+    }
+    
     private func configureLayout() {
         [
             profileImageView,
@@ -70,13 +76,14 @@ final class SettingProfileInfoTVCell: UITableViewCell {
         nicknameLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(50)
             make.leading.equalTo(profileImageView.snp.trailing).offset(20)
-            make.trailing.equalTo(disclosureIndicatorView.snp.leading).offset(-20)
+            make.trailing.equalTo(disclosureIndicatorView.snp.leading)
+                .offset(-20)
             make.bottom.equalTo(contentView.snp.centerY)
             make.height.equalTo(nicknameLabel.intrinsicContentSize.height)
         }
         
         joinedDateLabel.snp.makeConstraints { make in
-            make.top.equalTo(contentView.snp.centerY).offset(10)
+            make.top.equalTo(contentView.snp.centerY).offset(5)
             make.leading.trailing.equalTo(nicknameLabel)
             make.height.equalTo(joinedDateLabel.intrinsicContentSize.height)
             make.bottom.equalTo(contentView).inset(50)

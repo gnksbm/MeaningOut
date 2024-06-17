@@ -37,6 +37,11 @@ final class SettingViewController: BaseViewController {
         configureLayout()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        dataSource.applySnapshotUsingReloadData(dataSource.snapshot())
+    }
+    
     private func configureLayout() {
         [tableView].forEach { view.addSubview($0) }
         
@@ -69,7 +74,7 @@ final class SettingViewController: BaseViewController {
                         cellType: SettingProfileInfoTVCell.self,
                         for: indexPath
                     ).build { builder in
-                        builder
+                        builder.action { $0.configureCell() }
                     }
                 case .shopBasket:
                     tableView.dequeueReusableCell(
@@ -100,7 +105,10 @@ extension SettingViewController: UITableViewDelegate {
     ) {
         switch TableViewItem.allCases[indexPath.row] {
         case .profile:
-            break
+            navigationController?.pushViewController(
+                ProfileViewController(viewMode: .edit),
+                animated: true
+            )
         case .shopBasket:
             break
         case .faq:
@@ -164,7 +172,7 @@ extension SettingViewController {
 import SwiftUI
 struct SettingViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        SettingViewController().swiftUIView
+        SettingViewController().swiftUIViewWithNavigation
     }
 }
 #endif
