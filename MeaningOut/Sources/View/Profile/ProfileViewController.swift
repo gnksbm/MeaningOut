@@ -11,7 +11,7 @@ final class ProfileViewController: BaseViewController {
     private let viewMode: ProfileViewMode
     
     private lazy var profileImageButton = ProfileButton(
-        image: UIImage(named: Profile.imageName)
+        image: UIImage(named: User.imageName)
     ).build { builder in
         builder.action {
             $0.addTarget(
@@ -26,7 +26,7 @@ final class ProfileViewController: BaseViewController {
         builder.delegate(self)
             .attributedPlaceholder(
                 NSAttributedString(
-                    string: Profile.nicknamePlaceholder,
+                    string: User.nicknamePlaceholder,
                     attributes: [
                         .foregroundColor: UIColor.meaningGray,
                         .font: Constant.Font.largeFont.font
@@ -64,9 +64,9 @@ final class ProfileViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        nicknameTextField.text = Profile.nickName
+        nicknameTextField.text = User.nickName
         profileImageButton.updateImage(
-            image: UIImage(named: Profile.imageName)
+            image: UIImage(named: User.imageName)
         )
     }
     
@@ -139,10 +139,10 @@ extension ProfileViewController: UITextFieldDelegate {
         do {
             try NicknameValidator.checkValidationWithRegex(text: newNickname)
             validationLabel.attributedText = NSAttributedString(
-                string: Profile.validatedNicknameMessage,
+                string: User.validatedNicknameMessage,
                 attributes: [
                     .foregroundColor: UIColor.black,
-                    .font: Constant.Font.mediumFont
+                    .font: Constant.Font.mediumFont.font
                 ]
             )
         } catch {
@@ -178,11 +178,11 @@ struct OnboardingNicknameViewControllerPreview: PreviewProvider {
     static var previews: some View {
         ProfileViewController(viewMode: .edit).swiftUIView
             .onAppear {
-                Profile.nickName = ""
+                User.nickName = ""
             }
         ProfileViewController(viewMode: .edit).swiftUIView
             .onAppear {
-                Profile.nickName = "닉네임"
+                User.nickName = "닉네임"
             }
     }
 }

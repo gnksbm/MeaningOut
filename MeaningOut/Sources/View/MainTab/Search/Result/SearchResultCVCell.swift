@@ -19,7 +19,7 @@ protocol SearchResultCVCellData {
 }
 
 final class SearchResultCVCell: UICollectionViewCell {
-    var basketButtonHandler: () -> Void = { }
+    var basketButtonHandler: (BasketButton) -> Void = { _ in }
     
     private let productImageView = UIImageView().build { builder in
         builder.contentMode(.scaleAspectFill)
@@ -27,15 +27,13 @@ final class SearchResultCVCell: UICollectionViewCell {
             .action { $0.layer.cornerRadius = 20 }
     }
     
-    private lazy var basketButton = UIButton(configuration: .bordered()).build { builder in
+    private lazy var basketButton = BasketButton(imageTpye: .changeTint).build { builder in
         builder.action {
             $0.addTarget(
                 self,
                 action: #selector(basketButtonTapped),
                 for: .touchUpInside
             )
-            $0.configuration?.image =
-            UIImage.likeSelected.withRenderingMode(.alwaysTemplate)
         }
     }
     
@@ -64,21 +62,15 @@ final class SearchResultCVCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        basketButtonHandler = { _ in }
     }
     
     func configureCell<T: SearchResultCVCellData>(data: T) {
         productImageView.kf.setImage(with: data.imageURL)
-        configureBasketButton(isLiked: data.isLiked)
+        basketButton.updateButtonColor(isLiked: data.isLiked)
         storeNameLabel.text = data.storeName
         productDescriptionLabel.text = data.productDescription
         priceLabel.text = data.price
-    }
-    
-    private func configureBasketButton(isLiked: Bool) {
-        basketButton.configuration?.baseForegroundColor =
-        isLiked ? .meaningBlack : .meaningWhite
-        basketButton.configuration?.baseBackgroundColor =
-        isLiked ? .meaningWhite : .meaningDarkGray.withAlphaComponent(0.3)
     }
     
     private func configureLayout() {
@@ -92,12 +84,11 @@ final class SearchResultCVCell: UICollectionViewCell {
         
         productImageView.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(contentView)
-            make.height.equalTo(contentView.snp.width).multipliedBy(1.2)
+            make.height.equalTo(contentView.snp.width).multipliedBy(1.1)
         }
         
         basketButton.snp.makeConstraints { make in
             make.trailing.bottom.equalTo(productImageView).inset(20)
-            make.width.equalTo(basketButton.snp.height)
         }
         
         storeNameLabel.snp.makeConstraints { make in
@@ -118,7 +109,7 @@ final class SearchResultCVCell: UICollectionViewCell {
     }
     
     @objc private func basketButtonTapped() {
-        basketButtonHandler()
+        basketButtonHandler(basketButton)
     }
 }
 

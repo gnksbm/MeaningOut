@@ -16,7 +16,7 @@ final class ProfileImageViewController: BaseViewController {
     private var selectedIndex = 0
     
     private let profileButton = ProfileButton(
-        image: UIImage(named: Profile.imageName)
+        image: UIImage(named: User.imageName)
     )
     
     private lazy var collectionView = UICollectionView(
@@ -142,10 +142,10 @@ extension ProfileImageViewController: UICollectionViewDelegate {
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
-        Profile.updateImageName(indexPath: indexPath)
+        User.updateImageName(indexPath: indexPath)
         selectedIndex = indexPath.row
         profileButton.updateImage(
-            image: UIImage(named: Profile.imageName)
+            image: UIImage(named: User.imageName)
         )
         collectionView.reloadData()
     }

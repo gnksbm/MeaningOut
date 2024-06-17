@@ -15,14 +15,15 @@ final class SearchResultViewController: BaseViewController {
     private var dataSource: DataSource!
     
     private var isFetching = false
+    private var isFinalPage = false
     
     private let resultCountLabel = UILabel().build { builder in
         builder.textColor(.meaningOrange)
             .font(Constant.Font.mediumFont.font.with(weight: .bold))
     }
  
-    private lazy var sortButtons = NaverSearchEndpoint.Filter.allCases.map {
-        SearchResultSortButton(filter: $0).build { builder in
+    private lazy var sortButtons = NaverSearchEndpoint.Sort.allCases.map {
+        SearchResultSortButton(sort: $0).build { builder in
             builder.action { 
                 $0.updateState(isSelected: isSelectedButton(tag: $0.tag))
                 $0.addTarget(
@@ -58,6 +59,11 @@ final class SearchResultViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        dataSource.applySnapshotUsingReloadData(dataSource.snapshot())
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDataSource()
@@ -83,14 +89,16 @@ final class SearchResultViewController: BaseViewController {
                             animated: false
                         )
                     }
+                    resultCountLabel.text = response.total.formatted() + "개의 검색 결과"
                 case .failure(let error):
-                    Logger.error(error)
+                    Logger.error(error, with: endpoint.queries)
                 }
             }
     }
     
     private func callNextPageRequest() {
         isFetching = true
+        endpoint.page += 1
         AF.request(endpoint)
             .responseDecodable(
                 of: NaverSearchResponse.self
@@ -99,8 +107,11 @@ final class SearchResultViewController: BaseViewController {
                 switch response.result {
                 case .success(let response):
                     appendSnapshot(items: response.items)
+                    isFinalPage = endpoint.isFinalPage(
+                        total: response.total
+                    )
                 case .failure(let error):
-                    Logger.error(error)
+                    Logger.error(error, with: endpoint)
                 }
                 isFetching = false
             }
@@ -130,7 +141,7 @@ final class SearchResultViewController: BaseViewController {
     }
     
     private func isSelectedButton(tag: Int) -> Bool {
-        endpoint.filter.rawValue == tag
+        endpoint.sort.rawValue == tag
     }
     
     private func updateSnapshot(items: [NaverSearchResponse.Item]) {
@@ -210,7 +221,14 @@ final class SearchResultViewController: BaseViewController {
                     using: mainRegistration, 
                     for: indexPath,
                     item: item
-                )
+                ).build { builder in
+                    builder.basketButtonHandler(
+                        { button in
+                            User.updateFavorites(productID: item.productID)
+                            button.updateButtonColor(isLiked: item.isLiked)
+                        }
+                    )
+                }
             }
         )
     }
@@ -222,7 +240,7 @@ final class SearchResultViewController: BaseViewController {
     }
     
     @objc private func filterButtonTapped(_ sender: UIButton) {
-        endpoint.filter = NaverSearchEndpoint.Filter.allCases[sender.tag]
+        endpoint.sort = NaverSearchEndpoint.Sort.allCases[sender.tag]
         sortButtons.forEach {
             $0.updateState(isSelected: isSelectedButton(tag: $0.tag))
         }
@@ -237,10 +255,24 @@ extension SearchResultViewController: UICollectionViewDelegate {
         scrollView.contentSize.height - scrollView.bounds.height
         if scrollViewContentHeight > 0,
             !isFetching,
+            !isFinalPage,
             scrollView.contentOffset.y > scrollViewContentHeight * 0.8 {
-            endpoint.page += 1
             callNextPageRequest()
         }
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        let itemList = dataSource.snapshot().itemIdentifiers(
+            inSection: Section.allCases[indexPath.section]
+        )
+        let item = itemList[indexPath.row]
+        navigationController?.pushViewController(
+            SearchDetailViewController(item: item),
+            animated: true
+        )
     }
 }
 
@@ -268,8 +300,8 @@ struct SearchResultViewControllerPreview: PreviewProvider {
     static var previews: some View {
         SearchResultViewController(
             endpoint: NaverSearchEndpoint(
-                query: "새싹",
-                filter: .sim,
+                query: "새싹 배기",
+                sort: .sim,
                 display: 10,
                 page: 1
             )

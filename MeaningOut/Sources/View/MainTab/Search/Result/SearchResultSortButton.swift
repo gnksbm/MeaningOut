@@ -14,7 +14,7 @@ protocol SortOption: RawRepresentable where RawValue == Int {
 }
 
 final class SearchResultSortButton: UIButton {
-    init<T: SortOption>(filter: T) {
+    init<T: SortOption>(sort: T) {
         super.init(frame: .zero)
         var configuration = UIButton.Configuration.filled()
         let horizontalInset: CGFloat = 15
@@ -28,10 +28,10 @@ final class SearchResultSortButton: UIButton {
         var container = AttributeContainer()
         container.font = Constant.Font.largeFont.font.with(weight: .semibold)
         configuration.attributedTitle = AttributedString(
-            filter.title,
+            sort.title,
             attributes: container
         )
-        tag = filter.rawValue
+        tag = sort.rawValue
         self.configuration = configuration
         configureUI()
     }
@@ -70,13 +70,13 @@ import SwiftUI
 struct SearchResultFilterButtonPreview: PreviewProvider {
     static var previews: some View {
         SearchResultSortButton(
-            filter: NaverSearchEndpoint.Filter.asc
+            sort: NaverSearchEndpoint.Sort.asc
         ).build { builder in
             builder.action { $0.updateState(isSelected: true) }
         }.swiftUIView
             .frame(width: 80, height: 30)
         SearchResultSortButton(
-            filter: NaverSearchEndpoint.Filter.asc
+            sort: NaverSearchEndpoint.Sort.asc
         ).build { builder in
             builder.action { $0.updateState(isSelected: false) }
         }.swiftUIView

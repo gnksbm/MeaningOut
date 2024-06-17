@@ -61,7 +61,7 @@ final class SearchViewController: BaseViewController {
     }
     
     private func configureUI() {
-        navigationItem.title = "\(Profile.nickName)'s MEANING OUT"
+        navigationItem.title = "\(User.nickName)'s MEANING OUT"
     }
     
     private func configureLayout() {

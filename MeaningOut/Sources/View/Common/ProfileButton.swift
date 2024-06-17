@@ -78,7 +78,7 @@ struct ProfileButtonPreview: PreviewProvider {
     static var previews: some View {
         
         ProfileButton(
-            image: UIImage(named: Profile.imageName))
+            image: UIImage(named: User.imageName))
         .swiftUIView
         .frame(width: 300, height: 300)
     }

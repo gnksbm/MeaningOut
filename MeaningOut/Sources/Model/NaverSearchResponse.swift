@@ -15,17 +15,18 @@ struct NaverSearchResponse: Decodable {
 
 extension NaverSearchResponse {
     struct Item: Decodable, Hashable {
-        let title: String
-        let link: String
-        let image: String
-        let lprice, hprice, mallName, productID: String
-        let productType: String
-        let brand: String
-        let maker: String
-        let category1: String
-        let category2: String
-        let category3: String
-        let category4: String
+        private let title: String
+        private let link: String
+        private let image: String
+        private let lprice, hprice, mallName: String
+        let productID: String
+        private let productType: String
+        private let brand: String
+        private let maker: String
+        private let category1: String
+        private let category2: String
+        private let category3: String
+        private let category4: String
         
         enum CodingKeys: String, CodingKey {
             case title, link, image, lprice, hprice, mallName
@@ -36,15 +37,17 @@ extension NaverSearchResponse {
     }
 }
 
+extension NaverSearchResponse.Item {
+    var detailURL: URL? {
+        URL(string: link.replacingOccurrences(of: "\\", with: ""))
+    }
+}
+
 extension NaverSearchResponse.Item: SearchResultCVCellData {
     var imageURL: URL? {
         URL(string: image.replacingOccurrences(of: "\\", with: ""))
     }
-    var isLiked: Bool {
-        @UserDefaultsWrapper(key: .likedList, defaultValue: [String]())
-        var likedList
-        return likedList.contains(productID)
-    }
+    var isLiked: Bool { User.favoriteProductID.contains(productID) }
     var storeName: String { maker }
     var productDescription: String { title.removeHTMLTags() }
     var price: String { lprice.formattedPrice() }
