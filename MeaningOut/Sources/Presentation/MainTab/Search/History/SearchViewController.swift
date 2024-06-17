@@ -124,13 +124,18 @@ final class SearchViewController: BaseViewController {
     }
     
     private func search(query: String) {
-        navigationController?.pushViewController(
-            SearchResultViewController(
-                endpoint: NaverSearchEndpoint(query: query)
-            ),
-            animated: true
-        )
-        SearchHistoryItem.addNewHistoryItem(query: query)
+        do {
+            try NaverSearchValidator.checkValidationWithRegex(text: query)
+            navigationController?.pushViewController(
+                SearchResultViewController(
+                    endpoint: NaverSearchEndpoint(query: query)
+                ),
+                animated: true
+            )
+            SearchHistoryItem.addNewHistoryItem(query: query)
+        } catch {
+            showToast(message: error.localizedDescription)
+        }
     }
 }
 

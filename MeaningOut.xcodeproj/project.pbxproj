@@ -57,6 +57,8 @@
 		BEF7F95C2C20133A00136FBA /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F95B2C20133A00136FBA /* DateFormat.swift */; };
 		BEF7F95E2C2015CC00136FBA /* SettingTableViewMinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F95D2C2015CC00136FBA /* SettingTableViewMinCell.swift */; };
 		BEF7F9602C201B0600136FBA /* SettingTableViewCountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F95F2C201B0600136FBA /* SettingTableViewCountCell.swift */; };
+		BEF7F96C2C20702500136FBA /* NaverSearchValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F96B2C20702500136FBA /* NaverSearchValidator.swift */; };
+		BEF7F96F2C20809100136FBA /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F96E2C20809000136FBA /* ToastView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +112,8 @@
 		BEF7F95B2C20133A00136FBA /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
 		BEF7F95D2C2015CC00136FBA /* SettingTableViewMinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewMinCell.swift; sourceTree = "<group>"; };
 		BEF7F95F2C201B0600136FBA /* SettingTableViewCountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCountCell.swift; sourceTree = "<group>"; };
+		BEF7F96B2C20702500136FBA /* NaverSearchValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverSearchValidator.swift; sourceTree = "<group>"; };
+		BEF7F96E2C20809000136FBA /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,7 +208,7 @@
 				BE3FE3A82C1BC4BE00F58754 /* UserDefaultsWrapper.swift */,
 				BE3FE3DF2C1DBBC000F58754 /* ReuseIdentifiable.swift */,
 				BE3FE3C12C1C34AC00F58754 /* DesignConstant.swift */,
-				BE3FE3C92C1D7D4B00F58754 /* NicknameValidator.swift */,
+				BEF7F96D2C20702700136FBA /* Validation */,
 				BEF7F9692C2065F900136FBA /* Secret */,
 				BEF7F9682C2065E500136FBA /* Debugging */,
 				BE3FE3FE2C1EE3E500F58754 /* Extension */,
@@ -392,6 +396,7 @@
 				BE3FE3BC2C1C301400F58754 /* LargeButton.swift */,
 				BEF7F92A2C1FB52A00136FBA /* BasketButton.swift */,
 				BE3FE3BE2C1C33F100F58754 /* ProfileButton.swift */,
+				BEF7F96E2C20809000136FBA /* ToastView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -420,6 +425,15 @@
 				BE3FE4022C1EE7B200F58754 /* NaverSearchResponse.json */,
 			);
 			path = Response;
+			sourceTree = "<group>";
+		};
+		BEF7F96D2C20702700136FBA /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3C92C1D7D4B00F58754 /* NicknameValidator.swift */,
+				BEF7F96B2C20702500136FBA /* NaverSearchValidator.swift */,
+			);
+			path = Validation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -533,6 +547,7 @@
 				BEF7F95E2C2015CC00136FBA /* SettingTableViewMinCell.swift in Sources */,
 				BE3FE3E92C1E055700F58754 /* NaverSearchEndpoint.swift in Sources */,
 				BE3FE3A92C1BC4BE00F58754 /* UserDefaultsWrapper.swift in Sources */,
+				BEF7F96F2C20809100136FBA /* ToastView.swift in Sources */,
 				BE3FE3D62C1DB65C00F58754 /* TabBarController.swift in Sources */,
 				BE3FE3D02C1D87F000F58754 /* ProfileImageCVCell.swift in Sources */,
 				BEF7F92B2C1FB52A00136FBA /* BasketButton.swift in Sources */,
@@ -541,6 +556,7 @@
 				BE3FE3FA2C1EDDA300F58754 /* NaverSearchResponse.swift in Sources */,
 				BE3FE3D82C1DB6CA00F58754 /* SearchViewController.swift in Sources */,
 				BE3FE3D22C1D883A00F58754 /* ProfileImage.swift in Sources */,
+				BEF7F96C2C20702500136FBA /* NaverSearchValidator.swift in Sources */,
 				BE3FE3CE2C1D811500F58754 /* ProfileImageViewController.swift in Sources */,
 				BE3FE3BA2C1C2C5000F58754 /* ProfileViewController.swift in Sources */,
 				BE3FE3A52C1B1A2600F58754 /* Builder.swift in Sources */,
