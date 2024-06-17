@@ -8,7 +8,8 @@
 import Foundation
 
 enum UserDefaultsKey: String {
-    case profileNickname, profileImageName, searchHistory, favoriteProductID
+    case profileNickname, profileImageName, searchHistory, joinedDate, 
+         favoriteProductID
 }
 
 @propertyWrapper

@@ -53,6 +53,7 @@
 		BEF7F9292C1EF9DA00136FBA /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F9282C1EF9DA00136FBA /* SearchDetailViewController.swift */; };
 		BEF7F92B2C1FB52A00136FBA /* BasketButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F92A2C1FB52A00136FBA /* BasketButton.swift */; };
 		BEF7F9582C20030900136FBA /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F9572C20030900136FBA /* UIViewController+.swift */; };
+		BEF7F95A2C2009B000136FBA /* SettingProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F9592C2009B000136FBA /* SettingProfileInfoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		BEF7F9282C1EF9DA00136FBA /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
 		BEF7F92A2C1FB52A00136FBA /* BasketButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketButton.swift; sourceTree = "<group>"; };
 		BEF7F9572C20030900136FBA /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		BEF7F9592C2009B000136FBA /* SettingProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingProfileInfoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				BE3FE3D92C1DB6F800F58754 /* SettingViewController.swift */,
+				BEF7F9592C2009B000136FBA /* SettingProfileInfoCell.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */,
 				BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */,
 				BE3FE3E02C1DBBC000F58754 /* ReuseIdentifiable.swift in Sources */,
+				BEF7F95A2C2009B000136FBA /* SettingProfileInfoCell.swift in Sources */,
 				BE3FE3F02C1EBCFC00F58754 /* SearchResultSortButton.swift in Sources */,
 				BE3FE3A32C1B181F00F58754 /* UIKitPreviewHelper.swift in Sources */,
 				BE3FE3E62C1E035400F58754 /* EndpointRepresentable.swift in Sources */,

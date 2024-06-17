@@ -1,0 +1,99 @@
+//
+//  SettingProfileInfoCell.swift
+//  MeaningOut
+//
+//  Created by gnksbm on 6/17/24.
+//
+
+import UIKit
+
+import SnapKit
+
+final class SettingProfileInfoCell: UITableViewCell {
+    private let profileImageView = ProfileImageView(borderType: .large)
+        .build { builder in
+            builder.image(UIImage(named: User.imageName))
+                .action { $0.setBorderColor(color: .meaningOrange) }
+        }
+    
+    private let nicknameLabel = UILabel().build { builder in
+        builder.text(User.nickName)
+            .font(Constant.Font.largeFont.font.with(weight: .bold))
+            .textColor(.meaningBlack)
+    }
+    
+    private let joinedDateLabel = UILabel().build { builder in
+        builder.text(User.joinedDate.formatted())
+            .font(Constant.Font.smallFont.font)
+            .textColor(.meaningLightGray)
+    }
+    
+    private let disclosureIndicatorView = UIImageView().build { builder in
+        builder.image(UIImage(systemName: "chevron.right"))
+            .tintColor(.meaningDarkGray)
+            .contentMode(.right)
+            .preferredSymbolConfiguration(
+                UIImage.SymbolConfiguration(
+                    font: Constant.Font.largeFont.font.with(weight: .bold)
+                )
+            )
+    }
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configureLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
+    private func configureLayout() {
+        [
+            profileImageView,
+            nicknameLabel,
+            joinedDateLabel,
+            disclosureIndicatorView
+        ].forEach { contentView.addSubview($0) }
+        
+        profileImageView.snp.makeConstraints { make in
+            make.leading.equalTo(contentView).offset(20)
+            make.centerY.equalTo(contentView)
+            make.height.equalTo(contentView).multipliedBy(0.5)
+            make.width.equalTo(profileImageView.snp.height)
+        }
+        
+        nicknameLabel.snp.makeConstraints { make in
+            make.top.equalTo(contentView).offset(50)
+            make.leading.equalTo(profileImageView.snp.trailing).offset(20)
+            make.trailing.equalTo(disclosureIndicatorView.snp.leading).offset(-20)
+            make.bottom.equalTo(contentView.snp.centerY)
+        }
+        
+        joinedDateLabel.snp.makeConstraints { make in
+            make.top.equalTo(contentView.snp.centerY).offset(10)
+            make.leading.trailing.equalTo(nicknameLabel)
+            make.bottom.equalTo(contentView).inset(50)
+        }
+        
+        disclosureIndicatorView.snp.makeConstraints { make in
+            make.trailing.equalTo(contentView).inset(20)
+            make.centerY.equalTo(contentView)
+        }
+    }
+}
+
+#if DEBUG
+import SwiftUI
+struct SettingProfileInfoCellPreview: PreviewProvider {
+    static var previews: some View {
+        SettingProfileInfoCell().randomColorForHierarchy
+            .frame(height: 150)
+            .border(.meaningBlack)
+    }
+}
+#endif

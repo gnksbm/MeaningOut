@@ -14,7 +14,8 @@ extension UIView {
     }
     
     var randomColorForHierarchy: some View {
-        self.setRandomBackground().swiftUIView
+        subviews.forEach { $0.setRandomBackground() }
+        return self.setRandomBackground().swiftUIView
     }
     
     @discardableResult

@@ -18,6 +18,12 @@ enum User {
     static var imageName: String
     
     @UserDefaultsWrapper(
+        key: .profileImageName,
+        defaultValue: .now
+    )
+    static var joinedDate: Date
+    
+    @UserDefaultsWrapper(
         key: .favoriteProductID,
         defaultValue: []
     )
