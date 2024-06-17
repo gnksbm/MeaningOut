@@ -26,7 +26,7 @@ final class SearchResultSortButton: UIButton {
             trailing: horizontalInset
         )
         var container = AttributeContainer()
-        container.font = Constant.Font.largeFont.font.with(weight: .semibold)
+        container.font = DesignConstant.Font.large.with(weight: .semibold)
         configuration.attributedTitle = AttributedString(
             sort.title,
             attributes: container

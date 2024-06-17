@@ -29,7 +29,7 @@ final class ProfileViewController: BaseViewController {
                     string: User.nicknamePlaceholder,
                     attributes: [
                         .foregroundColor: UIColor.meaningGray,
-                        .font: Constant.Font.largeFont.font
+                        .font: DesignConstant.Font.large.with(weight: .regular)
                     ]
                 )
             )
@@ -41,7 +41,7 @@ final class ProfileViewController: BaseViewController {
     
     private lazy var validationLabel = UILabel().build { builder in
         builder.textColor(.meaningOrange)
-            .font(Constant.Font.mediumFont.font.with(weight: .medium))
+            .font(DesignConstant.Font.medium.with(weight: .medium))
             .text(viewMode.nicknameDescription)
     }
     
@@ -137,7 +137,7 @@ final class ProfileViewController: BaseViewController {
         profileImageButton.snp.makeConstraints { make in
             make.top.equalTo(safeArea).offset(20)
             make.centerX.equalTo(safeArea)
-            make.width.height.equalTo(safeArea.snp.width).multipliedBy(Constant.Size.profileButtonSizeRatio)
+            make.width.height.equalTo(safeArea.snp.width).multipliedBy(DesignConstant.Size.profileButtonSizeRatio)
         }
         
         nicknameTextField.snp.makeConstraints { make in
@@ -150,7 +150,7 @@ final class ProfileViewController: BaseViewController {
             make.top.equalTo(nicknameTextField.snp.bottom).offset(20)
             make.centerX.equalTo(safeArea)
             make.width.equalTo(safeArea)
-                .multipliedBy(Constant.Size.largeButtonWidthRatio)
+                .multipliedBy(DesignConstant.Size.largeButtonWidthRatio)
             make.height.equalTo(1)
         }
         
@@ -212,7 +212,7 @@ extension ProfileViewController: UITextFieldDelegate {
                 string: User.validatedNicknameMessage,
                 attributes: [
                     .foregroundColor: UIColor.black,
-                    .font: Constant.Font.mediumFont.font
+                    .font: DesignConstant.Font.medium.with(weight: .regular)
                 ]
             )
             if viewMode == .edit,
@@ -221,7 +221,7 @@ extension ProfileViewController: UITextFieldDelegate {
                     string: viewMode.nicknameDescription,
                     attributes: [
                         .foregroundColor: UIColor.meaningOrange,
-                        .font: Constant.Font.mediumFont.font
+                        .font: DesignConstant.Font.medium.with(weight: .regular)
                     ]
                 )
                 setValidation(isValidate: false)
@@ -233,7 +233,7 @@ extension ProfileViewController: UITextFieldDelegate {
                 string: error.localizedDescription,
                 attributes: [
                     .foregroundColor: UIColor.meaningOrange,
-                    .font: Constant.Font.mediumFont.font
+                    .font: DesignConstant.Font.medium
                         .with(weight: .medium)
                 ]
             )

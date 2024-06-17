@@ -17,13 +17,13 @@ final class SettingProfileInfoTVCell: UITableViewCell {
     
     private let nicknameLabel = UILabel().build { builder in
         builder.text("닉네임")
-            .font(Constant.Font.largeFont.font.with(weight: .bold))
+            .font(DesignConstant.Font.large.with(weight: .bold))
             .textColor(.meaningBlack)
     }
     
     private let joinedDateLabel = UILabel().build { builder in
         builder.text("가입일")
-            .font(Constant.Font.smallFont.font)
+            .font(DesignConstant.Font.small.with(weight: .regular))
             .textColor(.meaningGray)
     }
     
@@ -33,7 +33,7 @@ final class SettingProfileInfoTVCell: UITableViewCell {
             .contentMode(.right)
             .preferredSymbolConfiguration(
                 UIImage.SymbolConfiguration(
-                    font: Constant.Font.largeFont.font.with(weight: .bold)
+                    font: DesignConstant.Font.large.with(weight: .bold)
                 )
             )
     }

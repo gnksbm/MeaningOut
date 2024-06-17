@@ -18,16 +18,14 @@ final class SearchHistoryItemTVCell: UITableViewCell {
                 UIImage(systemName: "clock")?
                     .withConfiguration(
                         UIImage.SymbolConfiguration(
-                            font: Constant.Font.largeFont.font.with(
-                                weight: .bold
-                            )
+                            font: DesignConstant.Font.large.with(weight: .bold)
                         )
                     )
             )
     }
     
     private let queryLabel = UILabel().build { builder in
-        builder.font(Constant.Font.mediumFont.font.with(weight: .medium))
+        builder.font(DesignConstant.Font.medium.with(weight: .medium))
     }
     
     private lazy var removeButton = UIButton().build { builder in
@@ -37,7 +35,9 @@ final class SearchHistoryItemTVCell: UITableViewCell {
                     UIImage(systemName: "xmark")?
                         .withConfiguration(
                             UIImage.SymbolConfiguration(
-                                font: Constant.Font.largeFont.font
+                                font: DesignConstant.Font.large.with(
+                                    weight: .regular
+                                )
                             )
                         ),
                     for: .normal

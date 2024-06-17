@@ -38,17 +38,17 @@ final class SearchResultCVCell: UICollectionViewCell {
     }
     
     private let storeNameLabel = UILabel().build { builder in
-        builder.font(Constant.Font.smallFont.font)
+        builder.font(DesignConstant.Font.small.with(weight: .regular))
             .textColor(.meaningGray)
     }
     
     private let productDescriptionLabel = UILabel().build { builder in
-        builder.font(Constant.Font.mediumFont.font)
+        builder.font(DesignConstant.Font.medium.with(weight: .regular))
             .numberOfLines(2)
     }
     
     private let priceLabel = UILabel().build { builder in
-        builder.font(Constant.Font.largeFont.font.with(weight: .bold))
+        builder.font(DesignConstant.Font.large.with(weight: .bold))
     }
     
     override init(frame: CGRect) {

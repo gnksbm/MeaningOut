@@ -12,7 +12,7 @@ import SnapKit
 final class OnboardingMainViewController: BaseViewController {
     private let appNameLabel = UILabel().build { builder in
         builder.text("MeaningOut")
-            .font(Constant.Font.onboardingTitle.font.with(weight: .black))
+            .font(DesignConstant.Font.onboardingTitle.with(weight: .black))
             .textColor(.meaningOrange)
     }
     
@@ -60,7 +60,7 @@ final class OnboardingMainViewController: BaseViewController {
             make.bottom.equalTo(safeArea).inset(20)
             make.centerX.equalTo(safeArea)
             make.width.equalTo(safeArea)
-                .multipliedBy(Constant.Size.largeButtonWidthRatio)
+                .multipliedBy(DesignConstant.Size.largeButtonWidthRatio)
         }
     }
     

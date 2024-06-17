@@ -11,7 +11,7 @@ import SnapKit
 
 final class SettingTableViewMinCell: UITableViewCell {
     private let descriptionLabel = UILabel().build { builder in
-        builder.font(Constant.Font.largeFont.font)
+        builder.font(DesignConstant.Font.large.with(weight: .regular))
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

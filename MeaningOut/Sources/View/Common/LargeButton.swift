@@ -23,7 +23,7 @@ final class LargeButton: UIButton {
     private func configureUI() {
         var config = UIButton.Configuration.bordered()
         var container = AttributeContainer()
-        container.font = Constant.Font.largeFont.font.with(weight: .black)
+        container.font = DesignConstant.Font.large.with(weight: .black)
         config.attributedTitle = AttributedString(
             title,
             attributes: container

@@ -18,7 +18,7 @@ final class EmptySearchHistoryView: UIView {
     private let descriptionLabel = UILabel().build { builder in
         builder.text("최근 검색어가 없어요")
             .textColor(.meaningBlack)
-            .font(Constant.Font.navigationTitle.font.with(weight: .black))
+            .font(DesignConstant.Font.navigationTitle.with(weight: .black))
             .textAlignment(.center)
     }
     

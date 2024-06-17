@@ -13,7 +13,7 @@ enum User {
     
     @UserDefaultsWrapper(
         key: .profileImageName,
-        defaultValue: "profile_\((0...11).randomElement() ?? 0)"
+        defaultValue: "profile_\((bundleImageRange).randomElement() ?? 0)"
     )
     static var imageName: String
     

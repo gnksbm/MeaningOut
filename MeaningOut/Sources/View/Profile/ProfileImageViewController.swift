@@ -53,7 +53,7 @@ final class ProfileImageViewController: BaseViewController {
         profileButton.snp.makeConstraints { make in
             make.top.equalTo(safeArea).offset(20)
             make.centerX.equalTo(safeArea)
-            make.width.height.equalTo(safeArea.snp.width).multipliedBy(Constant.Size.profileButtonSizeRatio)
+            make.width.height.equalTo(safeArea.snp.width).multipliedBy(DesignConstant.Size.profileButtonSizeRatio)
         }
         
         collectionView.snp.makeConstraints { make in

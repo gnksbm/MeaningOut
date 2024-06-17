@@ -25,7 +25,7 @@
 		BE3FE3BA2C1C2C5000F58754 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3B92C1C2C5000F58754 /* ProfileViewController.swift */; };
 		BE3FE3BD2C1C301400F58754 /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3BC2C1C301400F58754 /* LargeButton.swift */; };
 		BE3FE3BF2C1C33F100F58754 /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3BE2C1C33F100F58754 /* ProfileButton.swift */; };
-		BE3FE3C22C1C34AC00F58754 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3C12C1C34AC00F58754 /* Constant.swift */; };
+		BE3FE3C22C1C34AC00F58754 /* DesignConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3C12C1C34AC00F58754 /* DesignConstant.swift */; };
 		BE3FE3C42C1C4BA000F58754 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3C32C1C4BA000F58754 /* Appearance.swift */; };
 		BE3FE3CA2C1D7D4B00F58754 /* NicknameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3C92C1D7D4B00F58754 /* NicknameValidator.swift */; };
 		BE3FE3CC2C1D7D8B00F58754 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3CB2C1D7D8B00F58754 /* BaseViewController.swift */; };
@@ -77,7 +77,7 @@
 		BE3FE3B92C1C2C5000F58754 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BE3FE3BC2C1C301400F58754 /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
 		BE3FE3BE2C1C33F100F58754 /* ProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButton.swift; sourceTree = "<group>"; };
-		BE3FE3C12C1C34AC00F58754 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		BE3FE3C12C1C34AC00F58754 /* DesignConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignConstant.swift; sourceTree = "<group>"; };
 		BE3FE3C32C1C4BA000F58754 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		BE3FE3C92C1D7D4B00F58754 /* NicknameValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NicknameValidator.swift; sourceTree = "<group>"; };
 		BE3FE3CB2C1D7D8B00F58754 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 				BE3FE3A82C1BC4BE00F58754 /* UserDefaultsWrapper.swift */,
 				BE3FE3AA2C1BC5AA00F58754 /* Logger.swift */,
 				BE3FE3C92C1D7D4B00F58754 /* NicknameValidator.swift */,
-				BE3FE3C12C1C34AC00F58754 /* Constant.swift */,
+				BE3FE3C12C1C34AC00F58754 /* DesignConstant.swift */,
 				BE3FE3DF2C1DBBC000F58754 /* ReuseIdentifiable.swift */,
 				BE3FE3EB2C1E0B7B00F58754 /* APIKey.swift */,
 				BEF7F95B2C20133A00136FBA /* DateFormat.swift */,
@@ -466,7 +466,7 @@
 				BE3FE3A52C1B1A2600F58754 /* Builder.swift in Sources */,
 				BEF7F9292C1EF9DA00136FBA /* SearchDetailViewController.swift in Sources */,
 				BEF7F9582C20030900136FBA /* UIViewController+.swift in Sources */,
-				BE3FE3C22C1C34AC00F58754 /* Constant.swift in Sources */,
+				BE3FE3C22C1C34AC00F58754 /* DesignConstant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

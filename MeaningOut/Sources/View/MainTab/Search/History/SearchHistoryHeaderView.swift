@@ -14,7 +14,7 @@ final class SearchHistoryHeaderView: UIView {
     
     private let titleLabel = UILabel().build { builder in
         builder.text("최근 검색")
-            .font(Constant.Font.largeFont.font.with(weight: .bold))
+            .font(DesignConstant.Font.large.with(weight: .bold))
     }
     
     private lazy var removeButton = UIButton().build { builder in
@@ -22,7 +22,7 @@ final class SearchHistoryHeaderView: UIView {
             var config = UIButton.Configuration.plain()
             config.baseForegroundColor = .meaningOrange
             var container = AttributeContainer()
-            container.font = Constant.Font.mediumFont.font
+            container.font = DesignConstant.Font.medium.with(weight: .regular)
             config.attributedTitle = AttributedString(
                 "전체 삭제",
                 attributes: container

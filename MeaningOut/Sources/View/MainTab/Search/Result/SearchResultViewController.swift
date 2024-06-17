@@ -19,7 +19,7 @@ final class SearchResultViewController: BaseViewController {
     
     private let resultCountLabel = UILabel().build { builder in
         builder.textColor(.meaningOrange)
-            .font(Constant.Font.mediumFont.font.with(weight: .bold))
+            .font(DesignConstant.Font.medium.with(weight: .bold))
     }
  
     private lazy var sortButtons = NaverSearchEndpoint.Sort.allCases.map {

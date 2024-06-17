@@ -16,7 +16,7 @@ protocol CountCellData {
 
 final class SettingTableViewCountCell: UITableViewCell {
     private let descriptionLabel = UILabel().build { builder in
-        builder.font(Constant.Font.largeFont.font)
+        builder.font(DesignConstant.Font.large.with(weight: .regular))
     }
     private let iconImageView = UIImageView().build { builder in
         builder.tintColor(.meaningBlack)
@@ -61,14 +61,14 @@ final class SettingTableViewCountCell: UITableViewCell {
         let prefixAttributedStr = NSAttributedString(
             string: "\(count)개",
             attributes: [
-                .font: Constant.Font.largeFont.font.with(weight: .bold),
+                .font: DesignConstant.Font.large.with(weight: .bold),
                 .foregroundColor: UIColor.meaningBlack
             ]
         )
         let suffixAttributedStr = NSAttributedString(
             string: "의 \(itemName)",
             attributes: [
-                .font: Constant.Font.largeFont.font,
+                .font: DesignConstant.Font.large.with(weight: .regular),
                 .foregroundColor: UIColor.meaningBlack
             ]
         )
