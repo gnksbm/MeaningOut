@@ -8,11 +8,10 @@
 import UIKit
 
 final class ProfileViewController: BaseViewController {
-    private var profileImageName = Profile.imageName
     private let viewMode: ProfileViewMode
     
     private lazy var profileImageButton = ProfileButton(
-        image: UIImage(named: profileImageName)
+        image: UIImage(named: User.imageName)
     ).build { builder in
         builder.action {
             $0.addTarget(
@@ -27,10 +26,10 @@ final class ProfileViewController: BaseViewController {
         builder.delegate(self)
             .attributedPlaceholder(
                 NSAttributedString(
-                    string: Profile.nicknamePlaceholder,
+                    string: User.nicknamePlaceholder,
                     attributes: [
                         .foregroundColor: UIColor.meaningGray,
-                        .font: Constant.Font.largeFont
+                        .font: Constant.Font.largeFont.font
                     ]
                 )
             )
@@ -39,17 +38,46 @@ final class ProfileViewController: BaseViewController {
     private let textFieldUnderlineView = UIView().build { builder in
         builder.backgroundColor(.meaningLightGray)
     }
-    private let validationLabel = UILabel().build { builder in
-        builder.textColor(.meaningOrange)
-            .font(Constant.Font.mediumFont.with(weight: .medium))
-            .text("2글자 이상 10글자 미만으로 입력해주세요.")
-    }
-    private let finishButton = LargeButton(title: "완료")
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureUI()
-        configureLayout()
+    private lazy var validationLabel = UILabel().build { builder in
+        builder.textColor(.meaningOrange)
+            .font(Constant.Font.mediumFont.font.with(weight: .medium))
+            .text(viewMode.nicknameDescription)
+    }
+    
+    private lazy var finishButton = LargeButton(title: "완료").build { builder in
+        builder.isEnabled(false)
+            .action {
+                $0.addTarget(
+                    self,
+                    action: #selector(actionButtonTapped),
+                    for: .touchUpInside
+                )
+            }
+    }
+    
+    private lazy var saveButton = UIButton().build { builder in
+        builder
+            .action {
+                $0.titleLabel?.font = $0.titleLabel?.font.with(weight: .bold)
+                $0.setTitle("저장", for: .normal)
+                $0.setTitleColor(.meaningBlack, for: .normal)
+                $0.setTitleColor(.meaningLightGray, for: .disabled)
+                $0.addTarget(
+                    self,
+                    action: #selector(actionButtonTapped),
+                    for: .touchUpInside
+                )
+            }
+    }
+    
+    var actionButton: UIButton {
+        switch viewMode {
+        case .join:
+            finishButton
+        case .edit:
+            saveButton
+        }
     }
     
     init(viewMode: ProfileViewMode) {
@@ -61,8 +89,38 @@ final class ProfileViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureUI() {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureNavigation()
+        configureActionButton()
+        configureLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        nicknameTextField.text = User.nickname
+        profileImageButton.updateImage(
+            image: UIImage(named: User.imageName)
+        )
+        configureNavigation()
+    }
+    
+    private func configureNavigation() {
         navigationItem.title = viewMode.title
+        navigationItem.rightBarButtonItem =
+        UIBarButtonItem(customView: saveButton).build { builder in
+            builder.tintColor(.clear)
+        }
+        saveButton.isEnabled = false
+    }
+    
+    private func configureActionButton() {
+        switch viewMode {
+        case .join:
+            saveButton.isHidden = true
+        case .edit:
+            finishButton.isHidden = true
+        }
     }
     
     private func configureLayout() {
@@ -107,11 +165,32 @@ final class ProfileViewController: BaseViewController {
         }
     }
     
+    private func setValidation(isValidate: Bool) {
+        actionButton.isEnabled = isValidate
+        textFieldUnderlineView.backgroundColor =
+        isValidate ? .meaningBlack : .meaningLightGray
+    }
+    
     @objc private func profileButtonTapped() {
         navigationController?.pushViewController(
             ProfileImageViewController(viewMode: viewMode),
             animated: true
         )
+    }
+    
+    @objc private func actionButtonTapped() {
+        guard let nickname = nicknameTextField.text else {
+            Logger.debugging("nicknameTextField.text nil")
+            return
+        }
+        User.nickname = nickname
+        User.imageName = User.imageName
+        switch viewMode {
+        case .join:
+            view.window?.rootViewController = .makeRootViewController()
+        case .edit:
+            navigationController?.popViewController(animated: true)
+        }
     }
 }
 
@@ -130,21 +209,35 @@ extension ProfileViewController: UITextFieldDelegate {
         do {
             try NicknameValidator.checkValidationWithRegex(text: newNickname)
             validationLabel.attributedText = NSAttributedString(
-                string: Profile.validatedNicknameMessage,
+                string: User.validatedNicknameMessage,
                 attributes: [
                     .foregroundColor: UIColor.black,
-                    .font: Constant.Font.mediumFont
+                    .font: Constant.Font.mediumFont.font
                 ]
             )
+            if viewMode == .edit,
+               newNickname == User.nickname {
+                validationLabel.attributedText = NSAttributedString(
+                    string: viewMode.nicknameDescription,
+                    attributes: [
+                        .foregroundColor: UIColor.meaningOrange,
+                        .font: Constant.Font.mediumFont.font
+                    ]
+                )
+                setValidation(isValidate: false)
+            } else {
+                setValidation(isValidate: true)
+            }
         } catch {
             validationLabel.attributedText = NSAttributedString(
                 string: error.localizedDescription,
                 attributes: [
                     .foregroundColor: UIColor.meaningOrange,
-                    .font: Constant.Font.mediumFont
+                    .font: Constant.Font.mediumFont.font
                         .with(weight: .medium)
                 ]
             )
+            setValidation(isValidate: false)
         }
         return true
     }
@@ -161,13 +254,33 @@ enum ProfileViewMode {
             "EDIT PROFILE"
         }
     }
+    
+    var nicknameDescription: String {
+        switch self {
+        case .join:
+            "2글자 이상 10글자 미만으로 입력해주세요."
+        case .edit:
+            "변경할 닉네임을 입력해주세요."
+        }
+    }
 }
 
 #if DEBUG
 import SwiftUI
 struct OnboardingNicknameViewControllerPreview: PreviewProvider {
     static var previews: some View {
+        ProfileViewController(viewMode: .join).swiftUIViewPushed
+            .onAppear {
+                User.nickname = ""
+            }
         ProfileViewController(viewMode: .edit).swiftUIView
+            .onAppear {
+                User.nickname = ""
+            }
+        ProfileViewController(viewMode: .edit).swiftUIView
+            .onAppear {
+                User.nickname = "닉네임"
+            }
     }
 }
 #endif

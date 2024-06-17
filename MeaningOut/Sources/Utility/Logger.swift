@@ -14,15 +14,30 @@ enum Logger {
         line: Int = #line,
         function: String = #function
     ) {
-        print("📝", file, line, function, "\n", content)
+        print(
+            "📝", file, line, function,
+            "\n", content
+        )
     }
     
     static func error(
         _ error: Error,
+        with: Any? = nil,
         file: String = #fileID,
         line: Int = #line,
         function: String = #function
     ) {
-        print("📝", file, line, function, "\n", error.localizedDescription)
+        if let with {
+            print(
+                "📝", file, line, function,
+                "\n", error.localizedDescription,
+                "\n", with
+            )
+        } else {
+            print(
+                "📝", file, line, function,
+                "\n", error.localizedDescription
+            )
+        }
     }
 }

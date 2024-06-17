@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 final class ProfileButton: UIButton {
-    private let profileImageView = ProfileImageView(borderWidth: 3)
+    private let profileImageView = ProfileImageView(borderType: .large)
         .build { builder in
             builder.action { $0.setBorderColor(color: .meaningOrange) }
         }
@@ -78,7 +78,7 @@ struct ProfileButtonPreview: PreviewProvider {
     static var previews: some View {
         
         ProfileButton(
-            image: UIImage(named: Profile.imageName))
+            image: UIImage(named: User.imageName))
         .swiftUIView
         .frame(width: 300, height: 300)
     }

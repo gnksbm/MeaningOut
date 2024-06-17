@@ -18,7 +18,7 @@
 		BE3FE3A52C1B1A2600F58754 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3A42C1B1A2600F58754 /* Builder.swift */; };
 		BE3FE3A92C1BC4BE00F58754 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3A82C1BC4BE00F58754 /* UserDefaultsWrapper.swift */; };
 		BE3FE3AB2C1BC5AA00F58754 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3AA2C1BC5AA00F58754 /* Logger.swift */; };
-		BE3FE3AE2C1BC96500F58754 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3AD2C1BC96500F58754 /* Profile.swift */; };
+		BE3FE3AE2C1BC96500F58754 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3AD2C1BC96500F58754 /* User.swift */; };
 		BE3FE3B12C1C204200F58754 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE3FE3B02C1C204200F58754 /* SnapKit */; };
 		BE3FE3B42C1C204E00F58754 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BE3FE3B32C1C204E00F58754 /* Kingfisher */; };
 		BE3FE3B72C1C205900F58754 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BE3FE3B62C1C205900F58754 /* Alamofire */; };
@@ -33,6 +33,30 @@
 		BE3FE3D02C1D87F000F58754 /* ProfileImageCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3CF2C1D87F000F58754 /* ProfileImageCVCell.swift */; };
 		BE3FE3D22C1D883A00F58754 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3D12C1D883A00F58754 /* ProfileImage.swift */; };
 		BE3FE3D42C1D894D00F58754 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3D32C1D894D00F58754 /* ProfileImageView.swift */; };
+		BE3FE3D62C1DB65C00F58754 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3D52C1DB65C00F58754 /* TabBarController.swift */; };
+		BE3FE3D82C1DB6CA00F58754 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3D72C1DB6CA00F58754 /* SearchViewController.swift */; };
+		BE3FE3DA2C1DB6F800F58754 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3D92C1DB6F800F58754 /* SettingViewController.swift */; };
+		BE3FE3DC2C1DB95C00F58754 /* EmptySearchHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3DB2C1DB95C00F58754 /* EmptySearchHistoryView.swift */; };
+		BE3FE3DE2C1DBB5600F58754 /* SearchHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3DD2C1DBB5600F58754 /* SearchHistoryItem.swift */; };
+		BE3FE3E02C1DBBC000F58754 /* ReuseIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3DF2C1DBBC000F58754 /* ReuseIdentifiable.swift */; };
+		BE3FE3E22C1DBC0300F58754 /* SearchHistoryItemTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3E12C1DBC0300F58754 /* SearchHistoryItemTVCell.swift */; };
+		BE3FE3E42C1DC4F200F58754 /* SearchHistoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3E32C1DC4F200F58754 /* SearchHistoryHeaderView.swift */; };
+		BE3FE3E62C1E035400F58754 /* EndpointRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3E52C1E035400F58754 /* EndpointRepresentable.swift */; };
+		BE3FE3E92C1E055700F58754 /* NaverSearchEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3E82C1E055700F58754 /* NaverSearchEndpoint.swift */; };
+		BE3FE3EC2C1E0B7B00F58754 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3EB2C1E0B7B00F58754 /* APIKey.swift */; };
+		BE3FE3EE2C1EB4CD00F58754 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3ED2C1EB4CD00F58754 /* SearchResultViewController.swift */; };
+		BE3FE3F02C1EBCFC00F58754 /* SearchResultSortButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3EF2C1EBCFC00F58754 /* SearchResultSortButton.swift */; };
+		BE3FE3F22C1ECAFB00F58754 /* SearchResultCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3F12C1ECAFB00F58754 /* SearchResultCVCell.swift */; };
+		BE3FE3FA2C1EDDA300F58754 /* NaverSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3F92C1EDDA300F58754 /* NaverSearchResponse.swift */; };
+		BE3FE4002C1EE40000F58754 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3FF2C1EE40000F58754 /* String+.swift */; };
+		BE3FE4032C1EE7B200F58754 /* NaverSearchResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = BE3FE4022C1EE7B200F58754 /* NaverSearchResponse.json */; };
+		BEF7F9292C1EF9DA00136FBA /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F9282C1EF9DA00136FBA /* SearchDetailViewController.swift */; };
+		BEF7F92B2C1FB52A00136FBA /* BasketButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F92A2C1FB52A00136FBA /* BasketButton.swift */; };
+		BEF7F9582C20030900136FBA /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F9572C20030900136FBA /* UIViewController+.swift */; };
+		BEF7F95A2C2009B000136FBA /* SettingProfileInfoTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F9592C2009B000136FBA /* SettingProfileInfoTVCell.swift */; };
+		BEF7F95C2C20133A00136FBA /* DateFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F95B2C20133A00136FBA /* DateFormat.swift */; };
+		BEF7F95E2C2015CC00136FBA /* SettingTableViewMinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F95D2C2015CC00136FBA /* SettingTableViewMinCell.swift */; };
+		BEF7F9602C201B0600136FBA /* SettingTableViewCountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F95F2C201B0600136FBA /* SettingTableViewCountCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,7 +73,7 @@
 		BE3FE3A42C1B1A2600F58754 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		BE3FE3A82C1BC4BE00F58754 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		BE3FE3AA2C1BC5AA00F58754 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		BE3FE3AD2C1BC96500F58754 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		BE3FE3AD2C1BC96500F58754 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BE3FE3B92C1C2C5000F58754 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BE3FE3BC2C1C301400F58754 /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
 		BE3FE3BE2C1C33F100F58754 /* ProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButton.swift; sourceTree = "<group>"; };
@@ -61,6 +85,31 @@
 		BE3FE3CF2C1D87F000F58754 /* ProfileImageCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageCVCell.swift; sourceTree = "<group>"; };
 		BE3FE3D12C1D883A00F58754 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
 		BE3FE3D32C1D894D00F58754 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
+		BE3FE3D52C1DB65C00F58754 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		BE3FE3D72C1DB6CA00F58754 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		BE3FE3D92C1DB6F800F58754 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		BE3FE3DB2C1DB95C00F58754 /* EmptySearchHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySearchHistoryView.swift; sourceTree = "<group>"; };
+		BE3FE3DD2C1DBB5600F58754 /* SearchHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryItem.swift; sourceTree = "<group>"; };
+		BE3FE3DF2C1DBBC000F58754 /* ReuseIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifiable.swift; sourceTree = "<group>"; };
+		BE3FE3E12C1DBC0300F58754 /* SearchHistoryItemTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryItemTVCell.swift; sourceTree = "<group>"; };
+		BE3FE3E32C1DC4F200F58754 /* SearchHistoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryHeaderView.swift; sourceTree = "<group>"; };
+		BE3FE3E52C1E035400F58754 /* EndpointRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointRepresentable.swift; sourceTree = "<group>"; };
+		BE3FE3E82C1E055700F58754 /* NaverSearchEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverSearchEndpoint.swift; sourceTree = "<group>"; };
+		BE3FE3EA2C1E0AF400F58754 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		BE3FE3EB2C1E0B7B00F58754 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		BE3FE3ED2C1EB4CD00F58754 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		BE3FE3EF2C1EBCFC00F58754 /* SearchResultSortButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSortButton.swift; sourceTree = "<group>"; };
+		BE3FE3F12C1ECAFB00F58754 /* SearchResultCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCVCell.swift; sourceTree = "<group>"; };
+		BE3FE3F92C1EDDA300F58754 /* NaverSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverSearchResponse.swift; sourceTree = "<group>"; };
+		BE3FE3FF2C1EE40000F58754 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		BE3FE4022C1EE7B200F58754 /* NaverSearchResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NaverSearchResponse.json; sourceTree = "<group>"; };
+		BEF7F9282C1EF9DA00136FBA /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
+		BEF7F92A2C1FB52A00136FBA /* BasketButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketButton.swift; sourceTree = "<group>"; };
+		BEF7F9572C20030900136FBA /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		BEF7F9592C2009B000136FBA /* SettingProfileInfoTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingProfileInfoTVCell.swift; sourceTree = "<group>"; };
+		BEF7F95B2C20133A00136FBA /* DateFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormat.swift; sourceTree = "<group>"; };
+		BEF7F95D2C2015CC00136FBA /* SettingTableViewMinCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewMinCell.swift; sourceTree = "<group>"; };
+		BEF7F95F2C201B0600136FBA /* SettingTableViewCountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCountCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +159,7 @@
 				BE3FE3812C1B01B800F58754 /* Assets.xcassets */,
 				BE3FE3832C1B01B800F58754 /* LaunchScreen.storyboard */,
 				BE3FE3862C1B01B800F58754 /* Info.plist */,
+				BE3FE3EA2C1E0AF400F58754 /* Debug.xcconfig */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -138,11 +188,10 @@
 		BE3FE38F2C1B020200F58754 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BE3FE3F32C1ECF0000F58754 /* Onboarding */,
+				BE3FE3F42C1ECF1D00F58754 /* MainTab */,
+				BE3FE3F82C1ECF8200F58754 /* Profile */,
 				BE3FE3BB2C1C2FDE00F58754 /* Common */,
-				BE3FE37C2C1B01B600F58754 /* OnboardingMainViewController.swift */,
-				BE3FE3B92C1C2C5000F58754 /* ProfileViewController.swift */,
-				BE3FE3CD2C1D811500F58754 /* ProfileImageViewController.swift */,
-				BE3FE3CF2C1D87F000F58754 /* ProfileImageCVCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -156,6 +205,11 @@
 				BE3FE3AA2C1BC5AA00F58754 /* Logger.swift */,
 				BE3FE3C92C1D7D4B00F58754 /* NicknameValidator.swift */,
 				BE3FE3C12C1C34AC00F58754 /* Constant.swift */,
+				BE3FE3DF2C1DBBC000F58754 /* ReuseIdentifiable.swift */,
+				BE3FE3EB2C1E0B7B00F58754 /* APIKey.swift */,
+				BEF7F95B2C20133A00136FBA /* DateFormat.swift */,
+				BE3FE3FE2C1EE3E500F58754 /* Extension */,
+				BE3FE3E72C1E04ED00F58754 /* Endpoint */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -163,8 +217,11 @@
 		BE3FE3AC2C1BC95C00F58754 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BE3FE3AD2C1BC96500F58754 /* Profile.swift */,
+				BE3FE3AD2C1BC96500F58754 /* User.swift */,
 				BE3FE3D12C1D883A00F58754 /* ProfileImage.swift */,
+				BE3FE3DD2C1DBB5600F58754 /* SearchHistoryItem.swift */,
+				BE3FE3F92C1EDDA300F58754 /* NaverSearchResponse.swift */,
+				BE3FE4012C1EE7A500F58754 /* Mock */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -173,11 +230,116 @@
 			isa = PBXGroup;
 			children = (
 				BE3FE3BC2C1C301400F58754 /* LargeButton.swift */,
+				BEF7F92A2C1FB52A00136FBA /* BasketButton.swift */,
 				BE3FE3D32C1D894D00F58754 /* ProfileImageView.swift */,
 				BE3FE3BE2C1C33F100F58754 /* ProfileButton.swift */,
 				BE3FE3CB2C1D7D8B00F58754 /* BaseViewController.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		BE3FE3E72C1E04ED00F58754 /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3E52C1E035400F58754 /* EndpointRepresentable.swift */,
+				BE3FE3E82C1E055700F58754 /* NaverSearchEndpoint.swift */,
+			);
+			path = Endpoint;
+			sourceTree = "<group>";
+		};
+		BE3FE3F32C1ECF0000F58754 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE37C2C1B01B600F58754 /* OnboardingMainViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		BE3FE3F42C1ECF1D00F58754 /* MainTab */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3D52C1DB65C00F58754 /* TabBarController.swift */,
+				BE3FE3F52C1ECF4700F58754 /* Search */,
+				BE3FE3F62C1ECF4C00F58754 /* Setting */,
+			);
+			path = MainTab;
+			sourceTree = "<group>";
+		};
+		BE3FE3F52C1ECF4700F58754 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				BEF7F9262C1EF9B400136FBA /* History */,
+				BE3FE3F72C1ECF5900F58754 /* Result */,
+				BEF7F9272C1EF9C300136FBA /* Detail */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		BE3FE3F62C1ECF4C00F58754 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3D92C1DB6F800F58754 /* SettingViewController.swift */,
+				BEF7F95F2C201B0600136FBA /* SettingTableViewCountCell.swift */,
+				BEF7F9592C2009B000136FBA /* SettingProfileInfoTVCell.swift */,
+				BEF7F95D2C2015CC00136FBA /* SettingTableViewMinCell.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		BE3FE3F72C1ECF5900F58754 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3ED2C1EB4CD00F58754 /* SearchResultViewController.swift */,
+				BE3FE3EF2C1EBCFC00F58754 /* SearchResultSortButton.swift */,
+				BE3FE3F12C1ECAFB00F58754 /* SearchResultCVCell.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		BE3FE3F82C1ECF8200F58754 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3B92C1C2C5000F58754 /* ProfileViewController.swift */,
+				BE3FE3CD2C1D811500F58754 /* ProfileImageViewController.swift */,
+				BE3FE3CF2C1D87F000F58754 /* ProfileImageCVCell.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		BE3FE3FE2C1EE3E500F58754 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3FF2C1EE40000F58754 /* String+.swift */,
+				BEF7F9572C20030900136FBA /* UIViewController+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		BE3FE4012C1EE7A500F58754 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE4022C1EE7B200F58754 /* NaverSearchResponse.json */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		BEF7F9262C1EF9B400136FBA /* History */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3D72C1DB6CA00F58754 /* SearchViewController.swift */,
+				BE3FE3DB2C1DB95C00F58754 /* EmptySearchHistoryView.swift */,
+				BE3FE3E32C1DC4F200F58754 /* SearchHistoryHeaderView.swift */,
+				BE3FE3E12C1DBC0300F58754 /* SearchHistoryItemTVCell.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		BEF7F9272C1EF9C300136FBA /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				BEF7F9282C1EF9DA00136FBA /* SearchDetailViewController.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,6 +411,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE3FE3982C1B15DD00F58754 /* .gitmessage.txt in Resources */,
+				BE3FE4032C1EE7B200F58754 /* NaverSearchResponse.json in Resources */,
 				BE3FE3822C1B01B800F58754 /* Assets.xcassets in Resources */,
 				BE3FE3962C1B153300F58754 /* .gitignore in Resources */,
 				BE3FE3852C1B01B800F58754 /* Base in Resources */,
@@ -263,23 +426,46 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE3FE37D2C1B01B600F58754 /* OnboardingMainViewController.swift in Sources */,
+				BE3FE3DE2C1DBB5600F58754 /* SearchHistoryItem.swift in Sources */,
+				BE3FE3DA2C1DB6F800F58754 /* SettingViewController.swift in Sources */,
 				BE3FE3BD2C1C301400F58754 /* LargeButton.swift in Sources */,
+				BE3FE3EC2C1E0B7B00F58754 /* APIKey.swift in Sources */,
 				BE3FE3CA2C1D7D4B00F58754 /* NicknameValidator.swift in Sources */,
-				BE3FE3AE2C1BC96500F58754 /* Profile.swift in Sources */,
+				BE3FE3EE2C1EB4CD00F58754 /* SearchResultViewController.swift in Sources */,
+				BE3FE3DC2C1DB95C00F58754 /* EmptySearchHistoryView.swift in Sources */,
+				BE3FE3AE2C1BC96500F58754 /* User.swift in Sources */,
 				BE3FE3BF2C1C33F100F58754 /* ProfileButton.swift in Sources */,
 				BE3FE3CC2C1D7D8B00F58754 /* BaseViewController.swift in Sources */,
+				BE3FE3F22C1ECAFB00F58754 /* SearchResultCVCell.swift in Sources */,
+				BE3FE4002C1EE40000F58754 /* String+.swift in Sources */,
 				BE3FE3C42C1C4BA000F58754 /* Appearance.swift in Sources */,
 				BE3FE3D42C1D894D00F58754 /* ProfileImageView.swift in Sources */,
 				BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */,
+				BEF7F9602C201B0600136FBA /* SettingTableViewCountCell.swift in Sources */,
 				BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */,
+				BE3FE3E02C1DBBC000F58754 /* ReuseIdentifiable.swift in Sources */,
+				BEF7F95C2C20133A00136FBA /* DateFormat.swift in Sources */,
+				BEF7F95A2C2009B000136FBA /* SettingProfileInfoTVCell.swift in Sources */,
+				BE3FE3F02C1EBCFC00F58754 /* SearchResultSortButton.swift in Sources */,
 				BE3FE3A32C1B181F00F58754 /* UIKitPreviewHelper.swift in Sources */,
+				BE3FE3E62C1E035400F58754 /* EndpointRepresentable.swift in Sources */,
 				BE3FE3AB2C1BC5AA00F58754 /* Logger.swift in Sources */,
+				BEF7F95E2C2015CC00136FBA /* SettingTableViewMinCell.swift in Sources */,
+				BE3FE3E92C1E055700F58754 /* NaverSearchEndpoint.swift in Sources */,
 				BE3FE3A92C1BC4BE00F58754 /* UserDefaultsWrapper.swift in Sources */,
+				BE3FE3D62C1DB65C00F58754 /* TabBarController.swift in Sources */,
 				BE3FE3D02C1D87F000F58754 /* ProfileImageCVCell.swift in Sources */,
+				BEF7F92B2C1FB52A00136FBA /* BasketButton.swift in Sources */,
+				BE3FE3E22C1DBC0300F58754 /* SearchHistoryItemTVCell.swift in Sources */,
+				BE3FE3E42C1DC4F200F58754 /* SearchHistoryHeaderView.swift in Sources */,
+				BE3FE3FA2C1EDDA300F58754 /* NaverSearchResponse.swift in Sources */,
+				BE3FE3D82C1DB6CA00F58754 /* SearchViewController.swift in Sources */,
 				BE3FE3D22C1D883A00F58754 /* ProfileImage.swift in Sources */,
 				BE3FE3CE2C1D811500F58754 /* ProfileImageViewController.swift in Sources */,
 				BE3FE3BA2C1C2C5000F58754 /* ProfileViewController.swift in Sources */,
 				BE3FE3A52C1B1A2600F58754 /* Builder.swift in Sources */,
+				BEF7F9292C1EF9DA00136FBA /* SearchDetailViewController.swift in Sources */,
+				BEF7F9582C20030900136FBA /* UIViewController+.swift in Sources */,
 				BE3FE3C22C1C34AC00F58754 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +486,7 @@
 /* Begin XCBuildConfiguration section */
 		BE3FE3872C1B01B800F58754 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE3FE3EA2C1E0AF400F58754 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -350,7 +537,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -407,7 +594,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -419,6 +606,7 @@
 		};
 		BE3FE38A2C1B01B800F58754 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE3FE3EA2C1E0AF400F58754 /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

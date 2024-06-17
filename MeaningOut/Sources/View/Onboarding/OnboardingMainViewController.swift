@@ -12,8 +12,8 @@ import SnapKit
 final class OnboardingMainViewController: BaseViewController {
     private let appNameLabel = UILabel().build { builder in
         builder.text("MeaningOut")
-            .font(.systemFont(ofSize: 50, weight: .black))
-            .textColor(.orange)
+            .font(Constant.Font.onboardingTitle.font.with(weight: .black))
+            .textColor(.meaningOrange)
     }
     
     private let imageView = UIImageView().build { builder in
@@ -34,6 +34,11 @@ final class OnboardingMainViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        User.removeProfile()
     }
     
     private func configureLayout() {

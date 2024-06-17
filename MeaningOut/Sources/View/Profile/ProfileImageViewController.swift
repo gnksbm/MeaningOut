@@ -13,10 +13,8 @@ final class ProfileImageViewController: BaseViewController {
     private let viewMode: ProfileViewMode
     private var dataSource: DataSource!
     
-    private var selectedIndex = 0
-    
     private let profileButton = ProfileButton(
-        image: UIImage(named: Profile.imageName)
+        image: UIImage(named: User.imageName)
     )
     
     private lazy var collectionView = UICollectionView(
@@ -40,11 +38,11 @@ final class ProfileImageViewController: BaseViewController {
         configureDataSource()
         configureUI()
         configureLayout()
+        updateSnapshot(items: .bundle)
     }
     
     private func configureUI() {
         navigationItem.title = viewMode.title
-        updateSnapshot(items: .bundle)
     }
     
     private func configureLayout() {
@@ -130,7 +128,7 @@ final class ProfileImageViewController: BaseViewController {
     ) -> MainRegistration {
         MainRegistration { cell, indexPath, item in
             cell.configureCell(item: item)
-            if indexPath.row == self.selectedIndex {
+            if item.image == UIImage(named: User.imageName) {
                 cell.setSelected()
             }
         }
@@ -142,10 +140,9 @@ extension ProfileImageViewController: UICollectionViewDelegate {
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
-        Profile.updateImageName(indexPath: indexPath)
-        selectedIndex = indexPath.row
+        User.updateImageName(indexPath: indexPath)
         profileButton.updateImage(
-            image: UIImage(named: Profile.imageName)
+            image: UIImage(named: User.imageName)
         )
         collectionView.reloadData()
     }
