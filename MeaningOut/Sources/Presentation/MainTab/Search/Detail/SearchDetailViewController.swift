@@ -24,7 +24,9 @@ final class SearchDetailViewController: BaseViewController {
             }
         }
     
-    private lazy var webView = WKWebView()
+    private lazy var webView = WKWebView().build { builder in
+        builder.navigationDelegate(self)
+    }
     
     init(item: NaverSearchResponse.Item) {
         self.item = item
@@ -63,12 +65,31 @@ final class SearchDetailViewController: BaseViewController {
     private func configureWebView() {
         if let url = item.detailURL {
             webView.load(URLRequest(url: url))
+            showActivityIndicator()
         }
     }
     
     @objc private func basketButtonTapped() {
         User.updateFavorites(productID: item.productID)
         basketButton.updateButtonColor(isLiked: item.isLiked)
+    }
+}
+
+extension SearchDetailViewController: WKNavigationDelegate {
+    func webView(
+        _ webView: WKWebView,
+        didFinish navigation: WKNavigation!
+    ) {
+        hideActivityIndicator()
+    }
+    
+    func webView(
+        _ webView: WKWebView,
+        didFail navigation: WKNavigation!,
+        withError error: any Error
+    ) {
+        hideActivityIndicator()
+        Logger.error(error)
     }
 }
 

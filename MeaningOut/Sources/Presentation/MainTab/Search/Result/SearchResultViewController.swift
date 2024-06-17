@@ -73,11 +73,13 @@ final class SearchResultViewController: BaseViewController {
     }
     
     private func callSearchRequest() {
+        showActivityIndicator()
         AF.request(endpoint)
             .responseDecodable(
                 of: NaverSearchResponse.self
             ) { [weak self] response in
                 guard let self else { return }
+                hideActivityIndicator()
                 switch response.result {
                 case .success(let response):
                     updateSnapshot(items: response.items)
@@ -99,11 +101,13 @@ final class SearchResultViewController: BaseViewController {
     private func callNextPageRequest() {
         isFetching = true
         endpoint.page += 1
+        showActivityIndicator()
         AF.request(endpoint)
             .responseDecodable(
                 of: NaverSearchResponse.self
             ) { [weak self] response in
                 guard let self else { return }
+                hideActivityIndicator()
                 switch response.result {
                 case .success(let response):
                     appendSnapshot(items: response.items)

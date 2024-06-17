@@ -17,13 +17,15 @@ extension UIViewController {
 }
 
 extension UIViewController {
-    enum ToastHelper {
+    enum OverlayHelper {
         static var isToastShowing = false
+        static var isActivityViewShowing = false
+        static var activityView: UIActivityIndicatorView?
     }
     
     func showToast(message: String, duration: Double = 2) {
-        guard !ToastHelper.isToastShowing else { return }
-        ToastHelper.isToastShowing = true
+        guard !OverlayHelper.isToastShowing else { return }
+        OverlayHelper.isToastShowing = true
         
         let toastView = ToastView().build { builder in
             builder.action { $0.updateMessage(message) }
@@ -63,10 +65,37 @@ extension UIViewController {
                     },
                     completion: { _ in
                         toastView.removeFromSuperview()
-                        ToastHelper.isToastShowing = false
+                        OverlayHelper.isToastShowing = false
                     }
                 )
             }
         )
+    }
+    
+    func showActivityIndicator() {
+        guard !OverlayHelper.isActivityViewShowing else { return }
+        let activityView = UIActivityIndicatorView().build { builder in
+            builder.color(.meaningOrange)
+                .translatesAutoresizingMaskIntoConstraints(false)
+                .action { $0.startAnimating() }
+        }
+        OverlayHelper.activityView = activityView
+        view.addSubview(activityView)
+        
+        let safeArea = view.safeAreaLayoutGuide
+        
+        NSLayoutConstraint.activate([
+            activityView.centerXAnchor.constraint(
+                equalTo: safeArea.centerXAnchor
+            ),
+            activityView.centerYAnchor.constraint(
+                equalTo: safeArea.centerYAnchor
+            ),
+        ])
+        view.layoutIfNeeded()
+    }
+    
+    func hideActivityIndicator() {
+        OverlayHelper.activityView?.removeFromSuperview()
     }
 }
