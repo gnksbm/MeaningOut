@@ -30,11 +30,16 @@ final class ToastView: UIView {
         messageLabel.text = message
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = bounds.height / 2
+    }
+    
     private func configureUI() {
         backgroundColor = .meaningWhite
         layer.borderWidth = 1
         layer.borderColor = UIColor.meaningOrange.cgColor
-        layer.cornerRadius = 8
+        alpha = 0
     }
     
     private func configureLayout() {
