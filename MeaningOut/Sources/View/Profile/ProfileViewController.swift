@@ -45,7 +45,16 @@ final class ProfileViewController: BaseViewController {
             .text("2글자 이상 10글자 미만으로 입력해주세요.")
     }
     
-    private let finishButton = LargeButton(title: "완료")
+    private lazy var finishButton = LargeButton(title: "완료").build { builder in
+        builder.isEnabled(false)
+            .action {
+                $0.addTarget(
+                    self,
+                    action: #selector(finishButtonTapped),
+                    for: .touchUpInside
+                )
+            }
+    }
     
     init(viewMode: ProfileViewMode) {
         self.viewMode = viewMode
@@ -122,6 +131,16 @@ final class ProfileViewController: BaseViewController {
             animated: true
         )
     }
+    
+    @objc private func finishButtonTapped() {
+        guard let nickname = nicknameTextField.text else {
+            Logger.debugging("nicknameTextField.text nil")
+            return
+        }
+        User.nickName = nickname
+        User.imageName = User.imageName
+        view.window?.rootViewController = .makeRootViewController()
+    }
 }
 
 extension ProfileViewController: UITextFieldDelegate {
@@ -145,6 +164,7 @@ extension ProfileViewController: UITextFieldDelegate {
                     .font: Constant.Font.mediumFont.font
                 ]
             )
+            finishButton.isEnabled = true
         } catch {
             validationLabel.attributedText = NSAttributedString(
                 string: error.localizedDescription,
@@ -154,6 +174,7 @@ extension ProfileViewController: UITextFieldDelegate {
                         .with(weight: .medium)
                 ]
             )
+            finishButton.isEnabled = false
         }
         return true
     }

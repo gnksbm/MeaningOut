@@ -101,6 +101,16 @@ final class SearchViewController: BaseViewController {
             }
         )
     }
+    
+    private func search(query: String) {
+        navigationController?.pushViewController(
+            SearchResultViewController(
+                endpoint: NaverSearchEndpoint(query: query)
+            ),
+            animated: true
+        )
+        SearchHistoryItem.addNewHistoryItem(query: query)
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -109,13 +119,7 @@ extension SearchViewController: UISearchBarDelegate {
             Logger.debugging("searchBar.text 옵셔널 바인딩 실패")
             return
         }
-        navigationController?.pushViewController(
-            SearchResultViewController(
-                endpoint: NaverSearchEndpoint(query: query)
-            ),
-            animated: true
-        )
-        SearchHistoryItem.addNewHistoryItem(query: query)
+        search(query: query)
     }
 }
 
@@ -133,6 +137,16 @@ extension SearchViewController: UITableViewDelegate {
                 }
             )
         }
+    }
+    
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        let items = dataSource.snapshot()
+            .itemIdentifiers(inSection: Section.allCases[indexPath.section])
+        let query = items[indexPath.row].query
+        search(query: query)
     }
 }
 

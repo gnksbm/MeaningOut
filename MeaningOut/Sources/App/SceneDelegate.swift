@@ -17,10 +17,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = UINavigationController(
-            rootViewController: User.isjoined ?
-            SearchViewController() : OnboardingMainViewController()
-        )
+        window?.rootViewController = .makeRootViewController()
         window?.makeKeyAndVisible()
     }
     

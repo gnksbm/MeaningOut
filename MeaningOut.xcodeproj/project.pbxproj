@@ -52,6 +52,7 @@
 		BE3FE4032C1EE7B200F58754 /* NaverSearchResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = BE3FE4022C1EE7B200F58754 /* NaverSearchResponse.json */; };
 		BEF7F9292C1EF9DA00136FBA /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F9282C1EF9DA00136FBA /* SearchDetailViewController.swift */; };
 		BEF7F92B2C1FB52A00136FBA /* BasketButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F92A2C1FB52A00136FBA /* BasketButton.swift */; };
+		BEF7F9582C20030900136FBA /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F9572C20030900136FBA /* UIViewController+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		BE3FE4022C1EE7B200F58754 /* NaverSearchResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NaverSearchResponse.json; sourceTree = "<group>"; };
 		BEF7F9282C1EF9DA00136FBA /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
 		BEF7F92A2C1FB52A00136FBA /* BasketButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketButton.swift; sourceTree = "<group>"; };
+		BEF7F9572C20030900136FBA /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				BE3FE3FF2C1EE40000F58754 /* String+.swift */,
+				BEF7F9572C20030900136FBA /* UIViewController+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 				BE3FE3BA2C1C2C5000F58754 /* ProfileViewController.swift in Sources */,
 				BE3FE3A52C1B1A2600F58754 /* Builder.swift in Sources */,
 				BEF7F9292C1EF9DA00136FBA /* SearchDetailViewController.swift in Sources */,
+				BEF7F9582C20030900136FBA /* UIViewController+.swift in Sources */,
 				BE3FE3C22C1C34AC00F58754 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

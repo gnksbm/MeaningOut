@@ -13,7 +13,8 @@ struct SearchHistoryItem: Hashable, Codable {
     
     static func addNewHistoryItem(query: String) {
         let newSearchItem = SearchHistoryItem(query: query)
-        currentHistory = currentHistory + [newSearchItem]
+        currentHistory =
+        currentHistory.filter({ $0.query != query }) + [newSearchItem]
     }
     
     static func removeHistory() {
