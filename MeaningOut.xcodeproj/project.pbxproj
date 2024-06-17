@@ -208,7 +208,6 @@
 				BEF7F9692C2065F900136FBA /* Secret */,
 				BEF7F9682C2065E500136FBA /* Debugging */,
 				BE3FE3FE2C1EE3E500F58754 /* Extension */,
-				BE3FE3E72C1E04ED00F58754 /* Endpoint */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -219,7 +218,8 @@
 				BE3FE3AD2C1BC96500F58754 /* User.swift */,
 				BE3FE3D12C1D883A00F58754 /* ProfileImage.swift */,
 				BE3FE3DD2C1DBB5600F58754 /* SearchHistoryItem.swift */,
-				BE3FE3F92C1EDDA300F58754 /* NaverSearchResponse.swift */,
+				BEF7F96A2C2066B700136FBA /* Response */,
+				BE3FE3E72C1E04ED00F58754 /* Endpoint */,
 				BE3FE4012C1EE7A500F58754 /* Mock */,
 			);
 			path = Model;
@@ -311,7 +311,6 @@
 		BE3FE4012C1EE7A500F58754 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
-				BE3FE4022C1EE7B200F58754 /* NaverSearchResponse.json */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -412,6 +411,15 @@
 				BE3FE3EB2C1E0B7B00F58754 /* APIKey.swift */,
 			);
 			path = Secret;
+			sourceTree = "<group>";
+		};
+		BEF7F96A2C2066B700136FBA /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3F92C1EDDA300F58754 /* NaverSearchResponse.swift */,
+				BE3FE4022C1EE7B200F58754 /* NaverSearchResponse.json */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
