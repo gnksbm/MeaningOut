@@ -59,16 +59,16 @@ final class SearchResultViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        dataSource.applySnapshotUsingReloadData(dataSource.snapshot())
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDataSource()
         configureLayout()
         callSearchRequest()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        dataSource.applySnapshotUsingReloadData(dataSource.snapshot())
         navigationItem.title = endpoint.query
     }
     
@@ -91,7 +91,8 @@ final class SearchResultViewController: BaseViewController {
                             animated: false
                         )
                     }
-                    resultCountLabel.text = response.total.formatted() + "개의 검색 결과"
+                    resultCountLabel.text = 
+                    response.total.formatted() + "개의 검색 결과"
                 case .failure(let error):
                     Logger.error(error, with: endpoint.queries)
                 }

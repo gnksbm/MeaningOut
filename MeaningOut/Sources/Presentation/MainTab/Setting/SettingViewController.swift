@@ -32,7 +32,6 @@ final class SettingViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigation()
         configureDataSource()
         updateSnapshot()
         configureLayout()
@@ -41,9 +40,6 @@ final class SettingViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         dataSource.applySnapshotUsingReloadData(dataSource.snapshot())
-    }
-    
-    private func configureNavigation() {
         navigationItem.title = "SETTING"
     }
     

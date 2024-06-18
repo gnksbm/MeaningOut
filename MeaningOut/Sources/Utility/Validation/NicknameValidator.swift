@@ -12,12 +12,11 @@ enum NicknameValidator {
     
     @discardableResult
     static func checkValidation(text: String) throws -> String {
-        guard 2..<10 ~= text.count else { throw NicknameInputError.outOfRange }
         guard !text.contains(where: { Int(String($0)) != nil })
         else { throw NicknameInputError.containNumber }
-        let containedSpecialWords = "@#$%".filter({ text.contains($0) })
+        let containedSpecialWords = "@#$%".filter { text.contains($0) }
         guard containedSpecialWords.isEmpty
-        else { 
+        else {
             throw NicknameInputError.invalidWord(
                 containedSpecialWords
                     .map({ String($0) })
@@ -28,7 +27,50 @@ enum NicknameValidator {
         else { throw NicknameInputError.prefixWhiteSpace }
         guard !text.hasSuffix(" ")
         else { throw NicknameInputError.suffixWhiteSpace }
+        guard 2..<10 ~= text.count else { throw NicknameInputError.outOfRange }
         return text
+    }
+    
+    static func fixed(text: String) -> String {
+        do {
+            return try checkValidation(text: text)
+        } catch {
+            switch error as? NicknameInputError {
+            case .some(let error):
+                var fixedText: String
+                switch error {
+                case .outOfRange:
+                    if text.count < 2 {
+                        fixedText = text + "⭐️"
+                    } else if text.count > 9  {
+                        fixedText = String(text.prefix(9))
+                    } else {
+                        fixedText = text
+                    }
+                case .containNumber:
+                    fixedText = text.filter { Int(String($0)) == nil }
+                        .map { String($0) }
+                        .joined()
+                case .invalidWord:
+                    let specialCharacters = ["@", "#", "$", "%"]
+                    fixedText = text
+                    specialCharacters.forEach {
+                        fixedText =
+                        fixedText.replacingOccurrences(of: $0, with: "")
+                    }
+                case .prefixWhiteSpace:
+                    fixedText = text
+                    fixedText.removeFirst()
+                case .suffixWhiteSpace:
+                    fixedText = text
+                    fixedText.removeLast()
+                }
+                return fixed(text: fixedText)
+            case .none:
+                dump(error)
+                return text
+            }
+        }
     }
     
     @discardableResult
@@ -45,7 +87,7 @@ enum NicknameValidator {
                 switch expression {
                 case .containNum:
                     throw NicknameInputError.containNumber
-                case .spacialCharacters:
+                case .specialCharacters:
                     let invalidWords = checkingResults
                         .compactMap {
                             if let range = Range($0.range, in: text) {
@@ -73,7 +115,7 @@ enum NicknameValidator {
     
     enum InvalidRegularExpression: String, CaseIterable {
         case containNum = "[0-9]"
-        case spacialCharacters = "[@#$%]"
+        case specialCharacters = "[@#$%]"
         case prefixWhiteSpace = "^\\s"
         case suffixWhiteSpace = "\\s$"
     }
@@ -102,20 +144,7 @@ enum NicknameValidator {
     }
 }
 
-
 #if DEBUG
-import SwiftUI
-struct NicknameValidatorPreview: PreviewProvider {
-    static var previews: some View {
-        Text("")
-            .onAppear {
-                TestCase.allCases.forEach {
-                    $0.test()
-                    $0.testRegex()
-                }
-            }
-    }
-}
 // TODO: 동작테스트와 성능테스트 방법 공부 후 적용
 enum TestCase: String, CaseIterable {
     case shortStr = "a"

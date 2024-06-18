@@ -15,7 +15,7 @@ enum UserDefaultsKey: String {
 @propertyWrapper
 struct UserDefaultsWrapper<T: Codable> {
     private let key: UserDefaultsKey
-    private let defaultValue: T
+    private var defaultValue: T
     
     var wrappedValue: T {
         get {
@@ -52,5 +52,9 @@ struct UserDefaultsWrapper<T: Codable> {
     
     func removeValue() {
         UserDefaults.standard.removeObject(forKey: key.rawValue)
+    }
+    
+    mutating func updateDefaultValue(newValue: T) {
+        defaultValue = newValue
     }
 }

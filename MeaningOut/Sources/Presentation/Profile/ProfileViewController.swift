@@ -22,6 +22,26 @@ final class ProfileViewController: BaseViewController {
         }
     }
     
+    private lazy var fixButton = UIButton(configuration: .filled())
+        .build { builder in
+            builder.action {
+                $0.configuration?.cornerStyle = .capsule
+                $0.configuration?.baseBackgroundColor = .meaningOrange
+                $0.configuration?.baseForegroundColor = .meaningWhite
+                var container = AttributeContainer()
+                container.font = DesignConstant.Font.medium.with(weight: .bold)
+                $0.configuration?.attributedTitle = AttributedString(
+                    "수정해드릴까요?",
+                    attributes: container
+                )
+                $0.addTarget(
+                    self,
+                    action: #selector(fixButtonTapped),
+                    for: .touchUpInside
+                )
+            }
+        }
+    
     private lazy var nicknameTextField = UITextField().build { builder in
         builder.delegate(self)
             .attributedPlaceholder(
@@ -33,6 +53,7 @@ final class ProfileViewController: BaseViewController {
                     ]
                 )
             )
+            .rightView(fixButton)
     }
     
     private let textFieldUnderlineView = UIView().build { builder in
@@ -165,10 +186,12 @@ final class ProfileViewController: BaseViewController {
         }
     }
     
-    private func setValidation(isValidate: Bool) {
+    private func updateValidationUI(isValidate: Bool) {
         actionButton.isEnabled = isValidate
         textFieldUnderlineView.backgroundColor =
         isValidate ? .meaningBlack : .meaningLightGray
+        nicknameTextField.rightViewMode =
+        isValidate ? .never : .always
     }
     
     @objc private func profileButtonTapped() {
@@ -190,6 +213,36 @@ final class ProfileViewController: BaseViewController {
             view.window?.rootViewController = .makeRootViewController()
         case .edit:
             navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    @objc private func fixButtonTapped() {
+        guard let text = nicknameTextField.text else {
+            Logger.debugging("nicknameTextField.text nil")
+            return
+        }
+        do {
+            let fixedText = NicknameValidator.fixed(text: text)
+            nicknameTextField.text = 
+            try NicknameValidator.checkValidation(text: fixedText)
+            validationLabel.attributedText = NSAttributedString(
+                string: User.validatedNicknameMessage,
+                attributes: [
+                    .foregroundColor: UIColor.black,
+                    .font: DesignConstant.Font.medium.with(weight: .regular)
+                ]
+            )
+            updateValidationUI(isValidate: true)
+        } catch {
+            validationLabel.attributedText = NSAttributedString(
+                string: error.localizedDescription,
+                attributes: [
+                    .foregroundColor: UIColor.meaningOrange,
+                    .font: DesignConstant.Font.medium
+                        .with(weight: .medium)
+                ]
+            )
+            updateValidationUI(isValidate: false)
         }
     }
 }
@@ -224,9 +277,9 @@ extension ProfileViewController: UITextFieldDelegate {
                         .font: DesignConstant.Font.medium.with(weight: .regular)
                     ]
                 )
-                setValidation(isValidate: false)
+                updateValidationUI(isValidate: false)
             } else {
-                setValidation(isValidate: true)
+                updateValidationUI(isValidate: true)
             }
         } catch {
             validationLabel.attributedText = NSAttributedString(
@@ -237,7 +290,7 @@ extension ProfileViewController: UITextFieldDelegate {
                         .with(weight: .medium)
                 ]
             )
-            setValidation(isValidate: false)
+            updateValidationUI(isValidate: false)
         }
         return true
     }

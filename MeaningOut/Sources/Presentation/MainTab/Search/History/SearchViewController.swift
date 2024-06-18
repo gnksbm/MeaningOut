@@ -38,13 +38,13 @@ final class SearchViewController: BaseViewController {
         super.viewDidLoad()
         configureDataSource()
         configureNavigation()
-        configureUI()
         configureLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateSnapshot(items: SearchHistoryItem.currentHistory)
+        navigationItem.title = "\(User.nickname)'s MEANING OUT"
     }
     
     private func updateSnapshot(items: [SearchHistoryItem]) {
@@ -74,10 +74,6 @@ final class SearchViewController: BaseViewController {
         searchController.searchBar.placeholder = "브랜드, 상품 등을 입력하세요."
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-    }
-    
-    private func configureUI() {
-        navigationItem.title = "\(User.nickname)'s MEANING OUT"
     }
     
     private func configureLayout() {

@@ -13,7 +13,7 @@ enum User {
     
     @UserDefaultsWrapper(
         key: .profileImageName,
-        defaultValue: "profile_\((bundleImageRange).randomElement() ?? 0)"
+        defaultValue: getRandomImageName()
     )
     static var imageName: String
     
@@ -37,6 +37,10 @@ enum User {
         _nickname.isSaved && _imageName.isSaved
     }
     
+    static func getRandomImageName() -> String {
+        "profile_\((bundleImageRange).randomElement() ?? 0)"
+    }
+    
     static func updateFavorites(productID: String) {
         if favoriteProductID.contains(productID) {
             favoriteProductID = favoriteProductID.filter { $0 != productID }
@@ -56,6 +60,7 @@ enum User {
     static func removeProfile() {
         _nickname.removeValue()
         _imageName.removeValue()
+        _imageName.updateDefaultValue(newValue: getRandomImageName())
         SearchHistoryItem.removeHistory()
     }
 }
