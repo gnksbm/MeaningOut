@@ -7,7 +7,19 @@
 
 #if DEBUG
 import SwiftUI
-
+/**
+ UIKit 프로젝트에서 Preview로 디버깅하기 위한 객체 및 확장 구현
+ UIView, UIViewController에서 사용가능
+ - swiftUIView
+    - 일반 화면
+ - randomColorForHierarchy
+    - 뷰 객체와 하위뷰의 배경색이 다르게 설정되어 레이아웃 제약을 잡을 때 용이
+ UIViewController에서 사용가능
+ - swiftUIViewWithNavigation
+    - 네비게이션 컨트롤러가 노출되는 VC
+ - swiftUIViewPushed
+    - Push된 네비게이션 형태가 노출되는 VC
+*/
 extension UIView {
     var swiftUIView: some View {
         UIViewSwiftUIView(self)

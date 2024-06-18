@@ -6,7 +6,14 @@
 //
 
 import Foundation
-
+/**
+ 파일명, 줄번호, 함수명이 포함된 출력문을 남겨 print()보다 명확한 디버깅 가능
+ - debugging
+    - 일반적인 디버깅을 위한 함수
+ - error
+    - Error 타입을 인자로 받아 에러 상황을 출력
+    - 추가 인자도 함께 사용 가능
+ */
 enum Logger {
     static func debugging(
         _ content: Any,
@@ -29,15 +36,18 @@ enum Logger {
     ) {
         if let with {
             print(
-                "📍", file, line, function, "📍",
-                "\n🔴", error.localizedDescription,
-                "\n", with, "🔴"
+                "📍", file, line, function, "📍"
             )
+            print("🔴", terminator: "")
+            dump(error)
+            print("\n", with, "🔴")
         } else {
             print(
-                "📍", file, line, function, "📍",
-                "\n🔴", error.localizedDescription, "🔴"
+                "📍", file, line, function, "📍"
             )
+            print("🔴", terminator: "")
+            dump(error)
+            print("🔴")
         }
     }
 }

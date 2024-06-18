@@ -6,12 +6,16 @@
 //
 
 import Foundation
-
+/**
+ UserDefaultsKey를 정의해 UserDefaults에 잘못된 키나 중복된 키로 접근을 방지
+ */
 enum UserDefaultsKey: String {
     case profileNickname, profileImageName, searchHistory, joinedDate, 
          favoriteProductID
 }
-
+/**
+ 프로퍼티래퍼로 UserDefaults를 간편하게 사용
+ */
 @propertyWrapper
 struct UserDefaultsWrapper<T: Codable> {
     private let key: UserDefaultsKey
