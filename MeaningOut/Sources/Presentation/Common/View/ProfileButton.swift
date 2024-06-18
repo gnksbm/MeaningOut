@@ -67,7 +67,8 @@ final class ProfileButton: UIButton {
         
         cameraImageView.snp.makeConstraints { make in
             make.center.equalTo(cameraImageBackgroundView)
-            make.width.height.equalTo(cameraImageBackgroundView).multipliedBy(0.6)
+            make.width.height.equalTo(cameraImageBackgroundView)
+                .multipliedBy(0.6)
         }
     }
 }

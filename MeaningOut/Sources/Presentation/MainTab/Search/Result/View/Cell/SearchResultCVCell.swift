@@ -27,7 +27,9 @@ final class SearchResultCVCell: UICollectionViewCell {
             .action { $0.layer.cornerRadius = 20 }
     }
     
-    private lazy var basketButton = BasketButton(imageTpye: .changeTint).build { builder in
+    private lazy var basketButton = BasketButton(
+        imageTpye: .changeTint
+    ).build { builder in
         builder.action {
             $0.addTarget(
                 self,
@@ -63,6 +65,9 @@ final class SearchResultCVCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         basketButtonHandler = { _ in }
+        [storeNameLabel, productDescriptionLabel, priceLabel].forEach {
+            $0.text = nil
+        }
     }
     
     func configureCell<T: SearchResultCVCellData>(data: T) {

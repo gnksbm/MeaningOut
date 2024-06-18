@@ -19,8 +19,8 @@ final class SearchViewController: BaseViewController {
         builder.removeHandler(
             { [weak self] in
                 guard let self else { return  }
-                SearchHistoryItem.removeHistory()
-                updateSnapshot(items: SearchHistoryItem.currentHistory)
+                User.removeHistory()
+                updateSnapshot(items: User.currentHistory)
             }
         )
     }
@@ -43,29 +43,8 @@ final class SearchViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateSnapshot(items: SearchHistoryItem.currentHistory)
+        updateSnapshot(items: User.currentHistory)
         navigationItem.title = "\(User.nickname)'s MEANING OUT"
-    }
-    
-    private func updateSnapshot(items: [SearchHistoryItem]) {
-        var snapshot = Snapshot()
-        tableView.backgroundView = items.isEmpty ?
-        EmptySearchHistoryView() : nil
-        headerViewHeightConstraint.isActive = items.isEmpty
-        let allSection = Section.allCases
-        snapshot.appendSections(allSection)
-        allSection.forEach {
-            switch $0 {
-            case .main:
-                snapshot.appendItems(
-                    items.sorted(
-                        using: KeyPathComparator(\.date, order: .reverse)
-                    ),
-                    toSection: $0
-                )
-            }
-        }
-        dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     private func configureNavigation() {
@@ -91,6 +70,45 @@ final class SearchViewController: BaseViewController {
         }
     }
     
+    private func search(query: String) {
+        do {
+            try NaverSearchValidator.checkValidationWithRegex(text: query)
+            navigationController?.pushViewController(
+                SearchResultViewController(
+                    endpoint: NaverSearchEndpoint(query: query)
+                ),
+                animated: true
+            )
+            User.addNewHistoryItem(query: query)
+        } catch {
+            showToast(message: error.localizedDescription)
+        }
+    }
+}
+
+// MARK: UITableView
+extension SearchViewController {
+    private func updateSnapshot(items: [SearchHistoryItem]) {
+        var snapshot = Snapshot()
+        tableView.backgroundView = items.isEmpty ?
+        EmptySearchHistoryView() : nil
+        headerViewHeightConstraint.isActive = items.isEmpty
+        let allSection = Section.allCases
+        snapshot.appendSections(allSection)
+        allSection.forEach {
+            switch $0 {
+            case .main:
+                snapshot.appendItems(
+                    items.sorted(
+                        using: KeyPathComparator(\.date, order: .reverse)
+                    ),
+                    toSection: $0
+                )
+            }
+        }
+        dataSource.apply(snapshot, animatingDifferences: false)
+    }
+    
     private func configureDataSource() {
         dataSource = DataSource(
             tableView: tableView,
@@ -102,13 +120,9 @@ final class SearchViewController: BaseViewController {
                     builder.removeButtonHandler(
                         { [weak self] in
                             guard let self else { return }
-                            SearchHistoryItem.currentHistory =
-                            SearchHistoryItem.currentHistory.filter {
-                                $0 != item
-                            }
-                            updateSnapshot(
-                                items: SearchHistoryItem.currentHistory
-                            )
+                            User.currentHistory =
+                            User.currentHistory.filter { $0 != item }
+                            updateSnapshot(items: User.currentHistory)
                         }
                     )
                     .action {
@@ -119,32 +133,18 @@ final class SearchViewController: BaseViewController {
         )
     }
     
-    private func search(query: String) {
-        do {
-            try NaverSearchValidator.checkValidationWithRegex(text: query)
-            navigationController?.pushViewController(
-                SearchResultViewController(
-                    endpoint: NaverSearchEndpoint(query: query)
-                ),
-                animated: true
-            )
-            SearchHistoryItem.addNewHistoryItem(query: query)
-        } catch {
-            showToast(message: error.localizedDescription)
-        }
+    typealias DataSource =
+    UITableViewDiffableDataSource<Section, SearchHistoryItem>
+    
+    typealias Snapshot =
+    NSDiffableDataSourceSnapshot<Section, SearchHistoryItem>
+    
+    enum Section: CaseIterable {
+        case main
     }
 }
 
-extension SearchViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let query = searchBar.text else {
-            Logger.debugging("searchBar.text 옵셔널 바인딩 실패")
-            return
-        }
-        search(query: query)
-    }
-}
-
+// MARK: UITableViewDelegate
 extension SearchViewController: UITableViewDelegate {
     func tableView(
         _ tableView: UITableView,
@@ -157,15 +157,14 @@ extension SearchViewController: UITableViewDelegate {
     }
 }
 
-extension SearchViewController {
-    typealias DataSource =
-    UITableViewDiffableDataSource<Section, SearchHistoryItem>
-    
-    typealias Snapshot =
-    NSDiffableDataSourceSnapshot<Section, SearchHistoryItem>
-    
-    enum Section: CaseIterable {
-        case main
+// MARK: UISearchBarDelegate
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text else {
+            Logger.debugging("searchBar.text 옵셔널 바인딩 실패")
+            return
+        }
+        search(query: query)
     }
 }
 
@@ -175,11 +174,11 @@ struct SearchViewControllerPreview: PreviewProvider {
     static var previews: some View {
         SearchViewController().swiftUIViewWithNavigation
             .onAppear {
-                SearchHistoryItem.currentHistory = []
+                User.currentHistory = []
             }
         SearchViewController().swiftUIViewWithNavigation
             .onAppear {
-                SearchHistoryItem.currentHistory = .mock
+                User.currentHistory = .mock
             }
     }
 }

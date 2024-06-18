@@ -16,20 +16,21 @@ final class OnboardingMainViewController: BaseViewController {
             .textColor(.meaningOrange)
     }
     
-    private let imageView = UIImageView().build { builder in
+    private let backgroundImageView = UIImageView().build { builder in
         builder.image(.launch)
             .contentMode(.scaleAspectFit)
     }
     
-    private lazy var startButton = LargeButton(title: "시작하기").build { builder in
-        builder.action {
-            $0.addTarget(
-                self,
-                action: #selector(startButtonTapped),
-                for: .touchUpInside
-            )
+    private lazy var startButton = LargeButton(title: "시작하기")
+        .build { builder in
+            builder.action {
+                $0.addTarget(
+                    self,
+                    action: #selector(startButtonTapped),
+                    for: .touchUpInside
+                )
+            }
         }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,18 +49,22 @@ final class OnboardingMainViewController: BaseViewController {
     }
     
     private func configureLayout() {
-        [appNameLabel, imageView, startButton].forEach { view.addSubview($0) }
+        [
+            appNameLabel,
+            backgroundImageView,
+            startButton
+        ].forEach { view.addSubview($0) }
         
         let safeArea = view.safeAreaLayoutGuide
         
-        imageView.snp.makeConstraints { make in
+        backgroundImageView.snp.makeConstraints { make in
             make.center.equalTo(safeArea)
             make.width.height.equalTo(safeArea.snp.width)
         }
         
         appNameLabel.snp.makeConstraints { make in
             make.centerX.equalTo(safeArea)
-            make.bottom.equalTo(imageView.snp.top).offset(-50)
+            make.bottom.equalTo(backgroundImageView.snp.top).offset(-50)
         }
         
         startButton.snp.makeConstraints { make in
@@ -72,7 +77,7 @@ final class OnboardingMainViewController: BaseViewController {
     
     @objc private func startButtonTapped() {
         navigationController?.pushViewController(
-            ProfileViewController(viewMode: .join),
+            ProfileViewController(viewType: .join),
             animated: true
         )
     }

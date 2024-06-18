@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 final class ProfileImageViewController: BaseViewController {
-    private let viewMode: ProfileViewMode
+    private let viewType: ProfileViewType
     private var dataSource: DataSource!
     
     private let profileButton = ProfileButton(
@@ -24,8 +24,8 @@ final class ProfileImageViewController: BaseViewController {
         builder.delegate(self)
     }
     
-    init(viewMode: ProfileViewMode) {
-        self.viewMode = viewMode
+    init(viewType: ProfileViewType) {
+        self.viewType = viewType
         super.init()
     }
     
@@ -36,13 +36,13 @@ final class ProfileImageViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDataSource()
-        configureUI()
         configureLayout()
         updateSnapshot(items: .bundle)
     }
     
-    private func configureUI() {
-        navigationItem.title = viewMode.title
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.title = viewType.title
     }
     
     private func configureLayout() {
@@ -53,7 +53,8 @@ final class ProfileImageViewController: BaseViewController {
         profileButton.snp.makeConstraints { make in
             make.top.equalTo(safeArea).offset(20)
             make.centerX.equalTo(safeArea)
-            make.width.height.equalTo(safeArea.snp.width).multipliedBy(DesignConstant.Size.profileButtonSizeRatio)
+            make.width.height.equalTo(safeArea.snp.width)
+                .multipliedBy(DesignConstant.Size.profileButtonSizeRatio)
         }
         
         collectionView.snp.makeConstraints { make in
@@ -61,10 +62,13 @@ final class ProfileImageViewController: BaseViewController {
             make.horizontalEdges.bottom.equalTo(safeArea)
         }
     }
-    
+}
+
+// MARK: UICollectionView
+extension ProfileImageViewController {
     private func updateSnapshot(items: [ProfileImage]) {
         var snapshot = Snapshot()
-        let allSection = Section.allCases
+        let allSection = CollectionViewSection.allCases
         snapshot.appendSections(allSection)
         allSection.forEach {
             switch $0 {
@@ -76,9 +80,7 @@ final class ProfileImageViewController: BaseViewController {
     }
     
     private func makeLayout() -> UICollectionViewCompositionalLayout {
-        UICollectionViewCompositionalLayout {
-            _,
-            _ in
+        UICollectionViewCompositionalLayout { _, _ in
             let item = NSCollectionLayoutItem(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1/4),
@@ -133,9 +135,23 @@ final class ProfileImageViewController: BaseViewController {
             }
         }
     }
+    
+    typealias DataSource =
+    UICollectionViewDiffableDataSource<CollectionViewSection, ProfileImage>
+    
+    typealias Snapshot =
+    NSDiffableDataSourceSnapshot<CollectionViewSection, ProfileImage>
+    
+    typealias MainRegistration =
+    UICollectionView.CellRegistration<ProfileImageCVCell, ProfileImage>
+    
+    enum CollectionViewSection: CaseIterable {
+        case main
+    }
 }
 
-extension ProfileImageViewController: UICollectionViewDelegate { 
+// MARK: UICollectionViewDelegate
+extension ProfileImageViewController: UICollectionViewDelegate {
     func collectionView(
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
@@ -148,24 +164,11 @@ extension ProfileImageViewController: UICollectionViewDelegate {
     }
 }
 
-extension ProfileImageViewController {
-    typealias DataSource =
-    UICollectionViewDiffableDataSource<Section, ProfileImage>
-    typealias Snapshot =
-    NSDiffableDataSourceSnapshot<Section, ProfileImage>
-    typealias MainRegistration =
-    UICollectionView.CellRegistration<ProfileImageCVCell, ProfileImage>
-    
-    enum Section: CaseIterable {
-        case main
-    }
-}
-
 #if DEBUG
 import SwiftUI
 struct ProfileImageViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        ProfileImageViewController(viewMode: .join)
+        ProfileImageViewController(viewType: .join)
             .swiftUIViewPushed
     }
 }

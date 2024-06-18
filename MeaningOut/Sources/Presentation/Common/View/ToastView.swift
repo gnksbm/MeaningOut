@@ -26,13 +26,13 @@ final class ToastView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateMessage(_ message: String) {
-        messageLabel.text = message
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = bounds.height / 2
+    }
+    
+    func updateMessage(_ message: String) {
+        messageLabel.text = message
     }
     
     private func configureUI() {

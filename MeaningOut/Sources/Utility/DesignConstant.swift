@@ -40,12 +40,6 @@ enum DesignConstant {
     }
 }
 
-extension UIFont {
-    func with(weight: UIFont.Weight) -> UIFont {
-        UIFont.systemFont(ofSize: pointSize, weight: weight)
-    }
-}
-
 #if DEBUG
 import SwiftUI
 

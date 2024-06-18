@@ -8,7 +8,7 @@
 import UIKit
 
 final class ProfileViewController: BaseViewController {
-    private let viewMode: ProfileViewMode
+    private let viewType: ProfileViewType
     
     private lazy var profileImageButton = ProfileButton(
         image: UIImage(named: User.imageName)
@@ -22,31 +22,32 @@ final class ProfileViewController: BaseViewController {
         }
     }
     
-    private lazy var fixButton = UIButton(configuration: .filled())
-        .build { builder in
-            builder.action {
-                $0.configuration?.cornerStyle = .capsule
-                $0.configuration?.baseBackgroundColor = .meaningOrange
-                $0.configuration?.baseForegroundColor = .meaningWhite
-                var container = AttributeContainer()
-                container.font = DesignConstant.Font.medium.with(weight: .bold)
-                $0.configuration?.attributedTitle = AttributedString(
-                    "수정해드릴까요?",
-                    attributes: container
-                )
-                $0.addTarget(
-                    self,
-                    action: #selector(fixButtonTapped),
-                    for: .touchUpInside
-                )
-            }
+    private lazy var fixButton = UIButton(
+        configuration: .filled()
+    ).build { builder in
+        builder.action {
+            $0.configuration?.cornerStyle = .capsule
+            $0.configuration?.baseBackgroundColor = .meaningOrange
+            $0.configuration?.baseForegroundColor = .meaningWhite
+            var container = AttributeContainer()
+            container.font = DesignConstant.Font.medium.with(weight: .bold)
+            $0.configuration?.attributedTitle = AttributedString(
+                "수정해드릴까요?",
+                attributes: container
+            )
+            $0.addTarget(
+                self,
+                action: #selector(fixButtonTapped),
+                for: .touchUpInside
+            )
         }
+    }
     
     private lazy var nicknameTextField = UITextField().build { builder in
         builder.delegate(self)
             .attributedPlaceholder(
                 NSAttributedString(
-                    string: User.nicknamePlaceholder,
+                    string: NicknameValidator.nicknamePlaceholder,
                     attributes: [
                         .foregroundColor: UIColor.meaningGray,
                         .font: DesignConstant.Font.large.with(weight: .regular)
@@ -63,7 +64,7 @@ final class ProfileViewController: BaseViewController {
     private lazy var validationLabel = UILabel().build { builder in
         builder.textColor(.meaningOrange)
             .font(DesignConstant.Font.medium.with(weight: .medium))
-            .text(viewMode.nicknameDescription)
+            .text(viewType.nicknameDescription)
     }
     
     private lazy var finishButton = LargeButton(title: "완료").build { builder in
@@ -92,17 +93,8 @@ final class ProfileViewController: BaseViewController {
             }
     }
     
-    var actionButton: UIButton {
-        switch viewMode {
-        case .join:
-            finishButton
-        case .edit:
-            saveButton
-        }
-    }
-    
-    init(viewMode: ProfileViewMode) {
-        self.viewMode = viewMode
+    init(viewType: ProfileViewType) {
+        self.viewType = viewType
         super.init()
     }
     
@@ -120,28 +112,17 @@ final class ProfileViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         nicknameTextField.text = User.nickname
-        profileImageButton.updateImage(
-            image: UIImage(named: User.imageName)
-        )
+        profileImageButton.updateImage(image: UIImage(named: User.imageName))
         configureNavigation()
     }
     
     private func configureNavigation() {
-        navigationItem.title = viewMode.title
+        navigationItem.title = viewType.title
         navigationItem.rightBarButtonItem =
         UIBarButtonItem(customView: saveButton).build { builder in
             builder.tintColor(.clear)
         }
         saveButton.isEnabled = false
-    }
-    
-    private func configureActionButton() {
-        switch viewMode {
-        case .join:
-            saveButton.isHidden = true
-        case .edit:
-            finishButton.isHidden = true
-        }
     }
     
     private func configureLayout() {
@@ -158,7 +139,8 @@ final class ProfileViewController: BaseViewController {
         profileImageButton.snp.makeConstraints { make in
             make.top.equalTo(safeArea).offset(20)
             make.centerX.equalTo(safeArea)
-            make.width.height.equalTo(safeArea.snp.width).multipliedBy(DesignConstant.Size.profileButtonSizeRatio)
+            make.width.height.equalTo(safeArea.snp.width)
+                .multipliedBy(DesignConstant.Size.profileButtonSizeRatio)
         }
         
         nicknameTextField.snp.makeConstraints { make in
@@ -196,7 +178,7 @@ final class ProfileViewController: BaseViewController {
     
     @objc private func profileButtonTapped() {
         navigationController?.pushViewController(
-            ProfileImageViewController(viewMode: viewMode),
+            ProfileImageViewController(viewType: viewType),
             animated: true
         )
     }
@@ -208,7 +190,7 @@ final class ProfileViewController: BaseViewController {
         }
         User.nickname = nickname
         User.imageName = User.imageName
-        switch viewMode {
+        switch viewType {
         case .join:
             view.window?.rootViewController = .makeRootViewController()
         case .edit:
@@ -226,7 +208,7 @@ final class ProfileViewController: BaseViewController {
             nicknameTextField.text = 
             try NicknameValidator.checkValidation(text: fixedText)
             validationLabel.attributedText = NSAttributedString(
-                string: User.validatedNicknameMessage,
+                string: NicknameValidator.validatedNicknameMessage,
                 attributes: [
                     .foregroundColor: UIColor.black,
                     .font: DesignConstant.Font.medium.with(weight: .regular)
@@ -247,6 +229,28 @@ final class ProfileViewController: BaseViewController {
     }
 }
 
+// MARK: ProfileViewType
+extension ProfileViewController {
+    private var actionButton: UIButton {
+        switch viewType {
+        case .join:
+            finishButton
+        case .edit:
+            saveButton
+        }
+    }
+    
+    private func configureActionButton() {
+        switch viewType {
+        case .join:
+            saveButton.isHidden = true
+        case .edit:
+            finishButton.isHidden = true
+        }
+    }
+}
+
+// MARK: UITextFieldDelegate
 extension ProfileViewController: UITextFieldDelegate {
     func textField(
         _ textField: UITextField,
@@ -262,16 +266,16 @@ extension ProfileViewController: UITextFieldDelegate {
         do {
             try NicknameValidator.checkValidationWithRegex(text: newNickname)
             validationLabel.attributedText = NSAttributedString(
-                string: User.validatedNicknameMessage,
+                string: NicknameValidator.validatedNicknameMessage,
                 attributes: [
                     .foregroundColor: UIColor.black,
                     .font: DesignConstant.Font.medium.with(weight: .regular)
                 ]
             )
-            if viewMode == .edit,
+            if viewType == .edit,
                newNickname == User.nickname {
                 validationLabel.attributedText = NSAttributedString(
-                    string: viewMode.nicknameDescription,
+                    string: viewType.nicknameDescription,
                     attributes: [
                         .foregroundColor: UIColor.meaningOrange,
                         .font: DesignConstant.Font.medium.with(weight: .regular)
@@ -296,41 +300,19 @@ extension ProfileViewController: UITextFieldDelegate {
     }
 }
 
-enum ProfileViewMode {
-    case join, edit
-    
-    var title: String {
-        switch self {
-        case .join:
-            "PROFILE SETTING"
-        case .edit:
-            "EDIT PROFILE"
-        }
-    }
-    
-    var nicknameDescription: String {
-        switch self {
-        case .join:
-            "2글자 이상 10글자 미만으로 입력해주세요."
-        case .edit:
-            "변경할 닉네임을 입력해주세요."
-        }
-    }
-}
-
 #if DEBUG
 import SwiftUI
 struct OnboardingNicknameViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        ProfileViewController(viewMode: .join).swiftUIViewPushed
+        ProfileViewController(viewType: .join).swiftUIViewPushed
             .onAppear {
                 User.nickname = ""
             }
-        ProfileViewController(viewMode: .edit).swiftUIView
+        ProfileViewController(viewType: .edit).swiftUIView
             .onAppear {
                 User.nickname = ""
             }
-        ProfileViewController(viewMode: .edit).swiftUIView
+        ProfileViewController(viewType: .edit).swiftUIView
             .onAppear {
                 User.nickname = "닉네임"
             }

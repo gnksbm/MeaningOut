@@ -50,6 +50,9 @@
 		BE3FE3FA2C1EDDA300F58754 /* NaverSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3F92C1EDDA300F58754 /* NaverSearchResponse.swift */; };
 		BE3FE4002C1EE40000F58754 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3FF2C1EE40000F58754 /* String+.swift */; };
 		BE3FE4032C1EE7B200F58754 /* NaverSearchResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = BE3FE4022C1EE7B200F58754 /* NaverSearchResponse.json */; };
+		BEBFC3A02C2173DE00F35E82 /* ProfileViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBFC39F2C2173DE00F35E82 /* ProfileViewType.swift */; };
+		BEBFC3A22C21785C00F35E82 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBFC3A12C21785C00F35E82 /* UIFont+.swift */; };
+		BEBFC3A42C217B4500F35E82 /* UICollectionView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEBFC3A32C217B4500F35E82 /* UICollectionView+.swift */; };
 		BEF7F9292C1EF9DA00136FBA /* SearchDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F9282C1EF9DA00136FBA /* SearchDetailViewController.swift */; };
 		BEF7F92B2C1FB52A00136FBA /* BasketButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F92A2C1FB52A00136FBA /* BasketButton.swift */; };
 		BEF7F9582C20030900136FBA /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF7F9572C20030900136FBA /* UIViewController+.swift */; };
@@ -105,6 +108,9 @@
 		BE3FE3F92C1EDDA300F58754 /* NaverSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverSearchResponse.swift; sourceTree = "<group>"; };
 		BE3FE3FF2C1EE40000F58754 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		BE3FE4022C1EE7B200F58754 /* NaverSearchResponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = NaverSearchResponse.json; sourceTree = "<group>"; };
+		BEBFC39F2C2173DE00F35E82 /* ProfileViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewType.swift; sourceTree = "<group>"; };
+		BEBFC3A12C21785C00F35E82 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		BEBFC3A32C217B4500F35E82 /* UICollectionView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+.swift"; sourceTree = "<group>"; };
 		BEF7F9282C1EF9DA00136FBA /* SearchDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailViewController.swift; sourceTree = "<group>"; };
 		BEF7F92A2C1FB52A00136FBA /* BasketButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketButton.swift; sourceTree = "<group>"; };
 		BEF7F9572C20030900136FBA /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
@@ -224,7 +230,6 @@
 				BE3FE3DD2C1DBB5600F58754 /* SearchHistoryItem.swift */,
 				BEF7F96A2C2066B700136FBA /* Response */,
 				BE3FE3E72C1E04ED00F58754 /* Endpoint */,
-				BE3FE4012C1EE7A500F58754 /* Mock */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -296,6 +301,7 @@
 		BE3FE3F82C1ECF8200F58754 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				BEBFC39F2C2173DE00F35E82 /* ProfileViewType.swift */,
 				BE3FE3B92C1C2C5000F58754 /* ProfileViewController.swift */,
 				BE3FE3CD2C1D811500F58754 /* ProfileImageViewController.swift */,
 				BEF7F9662C20646200136FBA /* Cell */,
@@ -308,6 +314,8 @@
 			children = (
 				BE3FE3FF2C1EE40000F58754 /* String+.swift */,
 				BEF7F9572C20030900136FBA /* UIViewController+.swift */,
+				BEBFC3A12C21785C00F35E82 /* UIFont+.swift */,
+				BEBFC3A32C217B4500F35E82 /* UICollectionView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -315,6 +323,7 @@
 		BE3FE4012C1EE7A500F58754 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				BE3FE4022C1EE7B200F58754 /* NaverSearchResponse.json */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -422,7 +431,7 @@
 			isa = PBXGroup;
 			children = (
 				BE3FE3F92C1EDDA300F58754 /* NaverSearchResponse.swift */,
-				BE3FE4022C1EE7B200F58754 /* NaverSearchResponse.json */,
+				BE3FE4012C1EE7A500F58754 /* Mock */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -521,6 +530,7 @@
 			files = (
 				BE3FE37D2C1B01B600F58754 /* OnboardingMainViewController.swift in Sources */,
 				BE3FE3DE2C1DBB5600F58754 /* SearchHistoryItem.swift in Sources */,
+				BEBFC3A42C217B4500F35E82 /* UICollectionView+.swift in Sources */,
 				BE3FE3DA2C1DB6F800F58754 /* SettingViewController.swift in Sources */,
 				BE3FE3BD2C1C301400F58754 /* LargeButton.swift in Sources */,
 				BE3FE3EC2C1E0B7B00F58754 /* APIKey.swift in Sources */,
@@ -551,7 +561,9 @@
 				BE3FE3D62C1DB65C00F58754 /* TabBarController.swift in Sources */,
 				BE3FE3D02C1D87F000F58754 /* ProfileImageCVCell.swift in Sources */,
 				BEF7F92B2C1FB52A00136FBA /* BasketButton.swift in Sources */,
+				BEBFC3A02C2173DE00F35E82 /* ProfileViewType.swift in Sources */,
 				BE3FE3E22C1DBC0300F58754 /* SearchHistoryItemTVCell.swift in Sources */,
+				BEBFC3A22C21785C00F35E82 /* UIFont+.swift in Sources */,
 				BE3FE3E42C1DC4F200F58754 /* SearchHistoryHeaderView.swift in Sources */,
 				BE3FE3FA2C1EDDA300F58754 /* NaverSearchResponse.swift in Sources */,
 				BE3FE3D82C1DB6CA00F58754 /* SearchViewController.swift in Sources */,

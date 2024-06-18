@@ -28,14 +28,14 @@ final class SearchResultViewController: BaseViewController {
                 $0.updateState(isSelected: isSelectedButton(tag: $0.tag))
                 $0.addTarget(
                     self,
-                    action: #selector(filterButtonTapped),
+                    action: #selector(sortButtonTapped),
                     for: .touchUpInside
                 )
             }
         }
     }
     
-    private lazy var filterStackView = UIStackView(
+    private lazy var sortStackView = UIStackView(
         arrangedSubviews: sortButtons
     ).build { builder in
         builder.spacing(10)
@@ -72,6 +72,29 @@ final class SearchResultViewController: BaseViewController {
         navigationItem.title = endpoint.query
     }
     
+    private func configureLayout() {
+        [resultCountLabel, sortStackView, collectionView].forEach {
+            view.addSubview($0)
+        }
+        
+        let safeArea = view.safeAreaLayoutGuide
+        
+        resultCountLabel.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalTo(safeArea).inset(20)
+        }
+        
+        sortStackView.snp.makeConstraints { make in
+            make.top.equalTo(resultCountLabel.snp.bottom).offset(20)
+            make.leading.equalTo(safeArea).inset(20)
+            make.trailing.lessThanOrEqualTo(safeArea).inset(20)
+        }
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(sortStackView.snp.bottom).offset(20)
+            make.horizontalEdges.bottom.equalTo(safeArea)
+        }
+    }
+    
     private func callSearchRequest() {
         showActivityIndicator()
         AF.request(endpoint)
@@ -83,15 +106,8 @@ final class SearchResultViewController: BaseViewController {
                 switch response.result {
                 case .success(let response):
                     updateSnapshot(items: response.items)
-                    if collectionView.numberOfSections > 0,
-                       collectionView.numberOfItems(inSection: 0) > 0 {
-                        collectionView.scrollToItem(
-                            at: IndexPath(row: 0, section: 0),
-                            at: .top,
-                            animated: false
-                        )
-                    }
-                    resultCountLabel.text = 
+                    collectionView.scrollToTop()
+                    resultCountLabel.text =
                     response.total.formatted() + "개의 검색 결과"
                 case .failure(let error):
                     Logger.error(error, with: endpoint.queries)
@@ -112,9 +128,7 @@ final class SearchResultViewController: BaseViewController {
                 switch response.result {
                 case .success(let response):
                     appendSnapshot(items: response.items)
-                    isFinalPage = endpoint.isFinalPage(
-                        total: response.total
-                    )
+                    isFinalPage = endpoint.isFinalPage(total: response.total)
                 case .failure(let error):
                     Logger.error(error, with: endpoint)
                 }
@@ -122,36 +136,25 @@ final class SearchResultViewController: BaseViewController {
             }
     }
     
-    private func configureLayout() {
-        [resultCountLabel, filterStackView, collectionView].forEach {
-            view.addSubview($0)
-        }
-        
-        let safeArea = view.safeAreaLayoutGuide
-        
-        resultCountLabel.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(safeArea).inset(20)
-        }
-        
-        filterStackView.snp.makeConstraints { make in
-            make.top.equalTo(resultCountLabel.snp.bottom).offset(20)
-            make.leading.equalTo(safeArea).inset(20)
-            make.trailing.lessThanOrEqualTo(safeArea).inset(20)
-        }
-        
-        collectionView.snp.makeConstraints { make in
-            make.top.equalTo(filterStackView.snp.bottom).offset(20)
-            make.horizontalEdges.bottom.equalTo(safeArea)
-        }
-    }
-    
     private func isSelectedButton(tag: Int) -> Bool {
         endpoint.sort.rawValue == tag
     }
     
+    @objc private func sortButtonTapped(_ sender: UIButton) {
+        endpoint.sort = NaverSearchEndpoint.Sort.allCases[sender.tag]
+        sortButtons.forEach {
+            $0.updateState(isSelected: isSelectedButton(tag: $0.tag))
+        }
+        endpoint.page = 1
+        callSearchRequest()
+    }
+}
+
+// MARK: UICollectionView
+extension SearchResultViewController {
     private func updateSnapshot(items: [NaverSearchResponse.Item]) {
         var snapshot = Snapshot()
-        let allCases = Section.allCases
+        let allCases = CollectionViewSection.allCases
         snapshot.appendSections(allCases)
         allCases.forEach {
             switch $0 {
@@ -164,7 +167,7 @@ final class SearchResultViewController: BaseViewController {
     
     private func appendSnapshot(items: [NaverSearchResponse.Item]) {
         var snapshot = dataSource.snapshot()
-        let allCases = Section.allCases
+        let allCases = CollectionViewSection.allCases
         allCases.forEach {
             switch $0 {
             case .main:
@@ -175,9 +178,7 @@ final class SearchResultViewController: BaseViewController {
     }
     
     private func makeLayout() -> UICollectionViewCompositionalLayout {
-        UICollectionViewCompositionalLayout {
-            _,
-            _ in
+        UICollectionViewCompositionalLayout { _, _ in
             let item = NSCollectionLayoutItem(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1/2),
@@ -223,17 +224,10 @@ final class SearchResultViewController: BaseViewController {
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, item in
                 collectionView.dequeueConfiguredReusableCell(
-                    using: mainRegistration, 
+                    using: mainRegistration,
                     for: indexPath,
                     item: item
-                ).build { builder in
-                    builder.basketButtonHandler(
-                        { button in
-                            User.updateFavorites(productID: item.productID)
-                            button.updateButtonColor(isLiked: item.isLiked)
-                        }
-                    )
-                }
+                )
             }
         )
     }
@@ -241,19 +235,31 @@ final class SearchResultViewController: BaseViewController {
     private func makeMainRegistration() -> MainRegistration {
         MainRegistration { cell, indexPath, item in
             cell.configureCell(data: item)
+            cell.basketButtonHandler = { button in
+                User.updateFavorites(productID: item.productID)
+                button.updateButtonColor(isLiked: item.isLiked)
+            }
         }
     }
     
-    @objc private func filterButtonTapped(_ sender: UIButton) {
-        endpoint.sort = NaverSearchEndpoint.Sort.allCases[sender.tag]
-        sortButtons.forEach {
-            $0.updateState(isSelected: isSelectedButton(tag: $0.tag))
-        }
-        endpoint.page = 1
-        callSearchRequest()
+    typealias DataSource =
+    UICollectionViewDiffableDataSource
+    <CollectionViewSection, NaverSearchResponse.Item>
+        
+    typealias Snapshot =
+    NSDiffableDataSourceSnapshot
+    <CollectionViewSection, NaverSearchResponse.Item>
+        
+    typealias MainRegistration =
+    UICollectionView.CellRegistration
+    <SearchResultCVCell, NaverSearchResponse.Item>
+        
+    enum CollectionViewSection: CaseIterable {
+        case main
     }
 }
 
+// MARK: UICollectionViewDelegate
 extension SearchResultViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let scrollViewContentHeight =
@@ -271,31 +277,13 @@ extension SearchResultViewController: UICollectionViewDelegate {
         didSelectItemAt indexPath: IndexPath
     ) {
         let itemList = dataSource.snapshot().itemIdentifiers(
-            inSection: Section.allCases[indexPath.section]
+            inSection: CollectionViewSection.allCases[indexPath.section]
         )
         let item = itemList[indexPath.row]
         navigationController?.pushViewController(
             SearchDetailViewController(item: item),
             animated: true
         )
-    }
-}
-
-extension SearchResultViewController {
-    typealias DataSource =
-    UICollectionViewDiffableDataSource<Section, NaverSearchResponse.Item>
-        
-    typealias Snapshot =
-    NSDiffableDataSourceSnapshot<Section, NaverSearchResponse.Item>
-        
-    typealias MainRegistration =
-    UICollectionView.CellRegistration<
-        SearchResultCVCell,
-        NaverSearchResponse.Item
-    >
-        
-    enum Section: CaseIterable {
-        case main
     }
 }
 

@@ -129,8 +129,8 @@ struct NaverSearchEndpointPreview: PreviewProvider {
                         guard let statusCode = response.response?.statusCode,
                               200..<300 ~= statusCode
                         else {
-                            label.text = endpoint.toURL()?.absoluteString ??
-                            "URL 없음"
+                            label.text =
+                            "잘못된 URL: \(endpoint.toURL()?.absoluteString ?? "URL nil")"
                             return
                         }
                         label.text = response.value ?? "값 없음"

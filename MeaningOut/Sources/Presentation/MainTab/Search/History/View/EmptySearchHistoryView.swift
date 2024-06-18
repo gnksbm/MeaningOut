@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 final class EmptySearchHistoryView: UIView {
-    private let imageView = UIImageView().build { builder in
+    private let backgroundImageView = UIImageView().build { builder in
         builder.image(.empty)
             .contentMode(.scaleToFill)
     }
@@ -32,15 +32,15 @@ final class EmptySearchHistoryView: UIView {
     }
     
     private func configureLayout() {
-        [imageView, descriptionLabel].forEach { addSubview($0) }
+        [backgroundImageView, descriptionLabel].forEach { addSubview($0) }
         
-        imageView.snp.makeConstraints { make in
+        backgroundImageView.snp.makeConstraints { make in
             make.center.equalTo(self)
             make.width.equalTo(self).multipliedBy(0.8)
         }
         
         descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(imageView.snp.bottom).offset(10)
+            make.top.equalTo(backgroundImageView.snp.bottom).offset(10)
             make.centerX.equalTo(self)
         }
     }

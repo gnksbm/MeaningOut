@@ -17,9 +17,7 @@ final class ProfileImageView: UIImageView {
     }
     
     @available(
-        *,
-         deprecated,
-         renamed: "init(borderType:)",
+        *, deprecated, renamed: "init(borderType:)",
          message: "ProfileImageView(borderType: BorderType)을 사용해주세요"
     )
     init(borderWidth: CGFloat) {

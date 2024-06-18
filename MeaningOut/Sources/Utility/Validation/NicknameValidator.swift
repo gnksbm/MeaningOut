@@ -9,6 +9,8 @@ import Foundation
 
 enum NicknameValidator {
     static let rangeExpression = "^.{2,9}$"
+    static let validatedNicknameMessage = "사용 가능한 닉네임입니다 :D"
+    static let nicknamePlaceholder = "닉네임을 입력해주세요 :)"
     
     @discardableResult
     static func checkValidation(text: String) throws -> String {
@@ -145,8 +147,8 @@ enum NicknameValidator {
 }
 
 #if DEBUG
-// TODO: 동작테스트와 성능테스트 방법 공부 후 적용
-enum TestCase: String, CaseIterable {
+// TODO: 성능테스트 방법을 공부해 테스트하여 더 나은 함수 채택해야함
+fileprivate enum TestCase: String, CaseIterable {
     case shortStr = "a"
     case LongStr = "aaaaaaaaaa"
     case containNumStr = "aaaa2aa"

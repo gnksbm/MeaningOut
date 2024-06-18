@@ -26,6 +26,7 @@ final class SettingTableViewMinCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        descriptionLabel.text = nil
     }
     
     func configureCell(data: String) {

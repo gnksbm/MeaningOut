@@ -13,16 +13,17 @@ import SnapKit
 final class SearchDetailViewController: BaseViewController {
     private let item: NaverSearchResponse.Item
     
-    private lazy var basketButton = BasketButton(imageTpye: .changeImage)
-        .build { builder in
-            builder.action {
-                $0.addTarget(
-                    self,
-                    action: #selector(basketButtonTapped),
-                    for: .touchUpInside
-                )
-            }
+    private lazy var basketButton = BasketButton(
+        imageTpye: .changeImage
+    ).build { builder in
+        builder.action {
+            $0.addTarget(
+                self,
+                action: #selector(basketButtonTapped),
+                for: .touchUpInside
+            )
         }
+    }
     
     private lazy var webView = WKWebView().build { builder in
         builder.navigationDelegate(self)

@@ -52,11 +52,40 @@ final class SettingViewController: BaseViewController {
         }
     }
     
+    private func removeAccount() {
+        let alertController = UIAlertController(
+            title: "탈퇴하기",
+            message: "탈퇴를 하면 데이터가 모두 초기화됩니다. 탈퇴 하시겠습니까?",
+            preferredStyle: .alert
+        ).build { builder in
+            builder.action {
+                let okAction = UIAlertAction(
+                    title: "확인",
+                    style: .destructive
+                ) { _ in
+                    User.removeProfile()
+                    self.view.window?.rootViewController = 
+                        .makeRootViewController()
+                }
+                let cancelAction = UIAlertAction(
+                    title: "취소",
+                    style: .cancel
+                )
+                $0.addAction(okAction)
+                $0.addAction(cancelAction)
+            }
+        }
+        present(alertController, animated: true)
+    }
+}
+
+// MARK: UITableView
+extension SettingViewController {
     private func updateSnapshot() {
         var snapshot = Snapshot()
         let allSection = TableViewSection.allCases
         snapshot.appendSections(allSection)
-        allSection.forEach { 
+        allSection.forEach {
             switch $0 {
             case .main:
                 snapshot.appendItems(TableViewItem.allCases, toSection: $0)
@@ -98,58 +127,6 @@ final class SettingViewController: BaseViewController {
         )
     }
     
-    private func removeAccount() {
-        let alertController = UIAlertController(
-            title: "탈퇴하기",
-            message: "탈퇴를 하면 데이터가 모두 초기화됩니다. 탈퇴 하시겠습니까?",
-            preferredStyle: .alert
-        ).build { builder in
-            builder.action {
-                let okAction = UIAlertAction(
-                    title: "확인",
-                    style: .destructive
-                ) { _ in
-                    User.removeProfile()
-                    self.view.window?.rootViewController = .makeRootViewController()
-                }
-                let cancelAction = UIAlertAction(
-                    title: "취소",
-                    style: .cancel
-                )
-                $0.addAction(okAction)
-                $0.addAction(cancelAction)
-            }
-        }
-        present(alertController, animated: true)
-    }
-}
-
-extension SettingViewController: UITableViewDelegate { 
-    func tableView(
-        _ tableView: UITableView,
-        didSelectRowAt indexPath: IndexPath
-    ) {
-        switch TableViewItem.allCases[indexPath.row] {
-        case .profile:
-            navigationController?.pushViewController(
-                ProfileViewController(viewMode: .edit),
-                animated: true
-            )
-        case .shopBasket:
-            break
-        case .faq:
-            break
-        case .contact:
-            break
-        case .notification:
-            break
-        case .removeAccount:
-            removeAccount()
-        }
-    }
-}
-
-extension SettingViewController {
     typealias DataSource =
     UITableViewDiffableDataSource<TableViewSection, TableViewItem>
     typealias Snapshot =
@@ -190,6 +167,32 @@ extension SettingViewController {
         let image: UIImage? = UIImage.likeSelected
         let count = User.favoriteProductID.count
         let itemName = "상품"
+    }
+}
+
+// MARK: UITableViewDelegate
+extension SettingViewController: UITableViewDelegate {
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        switch TableViewItem.allCases[indexPath.row] {
+        case .profile:
+            navigationController?.pushViewController(
+                ProfileViewController(viewType: .edit),
+                animated: true
+            )
+        case .shopBasket:
+            break
+        case .faq:
+            break
+        case .contact:
+            break
+        case .notification:
+            break
+        case .removeAccount:
+            removeAccount()
+        }
     }
 }
 

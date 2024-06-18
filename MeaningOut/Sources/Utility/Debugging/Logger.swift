@@ -15,8 +15,8 @@ enum Logger {
         function: String = #function
     ) {
         print(
-            "📝", file, line, function,
-            "\n", content
+            "📍", file, line, function, "📍",
+            "\n🔵", content, "🔵"
         )
     }
     
@@ -29,14 +29,14 @@ enum Logger {
     ) {
         if let with {
             print(
-                "📝", file, line, function,
-                "\n", error.localizedDescription,
-                "\n", with
+                "📍", file, line, function, "📍",
+                "\n🔴", error.localizedDescription,
+                "\n", with, "🔴"
             )
         } else {
             print(
-                "📝", file, line, function,
-                "\n", error.localizedDescription
+                "📍", file, line, function, "📍",
+                "\n🔴", error.localizedDescription, "🔴"
             )
         }
     }

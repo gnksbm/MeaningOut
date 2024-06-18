@@ -18,6 +18,7 @@ final class SettingTableViewCountCell: UITableViewCell {
     private let descriptionLabel = UILabel().build { builder in
         builder.font(DesignConstant.Font.large.with(weight: .regular))
     }
+    
     private let iconImageView = UIImageView().build { builder in
         builder.tintColor(.meaningBlack)
     }
@@ -43,6 +44,8 @@ final class SettingTableViewCountCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        descriptionLabel.text = nil
+        countLabel.attributedText = nil
     }
     
     func configureCell<T: CountCellData>(data: T) {
@@ -72,10 +75,12 @@ final class SettingTableViewCountCell: UITableViewCell {
                 .foregroundColor: UIColor.meaningBlack
             ]
         )
-        let result = NSMutableAttributedString()
-        result.append(prefixAttributedStr)
-        result.append(suffixAttributedStr)
-        return result
+        return NSMutableAttributedString().build { builder in
+            builder.action {
+                $0.append(prefixAttributedStr)
+                $0.append(suffixAttributedStr)
+            }
+        }
     }
     
     private func configureLayout() {

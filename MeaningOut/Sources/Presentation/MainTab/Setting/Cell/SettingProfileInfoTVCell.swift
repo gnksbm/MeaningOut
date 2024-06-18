@@ -50,6 +50,7 @@ final class SettingProfileInfoTVCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        [nicknameLabel, joinedDateLabel].forEach { $0.text = nil }
     }
     
     func configureCell() {
