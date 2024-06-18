@@ -8,19 +8,6 @@
 import Foundation
 
 struct SearchHistoryItem: Hashable, Codable {
-    @UserDefaultsWrapper(key: .searchHistory, defaultValue: [])
-    static var currentHistory: [SearchHistoryItem]
-    
-    static func addNewHistoryItem(query: String) {
-        let newSearchItem = SearchHistoryItem(query: query)
-        currentHistory =
-        currentHistory.filter({ $0.query != query }) + [newSearchItem]
-    }
-    
-    static func removeHistory() {
-        _currentHistory.removeValue()
-    }
-    
     let query: String
     let date: Date
     

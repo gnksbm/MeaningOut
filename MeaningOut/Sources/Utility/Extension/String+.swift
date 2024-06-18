@@ -30,9 +30,7 @@ extension String {
             )
             return attributedString.string
         } catch {
-            Logger.error(
-                ConvertError.htmlTagRemovalFailed(error: error)
-            )
+            Logger.error(ConvertError.htmlTagRemovalFailed(error: error))
             return self
         }
     }

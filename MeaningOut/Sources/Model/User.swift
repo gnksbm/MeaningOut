@@ -13,7 +13,7 @@ enum User {
     
     @UserDefaultsWrapper(
         key: .profileImageName,
-        defaultValue: "profile_\((0...11).randomElement() ?? 0)"
+        defaultValue: getRandomImageName()
     )
     static var imageName: String
     
@@ -29,12 +29,17 @@ enum User {
     )
     static var favoriteProductID: [String]
     
-    static let nicknamePlaceholder = "닉네임을 입력해주세요 :)"
-    static let validatedNicknameMessage = "사용 가능한 닉네임입니다 :D"
-    static let bundleImageRange = 0...11
+    @UserDefaultsWrapper(key: .searchHistory, defaultValue: [])
+    static var currentHistory: [SearchHistoryItem]
     
     static var isjoined: Bool {
         _nickname.isSaved && _imageName.isSaved
+    }
+    
+    private static let bundleImageRange = 0...11
+    
+    private static func getRandomImageName() -> String {
+        "profile_\((bundleImageRange).randomElement() ?? 0)"
     }
     
     static func updateFavorites(productID: String) {
@@ -56,6 +61,17 @@ enum User {
     static func removeProfile() {
         _nickname.removeValue()
         _imageName.removeValue()
-        SearchHistoryItem.removeHistory()
+        _imageName.updateDefaultValue(newValue: getRandomImageName())
+        removeHistory()
+    }
+    
+    static func addNewHistoryItem(query: String) {
+        let newSearchItem = SearchHistoryItem(query: query)
+        currentHistory =
+        currentHistory.filter { $0.query != query } + [newSearchItem]
+    }
+    
+    static func removeHistory() {
+        _currentHistory.removeValue()
     }
 }

@@ -23,7 +23,7 @@ enum Appearance {
 
         UINavigationBar.appearance().tintColor = .meaningBlack
         UINavigationBar.appearance().titleTextAttributes = [
-            .font: Constant.Font.navigationTitle.font.with(weight: .bold)
+            .font: DesignConstant.Font.navigationTitle.with(weight: .bold)
         ]
     }
     
