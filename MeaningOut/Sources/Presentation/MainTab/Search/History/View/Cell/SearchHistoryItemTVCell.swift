@@ -30,24 +30,22 @@ final class SearchHistoryItemTVCell: UITableViewCell {
     
     private lazy var removeButton = UIButton().build { builder in
         builder.tintColor(.meaningBlack)
-            .action {
-                $0.setImage(
-                    UIImage(systemName: "xmark")?
-                        .withConfiguration(
-                            UIImage.SymbolConfiguration(
-                                font: DesignConstant.Font.large.with(
-                                    weight: .regular
-                                )
+            .addTarget(
+                self,
+                action: #selector(removeButtonTapped),
+                for: .touchUpInside
+            )
+            .setImage(
+                UIImage(systemName: "xmark")?
+                    .withConfiguration(
+                        UIImage.SymbolConfiguration(
+                            font: DesignConstant.Font.large.with(
+                                weight: .regular
                             )
-                        ),
-                    for: .normal
-                )
-                $0.addTarget(
-                    self,
-                    action: #selector(removeButtonTapped),
-                    for: .touchUpInside
-                )
-            }
+                        )
+                    ),
+                for: .normal
+            )
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

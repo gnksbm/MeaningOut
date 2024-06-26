@@ -24,19 +24,17 @@ final class SearchResultCVCell: UICollectionViewCell {
     private let productImageView = UIImageView().build { builder in
         builder.contentMode(.scaleAspectFill)
             .clipsToBounds(true)
-            .action { $0.layer.cornerRadius = 20 }
+            .layer.cornerRadius(20)
     }
     
     private lazy var basketButton = BasketButton(
         imageTpye: .changeTint
     ).build { builder in
-        builder.action {
-            $0.addTarget(
-                self,
-                action: #selector(basketButtonTapped),
-                for: .touchUpInside
-            )
-        }
+        builder.addTarget(
+            self,
+            action: #selector(basketButtonTapped),
+            for: .touchUpInside
+        )
     }
     
     private let storeNameLabel = UILabel().build { builder in

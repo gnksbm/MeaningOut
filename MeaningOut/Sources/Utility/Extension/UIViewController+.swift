@@ -78,7 +78,7 @@ extension UIViewController {
         let activityView = UIActivityIndicatorView().build { builder in
             builder.color(.meaningOrange)
                 .translatesAutoresizingMaskIntoConstraints(false)
-                .action { $0.startAnimating() }
+                .startAnimating()
         }
         OverlayHelper.activityView = activityView
         view.addSubview(activityView)

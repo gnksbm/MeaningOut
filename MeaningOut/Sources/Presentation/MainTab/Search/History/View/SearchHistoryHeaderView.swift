@@ -18,22 +18,21 @@ final class SearchHistoryHeaderView: UIView {
     }
     
     private lazy var removeButton = UIButton().build { builder in
-        builder.action {
-            var config = UIButton.Configuration.plain()
-            config.baseForegroundColor = .meaningOrange
-            var container = AttributeContainer()
-            container.font = DesignConstant.Font.medium.with(weight: .regular)
-            config.attributedTitle = AttributedString(
-                "전체 삭제",
-                attributes: container
+        builder
+            .configuration.baseForegroundColor(.meaningOrange)
+            .configuration.attributedTitle(
+                AttributedString(
+                    "전체 삭제",
+                    attributes: AttributeContainer([
+                        .font: DesignConstant.Font.medium.with(weight: .regular)
+                    ])
+                )
             )
-            $0.configuration = config
-            $0.addTarget(
+            .addTarget(
                 self,
                 action: #selector(removeButtonTapped),
                 for: .touchUpInside
             )
-        }
     }
     
     override init(frame: CGRect) {

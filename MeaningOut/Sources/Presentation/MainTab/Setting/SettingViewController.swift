@@ -23,11 +23,9 @@ final class SettingViewController: BaseViewController {
                     right: 20
                 )
             )
-            .action {
-                $0.register(SettingProfileInfoTVCell.self)
-                $0.register(SettingTableViewMinCell.self)
-                $0.register(SettingTableViewCountCell.self)
-            }
+            .register(SettingProfileInfoTVCell.self)
+            .register(SettingTableViewMinCell.self)
+            .register(SettingTableViewCountCell.self)
     }
     
     override func viewDidLoad() {
@@ -58,22 +56,22 @@ final class SettingViewController: BaseViewController {
             message: "탈퇴를 하면 데이터가 모두 초기화됩니다. 탈퇴 하시겠습니까?",
             preferredStyle: .alert
         ).build { builder in
-            builder.action {
-                let okAction = UIAlertAction(
+            builder.addAction(
+                UIAlertAction(
                     title: "확인",
                     style: .destructive
                 ) { _ in
                     User.removeProfile()
-                    self.view.window?.rootViewController = 
+                    self.view.window?.rootViewController =
                         .makeRootViewController()
                 }
-                let cancelAction = UIAlertAction(
+            )
+            .addAction(
+                UIAlertAction(
                     title: "취소",
                     style: .cancel
                 )
-                $0.addAction(okAction)
-                $0.addAction(cancelAction)
-            }
+            )
         }
         present(alertController, animated: true)
     }

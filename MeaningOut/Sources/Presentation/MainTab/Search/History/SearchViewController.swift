@@ -29,9 +29,7 @@ final class SearchViewController: BaseViewController {
         builder.backgroundView(EmptySearchHistoryView())
             .delegate(self)
             .separatorStyle(.none)
-            .action {
-                $0.register(SearchHistoryItemTVCell.self)
-            }
+            .register(SearchHistoryItemTVCell.self)
     }
     
     override func viewDidLoad() {

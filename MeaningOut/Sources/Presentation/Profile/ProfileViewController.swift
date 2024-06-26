@@ -13,34 +13,31 @@ final class ProfileViewController: BaseViewController {
     private lazy var profileImageButton = ProfileButton(
         image: UIImage(named: User.imageName)
     ).build { builder in
-        builder.action {
-            $0.addTarget(
-                self,
-                action: #selector(profileButtonTapped),
-                for: .touchUpInside
-            )
-        }
+        builder.addTarget(
+            self,
+            action: #selector(profileButtonTapped),
+            for: .touchUpInside
+        )
     }
     
-    private lazy var fixButton = UIButton(
-        configuration: .filled()
-    ).build { builder in
-        builder.action {
-            $0.configuration?.cornerStyle = .capsule
-            $0.configuration?.baseBackgroundColor = .meaningOrange
-            $0.configuration?.baseForegroundColor = .meaningWhite
-            var container = AttributeContainer()
-            container.font = DesignConstant.Font.medium.with(weight: .bold)
-            $0.configuration?.attributedTitle = AttributedString(
-                "수정해드릴까요?",
-                attributes: container
+    private lazy var fixButton = UIButton().build { builder in
+        builder.configuration(.filled())
+            .configuration.cornerStyle(.capsule)
+            .configuration.baseBackgroundColor(.meaningOrange)
+            .configuration.baseForegroundColor(.meaningWhite)
+            .configuration.attributedTitle(
+                AttributedString(
+                    "수정해드릴까요?",
+                    attributes: AttributeContainer([
+                        .font: DesignConstant.Font.medium.with(weight: .bold)
+                    ])
+                )
             )
-            $0.addTarget(
+            .addTarget(
                 self,
                 action: #selector(fixButtonTapped),
                 for: .touchUpInside
             )
-        }
     }
     
     private lazy var nicknameTextField = UITextField().build { builder in
@@ -69,27 +66,24 @@ final class ProfileViewController: BaseViewController {
     
     private lazy var finishButton = LargeButton(title: "완료").build { builder in
         builder.isEnabled(false)
-            .action {
-                $0.addTarget(
-                    self,
-                    action: #selector(actionButtonTapped),
-                    for: .touchUpInside
-                )
-            }
+            .addTarget(
+                self,
+                action: #selector(actionButtonTapped),
+                for: .touchUpInside
+            )
     }
     
     private lazy var saveButton = UIButton().build { builder in
-        builder
+        builder.setTitle("저장", for: .normal)
+            .setTitleColor(.meaningBlack, for: .normal)
+            .setTitleColor(.meaningLightGray, for: .disabled)
+            .addTarget(
+                self,
+                action: #selector(actionButtonTapped),
+                for: .touchUpInside
+            )
             .action {
                 $0.titleLabel?.font = $0.titleLabel?.font.with(weight: .bold)
-                $0.setTitle("저장", for: .normal)
-                $0.setTitleColor(.meaningBlack, for: .normal)
-                $0.setTitleColor(.meaningLightGray, for: .disabled)
-                $0.addTarget(
-                    self,
-                    action: #selector(actionButtonTapped),
-                    for: .touchUpInside
-                )
             }
     }
     

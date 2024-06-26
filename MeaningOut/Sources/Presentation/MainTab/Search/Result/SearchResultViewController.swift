@@ -24,13 +24,13 @@ final class SearchResultViewController: BaseViewController {
  
     private lazy var sortButtons = NaverSearchEndpoint.Sort.allCases.map {
         SearchResultSortButton(sort: $0).build { builder in
-            builder.action { 
+            builder.addTarget(
+                self,
+                action: #selector(sortButtonTapped),
+                for: .touchUpInside
+            )
+            .action {
                 $0.updateState(isSelected: isSelectedButton(tag: $0.tag))
-                $0.addTarget(
-                    self,
-                    action: #selector(sortButtonTapped),
-                    for: .touchUpInside
-                )
             }
         }
     }
@@ -47,7 +47,7 @@ final class SearchResultViewController: BaseViewController {
         collectionViewLayout: makeLayout()
     ).build { builder in
         builder.delegate(self)
-            .action { $0.register(SearchResultCVCell.self) }
+            .register(SearchResultCVCell.self)
     }
     
     init(endpoint: NaverSearchEndpoint) {

@@ -24,12 +24,10 @@ final class SettingTableViewCountCell: UITableViewCell {
     }
     
     private let countLabel = UILabel().build { builder in
-        builder.action {
-            $0.setContentCompressionResistancePriority(
-                .required,
-                for: .horizontal
-            )
-        }
+        builder.setContentCompressionResistancePriority(
+            .required,
+            for: .horizontal
+        )
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -76,10 +74,8 @@ final class SettingTableViewCountCell: UITableViewCell {
             ]
         )
         return NSMutableAttributedString().build { builder in
-            builder.action {
-                $0.append(prefixAttributedStr)
-                $0.append(suffixAttributedStr)
-            }
+            builder.append(prefixAttributedStr)
+                .append(suffixAttributedStr)
         }
     }
     

@@ -23,13 +23,11 @@ final class OnboardingMainViewController: BaseViewController {
     
     private lazy var startButton = LargeButton(title: "시작하기")
         .build { builder in
-            builder.action {
-                $0.addTarget(
-                    self,
-                    action: #selector(startButtonTapped),
-                    for: .touchUpInside
-                )
-            }
+            builder.addTarget(
+                self,
+                action: #selector(startButtonTapped),
+                for: .touchUpInside
+            )
         }
     
     override func viewDidLoad() {
