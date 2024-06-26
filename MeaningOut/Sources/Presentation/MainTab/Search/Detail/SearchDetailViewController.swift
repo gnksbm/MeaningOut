@@ -16,13 +16,11 @@ final class SearchDetailViewController: BaseViewController {
     private lazy var basketButton = BasketButton(
         imageTpye: .changeImage
     ).build { builder in
-        builder.action {
-            $0.addTarget(
-                self,
-                action: #selector(basketButtonTapped),
-                for: .touchUpInside
-            )
-        }
+        builder.addTarget(
+            self,
+            action: #selector(basketButtonTapped),
+            for: .touchUpInside
+        )
     }
     
     private lazy var webView = WKWebView().build { builder in
@@ -40,20 +38,17 @@ final class SearchDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigation()
-        configureLayout()
         configureWebView()
     }
     
-    private func configureNavigation() {
+    override func configureNavigation() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             customView: basketButton
         )
-        navigationItem.title = item.productDescription
         basketButton.updateButtonColor(isLiked: item.isLiked)
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         [webView].forEach { view.addSubview($0) }
         
         let safeArea = view.safeAreaLayoutGuide
@@ -61,6 +56,10 @@ final class SearchDetailViewController: BaseViewController {
         webView.snp.makeConstraints { make in
             make.edges.equalTo(safeArea)
         }
+    }
+    
+    override func configureNavigationTitle() {
+        navigationItem.title = item.productDescription
     }
     
     private func configureWebView() {

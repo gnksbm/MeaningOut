@@ -7,12 +7,12 @@
 
 import UIKit
 
-final class BasketButton: UIButton {
+final class BasketButton: BaseButton {
     private let imageType: ImageType
     
     init(imageTpye: ImageType) {
         self.imageType = imageTpye
-        super.init(frame: .zero)
+        super.init()
         switch imageTpye {
         case .changeTint:
             configuration = .bordered()
@@ -30,10 +30,6 @@ final class BasketButton: UIButton {
             trailing: inset
         )
         
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     func updateButtonColor(isLiked: Bool) {

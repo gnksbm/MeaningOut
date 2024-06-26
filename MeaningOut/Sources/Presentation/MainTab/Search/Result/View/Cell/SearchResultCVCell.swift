@@ -18,25 +18,23 @@ protocol SearchResultCVCellData {
     var price: String { get }
 }
 
-final class SearchResultCVCell: UICollectionViewCell {
+final class SearchResultCVCell: BaseCollectionViewCell {
     var basketButtonHandler: (BasketButton) -> Void = { _ in }
     
     private let productImageView = UIImageView().build { builder in
         builder.contentMode(.scaleAspectFill)
             .clipsToBounds(true)
-            .action { $0.layer.cornerRadius = 20 }
+            .layer.cornerRadius(20)
     }
     
     private lazy var basketButton = BasketButton(
         imageTpye: .changeTint
     ).build { builder in
-        builder.action {
-            $0.addTarget(
-                self,
-                action: #selector(basketButtonTapped),
-                for: .touchUpInside
-            )
-        }
+        builder.addTarget(
+            self,
+            action: #selector(basketButtonTapped),
+            for: .touchUpInside
+        )
     }
     
     private let storeNameLabel = UILabel().build { builder in
@@ -51,15 +49,6 @@ final class SearchResultCVCell: UICollectionViewCell {
     
     private let priceLabel = UILabel().build { builder in
         builder.font(DesignConstant.Font.large.with(weight: .bold))
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func prepareForReuse() {
@@ -78,7 +67,7 @@ final class SearchResultCVCell: UICollectionViewCell {
         priceLabel.text = data.price
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         [
             productImageView,
             basketButton,

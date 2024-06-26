@@ -7,20 +7,15 @@
 
 import UIKit
 
-final class LargeButton: UIButton {
+final class LargeButton: BaseButton {
     private let title: String
     
     init(title: String) {
         self.title = title
-        super.init(frame: .zero)
-        configureUI()
+        super.init()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func configureUI() {
+    override func configureUI() {
         var config = UIButton.Configuration.bordered()
         var container = AttributeContainer()
         container.font = DesignConstant.Font.large.with(weight: .black)

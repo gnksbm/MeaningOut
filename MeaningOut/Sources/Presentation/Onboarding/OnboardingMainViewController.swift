@@ -23,19 +23,12 @@ final class OnboardingMainViewController: BaseViewController {
     
     private lazy var startButton = LargeButton(title: "시작하기")
         .build { builder in
-            builder.action {
-                $0.addTarget(
-                    self,
-                    action: #selector(startButtonTapped),
-                    for: .touchUpInside
-                )
-            }
+            builder.addTarget(
+                self,
+                action: #selector(startButtonTapped),
+                for: .touchUpInside
+            )
         }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureLayout()
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -48,7 +41,7 @@ final class OnboardingMainViewController: BaseViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         [
             appNameLabel,
             backgroundImageView,

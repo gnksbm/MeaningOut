@@ -13,9 +13,9 @@ protocol SortOption: RawRepresentable where RawValue == Int {
     var title: String { get }
 }
 
-final class SearchResultSortButton: UIButton {
+final class SearchResultSortButton: BaseButton {
     init<T: SortOption>(sort: T) {
-        super.init(frame: .zero)
+        super.init()
         var configuration = UIButton.Configuration.filled()
         let horizontalInset: CGFloat = 15
         let verticalInset: CGFloat = 10
@@ -33,7 +33,6 @@ final class SearchResultSortButton: UIButton {
         )
         tag = sort.rawValue
         self.configuration = configuration
-        configureUI()
     }
     
     required init?(coder: NSCoder) {
@@ -59,7 +58,7 @@ final class SearchResultSortButton: UIButton {
         isSelected ? UIColor.clear.cgColor : UIColor.meaningLightGray.cgColor
     }
     
-    private func configureUI() {
+    override func configureUI() {
         layer.borderWidth = 1
         clipsToBounds = true
     }

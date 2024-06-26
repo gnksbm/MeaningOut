@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class SearchHistoryHeaderView: UIView {
+final class SearchHistoryHeaderView: BaseView {
     var removeHandler: () -> Void = { }
     
     private let titleLabel = UILabel().build { builder in
@@ -18,39 +18,28 @@ final class SearchHistoryHeaderView: UIView {
     }
     
     private lazy var removeButton = UIButton().build { builder in
-        builder.action {
-            var config = UIButton.Configuration.plain()
-            config.baseForegroundColor = .meaningOrange
-            var container = AttributeContainer()
-            container.font = DesignConstant.Font.medium.with(weight: .regular)
-            config.attributedTitle = AttributedString(
-                "전체 삭제",
-                attributes: container
+        builder.configuration(.plain())
+            .configuration.baseForegroundColor(.meaningOrange)
+            .configuration.attributedTitle(
+                AttributedString(
+                    "전체 삭제",
+                    attributes: AttributeContainer([
+                        .font: DesignConstant.Font.medium.with(weight: .regular)
+                    ])
+                )
             )
-            $0.configuration = config
-            $0.addTarget(
+            .addTarget(
                 self,
                 action: #selector(removeButtonTapped),
                 for: .touchUpInside
             )
-        }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureUI()
-        configureLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func configureUI() {
+    override func configureUI() {
         backgroundColor = .meaningWhite
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         [titleLabel, removeButton].forEach { addSubview($0) }
         
         titleLabel.snp.makeConstraints { make in

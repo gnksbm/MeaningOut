@@ -18,7 +18,7 @@ extension ReuseIdentifiable {
 }
 
 // MARK: UITableViewCell
-extension UITableViewCell: ReuseIdentifiable { }
+extension NSObject: ReuseIdentifiable { }
 
 extension UITableView {
     func register<T: UITableViewCell>(_ cellType: T.Type) {
@@ -47,8 +47,6 @@ extension UITableView {
 }
 
 // MARK: UITableViewHeaderFooterView
-extension UITableViewHeaderFooterView: ReuseIdentifiable { }
-
 extension UITableView {
     func register<T: UITableViewHeaderFooterView>(
         _ headerFooterViewType: T.Type
@@ -78,8 +76,6 @@ extension UITableView {
 }
 
 // MARK: UICollectionReusableView
-extension UICollectionReusableView: ReuseIdentifiable { }
-
 extension UICollectionView {
     func register<T: UICollectionViewCell>(_ cellClass: T.Type) {
         register(cellClass, forCellWithReuseIdentifier: cellClass.identifier)

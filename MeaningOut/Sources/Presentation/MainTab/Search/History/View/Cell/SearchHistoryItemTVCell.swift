@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class SearchHistoryItemTVCell: UITableViewCell {
+final class SearchHistoryItemTVCell: BaseTableViewCell {
     var removeButtonHandler: () -> Void = { }
     
     private let clockImageView = UIImageView().build { builder in
@@ -30,33 +30,22 @@ final class SearchHistoryItemTVCell: UITableViewCell {
     
     private lazy var removeButton = UIButton().build { builder in
         builder.tintColor(.meaningBlack)
-            .action {
-                $0.setImage(
-                    UIImage(systemName: "xmark")?
-                        .withConfiguration(
-                            UIImage.SymbolConfiguration(
-                                font: DesignConstant.Font.large.with(
-                                    weight: .regular
-                                )
+            .addTarget(
+                self,
+                action: #selector(removeButtonTapped),
+                for: .touchUpInside
+            )
+            .setImage(
+                UIImage(systemName: "xmark")?
+                    .withConfiguration(
+                        UIImage.SymbolConfiguration(
+                            font: DesignConstant.Font.large.with(
+                                weight: .regular
                             )
-                        ),
-                    for: .normal
-                )
-                $0.addTarget(
-                    self,
-                    action: #selector(removeButtonTapped),
-                    for: .touchUpInside
-                )
-            }
-    }
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configureLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+                        )
+                    ),
+                for: .normal
+            )
     }
     
     override func prepareForReuse() {
@@ -68,7 +57,7 @@ final class SearchHistoryItemTVCell: UITableViewCell {
         queryLabel.text = data.query
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         [
             clockImageView,
             queryLabel,

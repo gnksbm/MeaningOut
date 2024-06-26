@@ -13,34 +13,31 @@ final class ProfileViewController: BaseViewController {
     private lazy var profileImageButton = ProfileButton(
         image: UIImage(named: User.imageName)
     ).build { builder in
-        builder.action {
-            $0.addTarget(
-                self,
-                action: #selector(profileButtonTapped),
-                for: .touchUpInside
-            )
-        }
+        builder.addTarget(
+            self,
+            action: #selector(profileButtonTapped),
+            for: .touchUpInside
+        )
     }
     
-    private lazy var fixButton = UIButton(
-        configuration: .filled()
-    ).build { builder in
-        builder.action {
-            $0.configuration?.cornerStyle = .capsule
-            $0.configuration?.baseBackgroundColor = .meaningOrange
-            $0.configuration?.baseForegroundColor = .meaningWhite
-            var container = AttributeContainer()
-            container.font = DesignConstant.Font.medium.with(weight: .bold)
-            $0.configuration?.attributedTitle = AttributedString(
-                "수정해드릴까요?",
-                attributes: container
+    private lazy var fixButton = UIButton().build { builder in
+        builder.configuration(.filled())
+            .configuration.cornerStyle(.capsule)
+            .configuration.baseBackgroundColor(.meaningOrange)
+            .configuration.baseForegroundColor(.meaningWhite)
+            .configuration.attributedTitle(
+                AttributedString(
+                    "수정해드릴까요?",
+                    attributes: AttributeContainer([
+                        .font: DesignConstant.Font.medium.with(weight: .bold)
+                    ])
+                )
             )
-            $0.addTarget(
+            .addTarget(
                 self,
                 action: #selector(fixButtonTapped),
                 for: .touchUpInside
             )
-        }
     }
     
     private lazy var nicknameTextField = UITextField().build { builder in
@@ -69,27 +66,24 @@ final class ProfileViewController: BaseViewController {
     
     private lazy var finishButton = LargeButton(title: "완료").build { builder in
         builder.isEnabled(false)
-            .action {
-                $0.addTarget(
-                    self,
-                    action: #selector(actionButtonTapped),
-                    for: .touchUpInside
-                )
-            }
+            .addTarget(
+                self,
+                action: #selector(actionButtonTapped),
+                for: .touchUpInside
+            )
     }
     
     private lazy var saveButton = UIButton().build { builder in
-        builder
+        builder.setTitle("저장", for: .normal)
+            .setTitleColor(.meaningBlack, for: .normal)
+            .setTitleColor(.meaningLightGray, for: .disabled)
+            .addTarget(
+                self,
+                action: #selector(actionButtonTapped),
+                for: .touchUpInside
+            )
             .action {
                 $0.titleLabel?.font = $0.titleLabel?.font.with(weight: .bold)
-                $0.setTitle("저장", for: .normal)
-                $0.setTitleColor(.meaningBlack, for: .normal)
-                $0.setTitleColor(.meaningLightGray, for: .disabled)
-                $0.addTarget(
-                    self,
-                    action: #selector(actionButtonTapped),
-                    for: .touchUpInside
-                )
             }
     }
     
@@ -104,9 +98,7 @@ final class ProfileViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigation()
         configureActionButton()
-        configureLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -116,8 +108,7 @@ final class ProfileViewController: BaseViewController {
         configureNavigation()
     }
     
-    private func configureNavigation() {
-        navigationItem.title = viewType.title
+    override func configureNavigation() {
         navigationItem.rightBarButtonItem =
         UIBarButtonItem(customView: saveButton).build { builder in
             builder.tintColor(.clear)
@@ -125,7 +116,7 @@ final class ProfileViewController: BaseViewController {
         saveButton.isEnabled = false
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         [
             profileImageButton,
             nicknameTextField,
@@ -168,6 +159,10 @@ final class ProfileViewController: BaseViewController {
         }
     }
     
+    override func configureNavigationTitle() {
+        navigationItem.title = viewType.title
+    }
+    
     private func updateValidationUI(isValidate: Bool) {
         actionButton.isEnabled = isValidate
         textFieldUnderlineView.backgroundColor =
@@ -203,29 +198,15 @@ final class ProfileViewController: BaseViewController {
             Logger.debugging("nicknameTextField.text nil")
             return
         }
-        do {
-            let fixedText = NicknameValidator.fixed(text: text)
-            nicknameTextField.text = 
-            try NicknameValidator.checkValidation(text: fixedText)
-            validationLabel.attributedText = NSAttributedString(
-                string: NicknameValidator.validatedNicknameMessage,
-                attributes: [
-                    .foregroundColor: UIColor.black,
-                    .font: DesignConstant.Font.medium.with(weight: .regular)
-                ]
-            )
-            updateValidationUI(isValidate: true)
-        } catch {
-            validationLabel.attributedText = NSAttributedString(
-                string: error.localizedDescription,
-                attributes: [
-                    .foregroundColor: UIColor.meaningOrange,
-                    .font: DesignConstant.Font.medium
-                        .with(weight: .medium)
-                ]
-            )
-            updateValidationUI(isValidate: false)
-        }
+        nicknameTextField.text = text.fix(validator: NicknameValidator())
+        validationLabel.attributedText = NSAttributedString(
+            string: NicknameValidator.validatedNicknameMessage,
+            attributes: [
+                .foregroundColor: UIColor.black,
+                .font: DesignConstant.Font.medium.with(weight: .regular)
+            ]
+        )
+        updateValidationUI(isValidate: true)
     }
 }
 
@@ -264,7 +245,7 @@ extension ProfileViewController: UITextFieldDelegate {
             return true
         }
         do {
-            try NicknameValidator.checkValidationWithRegex(text: newNickname)
+            try newNickname.validate(validator: NicknameValidator())
             validationLabel.attributedText = NSAttributedString(
                 string: NicknameValidator.validatedNicknameMessage,
                 attributes: [

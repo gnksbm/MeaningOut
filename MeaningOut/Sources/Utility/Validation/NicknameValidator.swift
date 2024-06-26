@@ -7,125 +7,79 @@
 
 import Foundation
 
-enum NicknameValidator {
-    static let rangeExpression = "^.{2,9}$"
+struct NicknameValidator: RegexValidator {
     static let validatedNicknameMessage = "사용 가능한 닉네임입니다 :D"
     static let nicknamePlaceholder = "닉네임을 입력해주세요 :)"
     
-    @discardableResult
-    static func checkValidation(text: String) throws -> String {
-        guard !text.contains(where: { Int(String($0)) != nil })
-        else { throw NicknameInputError.containNumber }
-        let containedSpecialWords = "@#$%".filter { text.contains($0) }
-        guard containedSpecialWords.isEmpty
-        else {
-            throw NicknameInputError.invalidWord(
-                containedSpecialWords
-                    .map({ String($0) })
-                    .joined(separator: ", ")
-            )
-        }
-        guard !text.hasPrefix(" ")
-        else { throw NicknameInputError.prefixWhiteSpace }
-        guard !text.hasSuffix(" ")
-        else { throw NicknameInputError.suffixWhiteSpace }
-        guard 2..<10 ~= text.count else { throw NicknameInputError.outOfRange }
-        return text
-    }
-    
-    static func fixed(text: String) -> String {
-        do {
-            return try checkValidation(text: text)
-        } catch {
-            switch error as? NicknameInputError {
-            case .some(let error):
-                var fixedText: String
-                switch error {
-                case .outOfRange:
-                    if text.count < 2 {
-                        fixedText = text + "⭐️"
-                    } else if text.count > 9  {
-                        fixedText = String(text.prefix(9))
-                    } else {
-                        fixedText = text
-                    }
-                case .containNumber:
-                    fixedText = text.filter { Int(String($0)) == nil }
-                        .map { String($0) }
-                        .joined()
-                case .invalidWord:
-                    let specialCharacters = ["@", "#", "$", "%"]
-                    fixedText = text
-                    specialCharacters.forEach {
-                        fixedText =
-                        fixedText.replacingOccurrences(of: $0, with: "")
-                    }
-                case .prefixWhiteSpace:
-                    fixedText = text
-                    fixedText.removeFirst()
-                case .suffixWhiteSpace:
-                    fixedText = text
-                    fixedText.removeLast()
-                }
-                return fixed(text: fixedText)
-            case .none:
-                dump(error)
-                return text
-            }
-        }
-    }
-    
-    @discardableResult
-    static func checkValidationWithRegex(text: String) throws -> String {
-        for expression in InvalidRegularExpression.allCases {
-            let regExpression = try NSRegularExpression(
-                pattern: expression.rawValue
-            )
-            let checkingResults = regExpression.matches(
-                in: text,
-                range: NSRange(text.startIndex..., in: text)
-            )
-            if !checkingResults.isEmpty {
-                switch expression {
-                case .containNum:
-                    throw NicknameInputError.containNumber
-                case .specialCharacters:
-                    let invalidWords = checkingResults
-                        .compactMap {
-                            if let range = Range($0.range, in: text) {
-                                text[range]
-                            } else {
-                                nil
-                            }
-                        }
-                    let uniqueInvalidWords = Array(Set(invalidWords))
-                        .joined(separator: ", ")
-                    throw NicknameInputError.invalidWord(uniqueInvalidWords)
-                case .prefixWhiteSpace:
-                    throw NicknameInputError.prefixWhiteSpace
-                case .suffixWhiteSpace:
-                    throw NicknameInputError.suffixWhiteSpace
-                }
-            }
-        }
-        guard text.range(
-            of: rangeExpression,
-            options: .regularExpression
-        ) != nil else { throw NicknameInputError.outOfRange }
-        return text
-    }
-    
-    enum InvalidRegularExpression: String, CaseIterable {
+    enum Regex: String, InvalidRegex {
+        case rangeExpression = "^.{0,1}$|^.{10,}$"
         case containNum = "[0-9]"
         case specialCharacters = "[@#$%]"
         case prefixWhiteSpace = "^\\s"
         case suffixWhiteSpace = "\\s$"
+        
+        func makeError(input: String, range: [NSRange]) -> InputError {
+            switch self {
+            case .rangeExpression:
+                return InputError.outOfRange
+            case .containNum:
+                return InputError.containNumber
+            case .specialCharacters:
+                let invalidWords = range.compactMap {
+                    if let range = Range($0, in: input) {
+                        String(input[range])
+                    } else {
+                        nil
+                    }
+                }
+                return InputError.invalidWord(invalidWords)
+            case .prefixWhiteSpace:
+                return InputError.prefixWhiteSpace
+            case .suffixWhiteSpace:
+                return InputError.suffixWhiteSpace
+            }
+        }
+        
+        func fix(input: String) -> String {
+            switch self {
+            case .rangeExpression:
+                if input.count < 2 {
+                    var result = input
+                    while result.count < 2 {
+                        result += "⭐️"
+                    }
+                    return result
+                } else if input.count > 9 {
+                    return String(input.prefix(9))
+                } else {
+                    return input
+                }
+            case .prefixWhiteSpace:
+                var result = input
+                while result.hasPrefix(" ") {
+                    result.removeFirst()
+                }
+                return result
+            case .suffixWhiteSpace:
+                var result = input
+                while result.hasSuffix(" ") {
+                    result.removeLast()
+                }
+                return result
+            default:
+                return input.replacingOccurrences(
+                    of: rawValue,
+                    with: "",
+                    options: .regularExpression
+                )
+            }
+        }
     }
     
-    enum NicknameInputError: LocalizedError {
+    enum InputError: LocalizedError, Equatable {
         case outOfRange
         case containNumber
-        case invalidWord(String)
+        case invalidWord([String])
         case prefixWhiteSpace
         case suffixWhiteSpace
         
@@ -157,17 +111,10 @@ fileprivate enum TestCase: String, CaseIterable {
     case containPrefixSpaceStr = " aaaa"
     case onlyWhitespaceStr = "aaa    "
     
-    func test() {
-        do {
-            try NicknameValidator.checkValidation(text: rawValue)
-        } catch {
-            Logger.debugging("Swift \(rawValue) \(error)")
-        }
-    }
-
     func testRegex() {
+        let validator = NicknameValidator()
         do {
-            try NicknameValidator.checkValidationWithRegex(text: rawValue)
+            try rawValue.validate(validator: validator)
         } catch {
             Logger.debugging("Regex \(rawValue) \(error)")
         }

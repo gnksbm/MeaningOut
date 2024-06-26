@@ -16,7 +16,7 @@ enum Appearance {
     private static func configureNavigationBarUI() {
         let appearance = UINavigationBarAppearance().build { builder in
             builder.shadowColor(.meaningGray)
-                .action { $0.configureWithOpaqueBackground() }
+                .configureWithOpaqueBackground()
         }
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
@@ -30,7 +30,7 @@ enum Appearance {
     private static func configureTabBarUI() {
         let appearance = UITabBarAppearance().build { builder in
             builder.shadowColor(.meaningGray)
-                .action { $0.configureWithOpaqueBackground() }
+                .configureWithOpaqueBackground()
         }
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance

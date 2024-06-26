@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class SettingProfileInfoTVCell: UITableViewCell {
+final class SettingProfileInfoTVCell: BaseTableViewCell {
     private let profileImageView = ProfileImageView(borderType: .large)
         .build { builder in
             builder.action { $0.setBorderColor(color: .meaningOrange) }
@@ -38,16 +38,6 @@ final class SettingProfileInfoTVCell: UITableViewCell {
             )
     }
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configureLayout()
-        selectionStyle = .none
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         [nicknameLabel, joinedDateLabel].forEach { $0.text = nil }
@@ -60,7 +50,11 @@ final class SettingProfileInfoTVCell: UITableViewCell {
         User.joinedDate.formatted(dateFormat: .joinedDateOutput)
     }
     
-    private func configureLayout() {
+    override func configureUI() {
+        selectionStyle = .none
+    }
+    
+    override func configureLayout() {
         [
             profileImageView,
             nicknameLabel,

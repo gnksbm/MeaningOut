@@ -24,13 +24,13 @@ final class SearchResultViewController: BaseViewController {
  
     private lazy var sortButtons = NaverSearchEndpoint.Sort.allCases.map {
         SearchResultSortButton(sort: $0).build { builder in
-            builder.action { 
+            builder.addTarget(
+                self,
+                action: #selector(sortButtonTapped),
+                for: .touchUpInside
+            )
+            .action {
                 $0.updateState(isSelected: isSelectedButton(tag: $0.tag))
-                $0.addTarget(
-                    self,
-                    action: #selector(sortButtonTapped),
-                    for: .touchUpInside
-                )
             }
         }
     }
@@ -47,7 +47,7 @@ final class SearchResultViewController: BaseViewController {
         collectionViewLayout: makeLayout()
     ).build { builder in
         builder.delegate(self)
-            .action { $0.register(SearchResultCVCell.self) }
+            .register(SearchResultCVCell.self)
     }
     
     init(endpoint: NaverSearchEndpoint) {
@@ -62,17 +62,15 @@ final class SearchResultViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDataSource()
-        configureLayout()
         callSearchRequest()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         dataSource.applySnapshotUsingReloadData(dataSource.snapshot())
-        navigationItem.title = endpoint.query
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         [resultCountLabel, sortStackView, collectionView].forEach {
             view.addSubview($0)
         }
@@ -93,6 +91,10 @@ final class SearchResultViewController: BaseViewController {
             make.top.equalTo(sortStackView.snp.bottom).offset(20)
             make.horizontalEdges.bottom.equalTo(safeArea)
         }
+    }
+    
+    override func configureNavigationTitle() {
+        navigationItem.title = endpoint.query
     }
     
     private func callSearchRequest() {

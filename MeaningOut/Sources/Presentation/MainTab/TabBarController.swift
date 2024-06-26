@@ -27,13 +27,13 @@ extension TabBarController {
         case search, setting
         
         static func makeViewControllers() -> [UIViewController] {
-            allCases.map {
-                let vc = $0.viewController
-                vc.tabBarItem = $0.tabBarItem
-                let navController = UINavigationController(
-                    rootViewController: vc
+            allCases.map { tabKind in
+                UINavigationController(
+                    rootViewController: tabKind.viewController
+                        .build { builder in
+                            builder.tabBarItem(tabKind.tabBarItem)
+                        }
                 )
-                return navController
             }
         }
         
