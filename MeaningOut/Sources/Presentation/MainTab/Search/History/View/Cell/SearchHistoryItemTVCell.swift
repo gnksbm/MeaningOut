@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class SearchHistoryItemTVCell: UITableViewCell {
+final class SearchHistoryItemTVCell: BaseTableViewCell {
     var removeButtonHandler: () -> Void = { }
     
     private let clockImageView = UIImageView().build { builder in
@@ -48,15 +48,6 @@ final class SearchHistoryItemTVCell: UITableViewCell {
             )
     }
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configureLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         queryLabel.text = nil
@@ -66,7 +57,7 @@ final class SearchHistoryItemTVCell: UITableViewCell {
         queryLabel.text = data.query
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         [
             clockImageView,
             queryLabel,

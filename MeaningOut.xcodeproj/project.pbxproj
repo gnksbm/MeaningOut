@@ -10,6 +10,7 @@
 		8EDCB8D62C2C4C2B006F7851 /* RegexValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCB8D52C2C4C2B006F7851 /* RegexValidator.swift */; };
 		8EDCB8D92C2C6F13006F7851 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCB8D82C2C6F13006F7851 /* BaseView.swift */; };
 		8EDCB8DB2C2C70FA006F7851 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCB8DA2C2C70FA006F7851 /* BaseButton.swift */; };
+		8EDCB8DD2C2C71FB006F7851 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCB8DC2C2C71FB006F7851 /* BaseTableViewCell.swift */; };
 		BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3782C1B01B600F58754 /* AppDelegate.swift */; };
 		BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE37A2C1B01B600F58754 /* SceneDelegate.swift */; };
 		BE3FE37D2C1B01B600F58754 /* OnboardingMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE37C2C1B01B600F58754 /* OnboardingMainViewController.swift */; };
@@ -71,6 +72,7 @@
 		8EDCB8D52C2C4C2B006F7851 /* RegexValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexValidator.swift; sourceTree = "<group>"; };
 		8EDCB8D82C2C6F13006F7851 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		8EDCB8DA2C2C70FA006F7851 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
+		8EDCB8DC2C2C71FB006F7851 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		BE3FE3752C1B01B600F58754 /* MeaningOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeaningOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE3FE3782C1B01B600F58754 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE3FE37A2C1B01B600F58754 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				BE3FE3CB2C1D7D8B00F58754 /* BaseViewController.swift */,
 				8EDCB8D82C2C6F13006F7851 /* BaseView.swift */,
 				8EDCB8DA2C2C70FA006F7851 /* BaseButton.swift */,
+				8EDCB8DC2C2C71FB006F7851 /* BaseTableViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				BEF7F96C2C20702500136FBA /* NaverSearchValidator.swift in Sources */,
 				BE3FE3CE2C1D811500F58754 /* ProfileImageViewController.swift in Sources */,
 				BE3FE3BA2C1C2C5000F58754 /* ProfileViewController.swift in Sources */,
+				8EDCB8DD2C2C71FB006F7851 /* BaseTableViewCell.swift in Sources */,
 				BE3FE3A52C1B1A2600F58754 /* Builder.swift in Sources */,
 				BEF7F9292C1EF9DA00136FBA /* SearchDetailViewController.swift in Sources */,
 				BEF7F9582C20030900136FBA /* UIViewController+.swift in Sources */,

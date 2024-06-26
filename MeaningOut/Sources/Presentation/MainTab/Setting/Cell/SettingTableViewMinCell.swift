@@ -9,19 +9,9 @@ import UIKit
 
 import SnapKit
 
-final class SettingTableViewMinCell: UITableViewCell {
+final class SettingTableViewMinCell: BaseTableViewCell {
     private let descriptionLabel = UILabel().build { builder in
         builder.font(DesignConstant.Font.large.with(weight: .regular))
-    }
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        configureLayout()
-        selectionStyle = .none
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func prepareForReuse() {
@@ -33,7 +23,11 @@ final class SettingTableViewMinCell: UITableViewCell {
         descriptionLabel.text = data
     }
     
-    private func configureLayout() {
+    override func configureUI() {
+        selectionStyle = .none
+    }
+    
+    override func configureLayout() {
         [descriptionLabel].forEach { contentView.addSubview($0) }
         
         descriptionLabel.snp.makeConstraints { make in
