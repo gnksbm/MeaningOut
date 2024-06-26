@@ -70,7 +70,7 @@ final class SearchViewController: BaseViewController {
     
     private func search(query: String) {
         do {
-            try NaverSearchValidator.checkValidationWithRegex(text: query)
+            try query.validate(validator: NaverSearchValidator())
             navigationController?.pushViewController(
                 SearchResultViewController(
                     endpoint: NaverSearchEndpoint(query: query)
