@@ -197,29 +197,15 @@ final class ProfileViewController: BaseViewController {
             Logger.debugging("nicknameTextField.text nil")
             return
         }
-        do {
-            let fixedText = NicknameValidator.fixed(text: text)
-            nicknameTextField.text = 
-            try NicknameValidator.checkValidation(text: fixedText)
-            validationLabel.attributedText = NSAttributedString(
-                string: NicknameValidator.validatedNicknameMessage,
-                attributes: [
-                    .foregroundColor: UIColor.black,
-                    .font: DesignConstant.Font.medium.with(weight: .regular)
-                ]
-            )
-            updateValidationUI(isValidate: true)
-        } catch {
-            validationLabel.attributedText = NSAttributedString(
-                string: error.localizedDescription,
-                attributes: [
-                    .foregroundColor: UIColor.meaningOrange,
-                    .font: DesignConstant.Font.medium
-                        .with(weight: .medium)
-                ]
-            )
-            updateValidationUI(isValidate: false)
-        }
+        nicknameTextField.text = text.fix(validator: NicknameValidator())
+        validationLabel.attributedText = NSAttributedString(
+            string: NicknameValidator.validatedNicknameMessage,
+            attributes: [
+                .foregroundColor: UIColor.black,
+                .font: DesignConstant.Font.medium.with(weight: .regular)
+            ]
+        )
+        updateValidationUI(isValidate: true)
     }
 }
 
@@ -258,7 +244,7 @@ extension ProfileViewController: UITextFieldDelegate {
             return true
         }
         do {
-            try NicknameValidator.checkValidationWithRegex(text: newNickname)
+            try newNickname.validate(validator: NicknameValidator())
             validationLabel.attributedText = NSAttributedString(
                 string: NicknameValidator.validatedNicknameMessage,
                 attributes: [
