@@ -5,7 +5,8 @@
 //  Created by gnksbm on 6/13/24.
 //
 
-import Foundation
+import UIKit
+import OSLog
 
 protocol Buildable { }
 
@@ -30,27 +31,270 @@ extension NSObject: Buildable { }
  */
 @dynamicMemberLookup
 struct Builder<Base: AnyObject> {
-    private let base: Base
+    private let _base: Base
     
     init(_ base: Base) {
-        self.base = base
+        self._base = base
     }
     
-    subscript<Value>(
-        dynamicMember keyPath: ReferenceWritableKeyPath<Base, Value>
-    ) -> ((_ newValue: Value) -> Builder<Base>) {
+    var base: Base {
+        _base
+    }
+    
+    subscript<Property>(
+        dynamicMember keyPath: ReferenceWritableKeyPath<Base, Property>
+    ) -> (Property) -> Builder<Base> {
         { newValue in
-            base[keyPath: keyPath] = newValue
-            return Builder(base)
+            _base[keyPath: keyPath] = newValue
+            return self
         }
     }
     
-    func action(_ block: (Base) -> Void) -> Builder<Base> {
-        block(base)
-        return Builder(base)
+    subscript<Property>(
+        dynamicMember keyPath: KeyPath<Base, Property>
+    ) -> PropertyBuilder<Base, Property> {
+        PropertyBuilder(_base, keyPath: keyPath)
+    }
+    
+    subscript<Property>(
+        dynamicMember keyPath: ReferenceWritableKeyPath<Base, Property?>
+    ) -> OptionalPropertyBuilder<Base, Property> {
+        OptionalPropertyBuilder(_base, keyPath: keyPath)
+    }
+    
+    func action(_ block: (_ base: Base) -> Void) -> Builder<Base> {
+        block(_base)
+        return self
     }
     
     fileprivate func build() -> Base {
-        base
+        _base
+    }
+}
+
+@dynamicMemberLookup
+struct PropertyBuilder<Parent: AnyObject, Property> {
+    private var parent: Parent
+    private var keyPath: KeyPath<Parent, Property>
+    
+    init(_ parent: Parent, keyPath: KeyPath<Parent, Property>) {
+        self.parent = parent
+        self.keyPath = keyPath
+    }
+    
+    subscript<NestedProperty>(
+        dynamicMember nestedKeyPath:
+        ReferenceWritableKeyPath<Property, NestedProperty>
+    ) -> (NestedProperty) -> Builder<Parent> {
+        { newValue in
+            parent[keyPath: keyPath.appending(path: nestedKeyPath)] = newValue
+            return Builder(parent)
+        }
+    }
+    
+    subscript<NestedProperty>(
+        dynamicMember nestedKeyPath:
+        KeyPath<Property, NestedProperty>
+    ) -> PropertyBuilder<Parent, NestedProperty> {
+        PropertyBuilder<Parent, NestedProperty>(
+            parent,
+            keyPath: keyPath.appending(path: nestedKeyPath)
+        )
+    }
+}
+
+@dynamicMemberLookup
+struct OptionalPropertyBuilder<Parent: AnyObject, Property> {
+    private var parent: Parent
+    private var keyPath: ReferenceWritableKeyPath<Parent, Property?>
+    
+    private let fileID: String
+    private let line: Int
+    
+    private var logger: OSLog {
+        OSLog(
+            subsystem: Bundle.main.bundleIdentifier ?? "MeaningOut",
+            category: "Builder"
+        )
+    }
+    
+    init(
+        _ parent: Parent,
+        keyPath: ReferenceWritableKeyPath<Parent, Property?>,
+        fileID: String = #fileID,
+        line: Int = #line
+    ) {
+        self.parent = parent
+        self.keyPath = keyPath
+        self.fileID = fileID
+        self.line = line
+    }
+    
+    subscript<NestedProperty>(
+        dynamicMember nestedKeyPath:
+        WritableKeyPath<Property, NestedProperty>
+    ) -> (NestedProperty) -> Builder<Parent> {
+        { newValue in
+            guard var value = parent[keyPath: keyPath] else {
+                failureLog(nestedKeyPath: nestedKeyPath)
+                return Builder(parent)
+            }
+            value[keyPath: nestedKeyPath] = newValue
+            return Builder(parent)
+        }
+    }
+    
+    private func failureLog<NestedProperty>(
+        nestedKeyPath: WritableKeyPath<Property, NestedProperty>
+    ) {
+        let parentType = String(describing: Parent.self)
+        let propertyType = removingOptionalDescription(
+            type: type(of: keyPath).valueType
+        )
+        let nestedPropertyType = removingOptionalDescription(
+            type: type(of: nestedKeyPath).valueType
+        )
+        os_log(
+            """
+            [Builder: Failed to Update %{public}@]
+            Location: %{public}@ at line %{public}d.
+            %{public}@'s %{public}@ is nil.
+            """,
+            log: logger,
+            type: .error,
+            nestedPropertyType, fileID, line, parentType, propertyType
+        )
+    }
+    
+    private func removingOptionalDescription(type: Any.Type) -> String {
+        String(describing: type)
+            .replacingOccurrences(of: "Optional<", with: "")
+            .replacingOccurrences(of: ">", with: "")
+    }
+}
+
+extension Builder where Base: UIView {
+    func addSubview(view: UIView) -> Builder<Base> {
+        _base.addSubview(view)
+        return self
+    }
+    
+    func setContentHuggingPriority(
+        _ priority: UILayoutPriority,
+        for axis: NSLayoutConstraint.Axis
+    ) -> Builder<Base> {
+        _base.setContentHuggingPriority(priority, for: axis)
+        return self
+    }
+    
+    func setContentCompressionResistancePriority(
+        _ priority: UILayoutPriority,
+        for axis: NSLayoutConstraint.Axis
+    ) -> Builder<Base> {
+        _base.setContentCompressionResistancePriority(priority, for: axis)
+        return self
+    }
+}
+
+extension Builder where Base: UIControl {
+    func addTarget(
+        _ target: Any?,
+        action: Selector,
+        for controlEvents: UIControl.Event
+    ) -> Builder<Base> {
+        _base.addTarget(target, action: action, for: controlEvents)
+        return self
+    }
+    
+    func removeTarget(
+        _ target: Any?,
+        action: Selector?,
+        for controlEvents: UIControl.Event
+    ) -> Builder<Base> {
+        _base.removeTarget(target, action: action, for: controlEvents)
+        return self
+    }
+}
+
+extension Builder where Base: UIButton {
+    func setImage(
+        _ image: UIImage?,
+        for state: UIControl.State
+    ) -> Builder<Base> {
+        _base.setImage(image, for: state)
+        return self
+    }
+    
+    func setTitle(
+        _ title: String?,
+        for state: UIControl.State
+    ) -> Builder<Base> {
+        _base.setTitle(title, for: state)
+        return self
+    }
+    
+    func setTitleColor(
+        _ color: UIColor?,
+        for state: UIControl.State
+    ) -> Builder<Base> {
+        _base.setTitleColor(color, for: state)
+        return self
+    }
+}
+
+extension Builder where Base: UITableView {
+    func register<T: UITableViewCell>(_ cellClass: T.Type) -> Builder<Base> {
+        _base.register(
+            cellClass,
+            forCellReuseIdentifier: String(describing: T.self)
+        )
+        return self
+    }
+}
+
+extension Builder where Base: UICollectionView {
+    func register<T: UICollectionViewCell>(
+        _ cellClass: T.Type
+    ) -> Builder<Base> {
+        _base.register(
+            cellClass,
+            forCellWithReuseIdentifier: String(describing: T.self)
+        )
+        return self
+    }
+}
+
+extension Builder where Base: UIAlertController {
+    func addAction(_ action: UIAlertAction) -> Builder<Base> {
+        _base.addAction(action)
+        return self
+    }
+}
+
+extension Builder where Base: UIActivityIndicatorView {
+    func startAnimating() -> Builder<Base> {
+        _base.startAnimating()
+        return self
+    }
+}
+
+extension Builder where Base: NSMutableAttributedString {
+    func append(_ attrString: NSAttributedString) -> Builder<Base> {
+        _base.append(attrString)
+        return self
+    }
+}
+
+extension Builder where Base: UINavigationBarAppearance {
+    func configureWithOpaqueBackground() -> Builder<Base> {
+        _base.configureWithOpaqueBackground()
+        return self
+    }
+}
+
+extension Builder where Base: UITabBarAppearance {
+    func configureWithOpaqueBackground() -> Builder<Base> {
+        _base.configureWithOpaqueBackground()
+        return self
     }
 }
