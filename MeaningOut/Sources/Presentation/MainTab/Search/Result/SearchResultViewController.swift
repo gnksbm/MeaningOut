@@ -62,17 +62,15 @@ final class SearchResultViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDataSource()
-        configureLayout()
         callSearchRequest()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         dataSource.applySnapshotUsingReloadData(dataSource.snapshot())
-        navigationItem.title = endpoint.query
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         [resultCountLabel, sortStackView, collectionView].forEach {
             view.addSubview($0)
         }
@@ -93,6 +91,10 @@ final class SearchResultViewController: BaseViewController {
             make.top.equalTo(sortStackView.snp.bottom).offset(20)
             make.horizontalEdges.bottom.equalTo(safeArea)
         }
+    }
+    
+    override func configureNavigationTitle() {
+        navigationItem.title = endpoint.query
     }
     
     private func callSearchRequest() {

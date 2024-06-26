@@ -30,11 +30,6 @@ final class OnboardingMainViewController: BaseViewController {
             )
         }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureLayout()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
@@ -46,7 +41,7 @@ final class OnboardingMainViewController: BaseViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         [
             appNameLabel,
             backgroundImageView,

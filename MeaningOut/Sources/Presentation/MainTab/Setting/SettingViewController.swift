@@ -32,22 +32,24 @@ final class SettingViewController: BaseViewController {
         super.viewDidLoad()
         configureDataSource()
         updateSnapshot()
-        configureLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         dataSource.applySnapshotUsingReloadData(dataSource.snapshot())
-        navigationItem.title = "SETTING"
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         [tableView].forEach { view.addSubview($0) }
         
         let safeArea = view.safeAreaLayoutGuide
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(safeArea)
         }
+    }
+    
+    override func configureNavigationTitle() {
+        navigationItem.title = "SETTING"
     }
     
     private func removeAccount() {

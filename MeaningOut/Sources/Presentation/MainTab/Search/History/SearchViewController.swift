@@ -35,17 +35,14 @@ final class SearchViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDataSource()
-        configureNavigation()
-        configureLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateSnapshot(items: User.currentHistory)
-        navigationItem.title = "\(User.nickname)'s MEANING OUT"
     }
     
-    private func configureNavigation() {
+    override func configureNavigation() {
         let searchController = UISearchController()
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "브랜드, 상품 등을 입력하세요."
@@ -53,7 +50,7 @@ final class SearchViewController: BaseViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         [headerView, tableView].forEach { view.addSubview($0) }
         
         let safeArea = view.safeAreaLayoutGuide
@@ -66,6 +63,10 @@ final class SearchViewController: BaseViewController {
             make.top.equalTo(headerView.snp.bottom)
             make.horizontalEdges.bottom.equalTo(safeArea)
         }
+    }
+    
+    override func configureNavigationTitle() {
+        navigationItem.title = "\(User.nickname)'s MEANING OUT"
     }
     
     private func search(query: String) {

@@ -98,9 +98,7 @@ final class ProfileViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureNavigation()
         configureActionButton()
-        configureLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,8 +108,7 @@ final class ProfileViewController: BaseViewController {
         configureNavigation()
     }
     
-    private func configureNavigation() {
-        navigationItem.title = viewType.title
+    override func configureNavigation() {
         navigationItem.rightBarButtonItem =
         UIBarButtonItem(customView: saveButton).build { builder in
             builder.tintColor(.clear)
@@ -119,7 +116,7 @@ final class ProfileViewController: BaseViewController {
         saveButton.isEnabled = false
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         [
             profileImageButton,
             nicknameTextField,
@@ -160,6 +157,10 @@ final class ProfileViewController: BaseViewController {
             make.top.equalTo(validationLabel.snp.bottom).offset(20)
             make.centerX.width.equalTo(textFieldUnderlineView)
         }
+    }
+    
+    override func configureNavigationTitle() {
+        navigationItem.title = viewType.title
     }
     
     private func updateValidationUI(isValidate: Bool) {

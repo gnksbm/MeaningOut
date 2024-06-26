@@ -36,16 +36,10 @@ final class ProfileImageViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDataSource()
-        configureLayout()
         updateSnapshot(items: .bundle)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationItem.title = viewType.title
-    }
-    
-    private func configureLayout() {
+    override func configureLayout() {
         [profileButton, collectionView].forEach { view.addSubview($0) }
         
         let safeArea = view.safeAreaLayoutGuide
@@ -61,6 +55,10 @@ final class ProfileImageViewController: BaseViewController {
             make.top.equalTo(profileButton.snp.bottom).offset(20)
             make.horizontalEdges.bottom.equalTo(safeArea)
         }
+    }
+    
+    override func configureNavigationTitle() {
+        navigationItem.title = viewType.title
     }
 }
 

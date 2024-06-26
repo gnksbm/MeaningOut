@@ -18,6 +18,24 @@ class BaseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureDefaultUI()
+        configureUI()
+        configureNavigation()
+        configureLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNavigationTitle()
+    }
+    
+    func configureUI() { }
+    func configureLayout() { }
+    func configureNavigation() { }
+    
+    func configureNavigationTitle() { }
+    
+    private func configureDefaultUI() {
         view.backgroundColor = .meaningWhite
         navigationController?.navigationBar.topItem?.title = ""
     }
