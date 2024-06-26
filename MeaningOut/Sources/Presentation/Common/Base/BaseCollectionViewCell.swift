@@ -1,5 +1,5 @@
 //
-//  BaseTableViewCell.swift
+//  BaseCollectionViewCell.swift
 //  MeaningOut
 //
 //  Created by gnksbm on 6/27/24.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class BaseTableViewCell: UITableViewCell {
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+class BaseCollectionViewCell: UICollectionViewCell {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         configureUI()
         configureLayout()
     }

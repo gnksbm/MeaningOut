@@ -9,18 +9,8 @@ import UIKit
 
 import SnapKit
 
-final class ProfileImageCVCell: UICollectionViewCell {
+final class ProfileImageCVCell: BaseCollectionViewCell {
     private let imageView = ProfileImageView(borderType: .small)
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureUI()
-        configureLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -41,11 +31,11 @@ final class ProfileImageCVCell: UICollectionViewCell {
         imageView.alpha = 0.5
     }
     
-    private func configureUI() {
+    override func configureUI() {
         setUnselected()
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         [imageView].forEach { contentView.addSubview($0) }
         
         imageView.snp.makeConstraints { make in

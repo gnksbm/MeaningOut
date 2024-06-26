@@ -11,6 +11,7 @@
 		8EDCB8D92C2C6F13006F7851 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCB8D82C2C6F13006F7851 /* BaseView.swift */; };
 		8EDCB8DB2C2C70FA006F7851 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCB8DA2C2C70FA006F7851 /* BaseButton.swift */; };
 		8EDCB8DD2C2C71FB006F7851 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCB8DC2C2C71FB006F7851 /* BaseTableViewCell.swift */; };
+		8EDCB8DF2C2C72DA006F7851 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCB8DE2C2C72DA006F7851 /* BaseCollectionViewCell.swift */; };
 		BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3782C1B01B600F58754 /* AppDelegate.swift */; };
 		BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE37A2C1B01B600F58754 /* SceneDelegate.swift */; };
 		BE3FE37D2C1B01B600F58754 /* OnboardingMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE37C2C1B01B600F58754 /* OnboardingMainViewController.swift */; };
@@ -73,6 +74,7 @@
 		8EDCB8D82C2C6F13006F7851 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		8EDCB8DA2C2C70FA006F7851 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
 		8EDCB8DC2C2C71FB006F7851 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		8EDCB8DE2C2C72DA006F7851 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		BE3FE3752C1B01B600F58754 /* MeaningOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeaningOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE3FE3782C1B01B600F58754 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE3FE37A2C1B01B600F58754 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				8EDCB8D82C2C6F13006F7851 /* BaseView.swift */,
 				8EDCB8DA2C2C70FA006F7851 /* BaseButton.swift */,
 				8EDCB8DC2C2C71FB006F7851 /* BaseTableViewCell.swift */,
+				8EDCB8DE2C2C72DA006F7851 /* BaseCollectionViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -585,6 +588,7 @@
 				BEBFC3A02C2173DE00F35E82 /* ProfileViewType.swift in Sources */,
 				BE3FE3E22C1DBC0300F58754 /* SearchHistoryItemTVCell.swift in Sources */,
 				8EDCB8DB2C2C70FA006F7851 /* BaseButton.swift in Sources */,
+				8EDCB8DF2C2C72DA006F7851 /* BaseCollectionViewCell.swift in Sources */,
 				BEBFC3A22C21785C00F35E82 /* UIFont+.swift in Sources */,
 				BE3FE3E42C1DC4F200F58754 /* SearchHistoryHeaderView.swift in Sources */,
 				BE3FE3FA2C1EDDA300F58754 /* NaverSearchResponse.swift in Sources */,

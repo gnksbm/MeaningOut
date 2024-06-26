@@ -18,7 +18,7 @@ protocol SearchResultCVCellData {
     var price: String { get }
 }
 
-final class SearchResultCVCell: UICollectionViewCell {
+final class SearchResultCVCell: BaseCollectionViewCell {
     var basketButtonHandler: (BasketButton) -> Void = { _ in }
     
     private let productImageView = UIImageView().build { builder in
@@ -51,15 +51,6 @@ final class SearchResultCVCell: UICollectionViewCell {
         builder.font(DesignConstant.Font.large.with(weight: .bold))
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         basketButtonHandler = { _ in }
@@ -76,7 +67,7 @@ final class SearchResultCVCell: UICollectionViewCell {
         priceLabel.text = data.price
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         [
             productImageView,
             basketButton,
