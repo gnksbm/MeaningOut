@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8EDCB8D62C2C4C2B006F7851 /* RegexValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCB8D52C2C4C2B006F7851 /* RegexValidator.swift */; };
 		BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3782C1B01B600F58754 /* AppDelegate.swift */; };
 		BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE37A2C1B01B600F58754 /* SceneDelegate.swift */; };
 		BE3FE37D2C1B01B600F58754 /* OnboardingMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE37C2C1B01B600F58754 /* OnboardingMainViewController.swift */; };
@@ -65,6 +66,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8EDCB8D52C2C4C2B006F7851 /* RegexValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexValidator.swift; sourceTree = "<group>"; };
 		BE3FE3752C1B01B600F58754 /* MeaningOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeaningOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE3FE3782C1B01B600F58754 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE3FE37A2C1B01B600F58754 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -441,6 +443,7 @@
 			children = (
 				BE3FE3C92C1D7D4B00F58754 /* NicknameValidator.swift */,
 				BEF7F96B2C20702500136FBA /* NaverSearchValidator.swift */,
+				8EDCB8D52C2C4C2B006F7851 /* RegexValidator.swift */,
 			);
 			path = Validation;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				BE3FE3A32C1B181F00F58754 /* UIKitPreviewHelper.swift in Sources */,
 				BE3FE3E62C1E035400F58754 /* EndpointRepresentable.swift in Sources */,
 				BE3FE3AB2C1BC5AA00F58754 /* Logger.swift in Sources */,
+				8EDCB8D62C2C4C2B006F7851 /* RegexValidator.swift in Sources */,
 				BEF7F95E2C2015CC00136FBA /* SettingTableViewMinCell.swift in Sources */,
 				BE3FE3E92C1E055700F58754 /* NaverSearchEndpoint.swift in Sources */,
 				BE3FE3A92C1BC4BE00F58754 /* UserDefaultsWrapper.swift in Sources */,
