@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OSLog
 /**
  파일명, 줄번호, 함수명이 포함된 출력문을 남겨 print()보다 명확한 디버깅 가능
  - debugging
@@ -15,17 +16,28 @@ import Foundation
     - 추가 인자도 함께 사용 가능
  */
 enum Logger {
+    private static var logger = OSLog(
+        subsystem: .bundleIdentifier,
+        category: "Default"
+    )
+    
     static func debugging(
         _ content: Any,
         file: String = #fileID,
         line: Int = #line,
         function: String = #function
     ) {
-        print(
-            "📍", file, line, function, "📍",
-            "\n🔵", content, "🔵"
+        os_log(
+            """
+            📍 %{public}@ at line %{public}d - %{public}@ 📍
+            🔵 %{public}@ 🔵
+            """,
+            log: logger,
+            type: .debug,
+            file, line, function, String(describing: content)
         )
     }
+
     
     static func error(
         _ error: Error,
@@ -35,19 +47,27 @@ enum Logger {
         function: String = #function
     ) {
         if let with {
-            print(
-                "📍", file, line, function, "📍"
+            os_log(
+                """
+                📍 %{public}@ at line %{public}d - %{public}@ 📍
+                🔴 %{public}@
+                %{public}@ 🔴
+                """,
+                log: logger,
+                type: .error,
+                file, line, function, String(describing: error), 
+                String(describing: with)
             )
-            print("🔴", terminator: "")
-            dump(error)
-            print("\n", with, "🔴")
         } else {
-            print(
-                "📍", file, line, function, "📍"
+            os_log(
+                """
+                📍 %{public}@ at line %{public}d - %{public}@ 📍
+                🔴 %{public}@ 🔴
+                """,
+                log: logger,
+                type: .error,
+                file, line, function, String(describing: error)
             )
-            print("🔴", terminator: "")
-            dump(error)
-            print("🔴")
         }
     }
 }

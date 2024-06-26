@@ -126,7 +126,7 @@ struct OptionalPropertyBuilder<Parent: AnyObject, Property> {
     
     private var logger: OSLog {
         OSLog(
-            subsystem: Bundle.main.bundleIdentifier ?? "MeaningOut",
+            subsystem: .bundleIdentifier,
             category: "Builder"
         )
     }

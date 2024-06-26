@@ -8,6 +8,8 @@
 import Foundation
 
 extension String {
+    static let bundleIdentifier = Bundle.main.bundleIdentifier ?? "MeaningOut"
+    
     func formattedPrice() -> String {
         Int(self)?
             .formatted(
