@@ -18,7 +18,7 @@ final class SearchHistoryHeaderView: UIView {
     }
     
     private lazy var removeButton = UIButton().build { builder in
-        builder
+        builder.configuration(.plain())
             .configuration.baseForegroundColor(.meaningOrange)
             .configuration.attributedTitle(
                 AttributedString(

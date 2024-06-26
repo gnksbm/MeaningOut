@@ -17,8 +17,18 @@ extension Buildable where Self: AnyObject {
      클로저 내부에서 Builder<객체> 타입을 반환해야함
      - Returns: Builder<객체>가 언래핑되어 블록 안에서 설정한 객체 반환
      */
-    func build(_ block: (_ builder: Builder<Self>) -> Builder<Self>) -> Self {
-        block(Builder(self)).build()
+    func build(
+        _ block: (_ builder: Builder<Self>) -> Builder<Self>,
+        fileID: String = #fileID,
+        line: Int = #line
+    ) -> Self {
+        block(
+            Builder(
+                self,
+                fileID: fileID,
+                line: line
+            )
+        ).build()
     }
 }
 
@@ -32,9 +42,17 @@ extension NSObject: Buildable { }
 @dynamicMemberLookup
 struct Builder<Base: AnyObject> {
     private let _base: Base
+    private let fileID: String
+    private let line: Int
     
-    init(_ base: Base) {
+    init(
+        _ base: Base,
+        fileID: String = #fileID,
+        line: Int = #line
+    ) {
         self._base = base
+        self.fileID = fileID
+        self.line = line
     }
     
     var base: Base {
@@ -59,7 +77,12 @@ struct Builder<Base: AnyObject> {
     subscript<Property>(
         dynamicMember keyPath: ReferenceWritableKeyPath<Base, Property?>
     ) -> OptionalPropertyBuilder<Base, Property> {
-        OptionalPropertyBuilder(_base, keyPath: keyPath)
+        OptionalPropertyBuilder(
+            _base,
+            keyPath: keyPath,
+            fileID: fileID,
+            line: line
+        )
     }
     
     func action(_ block: (_ base: Base) -> Void) -> Builder<Base> {
@@ -91,16 +114,6 @@ struct PropertyBuilder<Parent: AnyObject, Property> {
             return Builder(parent)
         }
     }
-    
-    subscript<NestedProperty>(
-        dynamicMember nestedKeyPath:
-        KeyPath<Property, NestedProperty>
-    ) -> PropertyBuilder<Parent, NestedProperty> {
-        PropertyBuilder<Parent, NestedProperty>(
-            parent,
-            keyPath: keyPath.appending(path: nestedKeyPath)
-        )
-    }
 }
 
 @dynamicMemberLookup
@@ -121,8 +134,8 @@ struct OptionalPropertyBuilder<Parent: AnyObject, Property> {
     init(
         _ parent: Parent,
         keyPath: ReferenceWritableKeyPath<Parent, Property?>,
-        fileID: String = #fileID,
-        line: Int = #line
+        fileID: String,
+        line: Int
     ) {
         self.parent = parent
         self.keyPath = keyPath
@@ -135,11 +148,12 @@ struct OptionalPropertyBuilder<Parent: AnyObject, Property> {
         WritableKeyPath<Property, NestedProperty>
     ) -> (NestedProperty) -> Builder<Parent> {
         { newValue in
-            guard var value = parent[keyPath: keyPath] else {
+            guard var copy = parent[keyPath: keyPath] else {
                 failureLog(nestedKeyPath: nestedKeyPath)
                 return Builder(parent)
             }
-            value[keyPath: nestedKeyPath] = newValue
+            copy[keyPath: nestedKeyPath] = newValue
+            parent[keyPath: keyPath] = copy
             return Builder(parent)
         }
     }
