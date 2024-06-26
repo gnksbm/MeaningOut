@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8EDCB8D62C2C4C2B006F7851 /* RegexValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCB8D52C2C4C2B006F7851 /* RegexValidator.swift */; };
+		8EDCB8D92C2C6F13006F7851 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCB8D82C2C6F13006F7851 /* BaseView.swift */; };
 		BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE3782C1B01B600F58754 /* AppDelegate.swift */; };
 		BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE37A2C1B01B600F58754 /* SceneDelegate.swift */; };
 		BE3FE37D2C1B01B600F58754 /* OnboardingMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FE37C2C1B01B600F58754 /* OnboardingMainViewController.swift */; };
@@ -67,6 +68,7 @@
 
 /* Begin PBXFileReference section */
 		8EDCB8D52C2C4C2B006F7851 /* RegexValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexValidator.swift; sourceTree = "<group>"; };
+		8EDCB8D82C2C6F13006F7851 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		BE3FE3752C1B01B600F58754 /* MeaningOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeaningOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE3FE3782C1B01B600F58754 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE3FE37A2C1B01B600F58754 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8EDCB8D72C2C6F09006F7851 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				BE3FE3CB2C1D7D8B00F58754 /* BaseViewController.swift */,
+				8EDCB8D82C2C6F13006F7851 /* BaseView.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		BE3FE36C2C1B01B600F58754 = {
 			isa = PBXGroup;
 			children = (
@@ -239,7 +250,7 @@
 		BE3FE3BB2C1C2FDE00F58754 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				BE3FE3CB2C1D7D8B00F58754 /* BaseViewController.swift */,
+				8EDCB8D72C2C6F09006F7851 /* Base */,
 				BEF7F9672C20646F00136FBA /* View */,
 			);
 			path = Common;
@@ -570,6 +581,7 @@
 				BEBFC3A22C21785C00F35E82 /* UIFont+.swift in Sources */,
 				BE3FE3E42C1DC4F200F58754 /* SearchHistoryHeaderView.swift in Sources */,
 				BE3FE3FA2C1EDDA300F58754 /* NaverSearchResponse.swift in Sources */,
+				8EDCB8D92C2C6F13006F7851 /* BaseView.swift in Sources */,
 				BE3FE3D82C1DB6CA00F58754 /* SearchViewController.swift in Sources */,
 				BE3FE3D22C1D883A00F58754 /* ProfileImage.swift in Sources */,
 				BEF7F96C2C20702500136FBA /* NaverSearchValidator.swift in Sources */,

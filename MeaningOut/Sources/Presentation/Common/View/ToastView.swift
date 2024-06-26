@@ -9,21 +9,11 @@ import UIKit
 
 import SnapKit
 
-final class ToastView: UIView {
+final class ToastView: BaseView {
     private let messageLabel = UILabel().build { builder in
         builder.font(DesignConstant.Font.large.with(weight: .bold))
             .backgroundColor(.meaningWhite)
             .clipsToBounds(true)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureUI()
-        configureLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func layoutSubviews() {
@@ -35,14 +25,14 @@ final class ToastView: UIView {
         messageLabel.text = message
     }
     
-    private func configureUI() {
+    override func configureUI() {
         backgroundColor = .meaningWhite
         layer.borderWidth = 1
         layer.borderColor = UIColor.meaningOrange.cgColor
         alpha = 0
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         [messageLabel].forEach { addSubview($0) }
         
         messageLabel.snp.makeConstraints { make in
