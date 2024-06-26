@@ -9,11 +9,12 @@ import UIKit
 
 import SnapKit
 
-final class ProfileButton: UIButton {
-    private let profileImageView = ProfileImageView(borderType: .large)
-        .build { builder in
-            builder.action { $0.setBorderColor(color: .meaningOrange) }
-        }
+final class ProfileButton: BaseButton {
+    private let profileImageView = ProfileImageView(
+        borderType: .large
+    ).build { builder in
+        builder.action { $0.setBorderColor(color: .meaningOrange) }
+    }
     
     private let cameraImageView = UIImageView().build { builder in
         builder.contentMode(.scaleAspectFit)
@@ -27,15 +28,10 @@ final class ProfileButton: UIButton {
     }
     
     init(image: UIImage?) {
-        super.init(frame: .zero)
-        configureLayout()
+        super.init()
         profileImageView.configureView(
             item: ProfileImage(image: image)
         )
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func draw(_ rect: CGRect) {
@@ -49,7 +45,7 @@ final class ProfileButton: UIButton {
         profileImageView.image = image
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         [
             profileImageView,
             cameraImageBackgroundView,
