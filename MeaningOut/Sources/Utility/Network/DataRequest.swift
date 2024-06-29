@@ -40,15 +40,17 @@ final class AnyDataRequest<T: Decodable>: DataRequest {
         return request
     }
     
+    @discardableResult
     func receive(
         onNext: @escaping (T) -> Void,
         onError: @escaping (Error) -> Void = { _ in },
         onComplete: @escaping () -> Void = { }
-    ) {
+    ) -> Self {
         task?.resume()
         onNextEvent = onNext
         onErrorEvent = onError
         onCompleteEvent = onComplete
+        return self
     }
     
     func didReceive(data: Data) {
@@ -66,6 +68,13 @@ final class AnyDataRequest<T: Decodable>: DataRequest {
     
     func didReceive(error: Error) {
         onErrorEvent?(error)
+    }
+    
+    func cancel() {
+        onNextEvent = nil
+        onErrorEvent = nil
+        onCompleteEvent = nil
+        task?.cancel()
     }
     
     @discardableResult
