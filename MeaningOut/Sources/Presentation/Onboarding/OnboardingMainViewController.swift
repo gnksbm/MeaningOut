@@ -21,14 +21,15 @@ final class OnboardingMainViewController: BaseViewController {
             .contentMode(.scaleAspectFit)
     }
     
-    private lazy var startButton = LargeButton(title: "시작하기")
-        .build { builder in
-            builder.addTarget(
-                self,
-                action: #selector(startButtonTapped),
-                for: .touchUpInside
-            )
-        }
+    private lazy var startButton = LargeButton(
+        title: "시작하기"
+    ).build { builder in
+        builder.addTarget(
+            self,
+            action: #selector(startButtonTapped),
+            for: .touchUpInside
+        )
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
