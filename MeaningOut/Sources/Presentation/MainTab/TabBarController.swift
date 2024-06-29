@@ -40,7 +40,7 @@ extension TabBarController {
         private var viewController: UIViewController {
             switch self {
             case .search:
-                SearchViewController()
+                SearchHistoryViewController()
             case .setting:
                 SettingViewController()
             }

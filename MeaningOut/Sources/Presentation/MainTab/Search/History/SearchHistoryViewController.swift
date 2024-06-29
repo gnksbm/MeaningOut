@@ -1,5 +1,5 @@
 //
-//  SearchViewController.swift
+//  SearchHistoryViewController.swift
 //  MeaningOut
 //
 //  Created by gnksbm on 6/15/24.
@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class SearchViewController: BaseViewController {
+final class SearchHistoryViewController: BaseViewController {
     private var dataSource: DataSource!
     
     private lazy var headerViewHeightConstraint =
@@ -86,7 +86,7 @@ final class SearchViewController: BaseViewController {
 }
 
 // MARK: UITableView
-extension SearchViewController {
+extension SearchHistoryViewController {
     private func updateSnapshot(items: [SearchHistoryItem]) {
         var snapshot = Snapshot()
         tableView.backgroundView = items.isEmpty ?
@@ -144,7 +144,7 @@ extension SearchViewController {
 }
 
 // MARK: UITableViewDelegate
-extension SearchViewController: UITableViewDelegate {
+extension SearchHistoryViewController: UITableViewDelegate {
     func tableView(
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
@@ -157,7 +157,7 @@ extension SearchViewController: UITableViewDelegate {
 }
 
 // MARK: UISearchBarDelegate
-extension SearchViewController: UISearchBarDelegate {
+extension SearchHistoryViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text else {
             Logger.debugging("searchBar.text 옵셔널 바인딩 실패")
@@ -171,11 +171,11 @@ extension SearchViewController: UISearchBarDelegate {
 import SwiftUI
 struct SearchViewControllerPreview: PreviewProvider {
     static var previews: some View {
-        SearchViewController().swiftUIViewWithNavigation
+        SearchHistoryViewController().swiftUIViewWithNavigation
             .onAppear {
                 User.currentHistory = []
             }
-        SearchViewController().swiftUIViewWithNavigation
+        SearchHistoryViewController().swiftUIViewWithNavigation
             .onAppear {
                 User.currentHistory = .mock
             }
