@@ -14,13 +14,11 @@ final class SearchHistoryItemTVCell: BaseTableViewCell {
     
     private let clockImageView = UIImageView().build { builder in
         builder.tintColor(.meaningBlack)
-            .image(
-                UIImage(systemName: "clock")?
-                    .withConfiguration(
-                        UIImage.SymbolConfiguration(
-                            font: DesignConstant.Font.large.with(weight: .bold)
-                        )
-                    )
+            .image(UIImage(systemName: "clock"))
+            .preferredSymbolConfiguration(
+                UIImage.SymbolConfiguration(
+                    font: DesignConstant.Font.large.with(weight: .heavy)
+                )
             )
     }
     
@@ -73,7 +71,7 @@ final class SearchHistoryItemTVCell: BaseTableViewCell {
         }
         
         queryLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(contentView)
+            make.verticalEdges.equalTo(contentView).inset(15)
             make.leading.equalTo(clockImageView.snp.trailing)
                 .offset(20)
             make.trailing.equalTo(removeButton.snp.leading)
