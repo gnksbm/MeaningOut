@@ -37,7 +37,6 @@ enum Logger {
             file, line, function, String(describing: content)
         )
     }
-
     
     static func error(
         _ error: Error,
@@ -69,5 +68,23 @@ enum Logger {
                 file, line, function, String(describing: error)
             )
         }
+    }
+    
+    static func retainCount(
+        _ target: AnyObject,
+        file: String = #fileID,
+        line: Int = #line,
+        function: String = #function
+    ) {
+        let retainCount = CFGetRetainCount(target)
+        os_log(
+            """
+            📍 %{public}@ at line %{public}d - %{public}@ 📍
+            ➡️ %{public}@'s Retain Count: %{public}ld ⬅️
+            """,
+            log: logger,
+            type: .debug,
+            file, line, function, String(describing: target), retainCount
+        )
     }
 }

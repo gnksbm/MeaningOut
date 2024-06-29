@@ -8,7 +8,6 @@
 import UIKit
 
 import SnapKit
-import Alamofire
 
 final class SearchResultViewController: BaseViewController {
     private var endpoint: NaverSearchEndpoint
@@ -99,43 +98,65 @@ final class SearchResultViewController: BaseViewController {
     
     private func callSearchRequest() {
         showActivityIndicator()
-        AF.request(endpoint)
-            .responseDecodable(
-                of: NaverSearchResponse.self
-            ) { [weak self] response in
-                guard let self else { return }
-                hideActivityIndicator()
-                switch response.result {
-                case .success(let response):
-                    updateSnapshot(items: response.items)
-                    collectionView.scrollToTop()
-                    resultCountLabel.text =
-                    response.total.formatted() + "개의 검색 결과"
-                case .failure(let error):
-                    Logger.error(error, with: endpoint.queries)
+        NetworkService.shared.request(endpoint: endpoint)
+            .decode(type: NaverSearchResponse.self)
+            .receive(
+                onNext: { response in
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self else { return }
+                        updateSnapshot(items: response.items)
+                        collectionView.scrollToTop()
+                        resultCountLabel.text =
+                        response.total.formatted() + "개의 검색 결과"
+                    }
+                },
+                onError: { [weak self] error in
+                    guard let self else { return }
+                    Logger.error(error, with: self.endpoint.queries)
+                    DispatchQueue.main.async {
+                        self.showToast(message: "요청에 실패했습니다.")
+                    }
+                },
+                onComplete: { [weak self] in
+                    guard let self else { return }
+                    isFetching = false
+                    DispatchQueue.main.async {
+                        self.hideActivityIndicator()
+                    }
                 }
-            }
+            )
     }
     
     private func callNextPageRequest() {
         isFetching = true
         endpoint.page += 1
         showActivityIndicator()
-        AF.request(endpoint)
-            .responseDecodable(
-                of: NaverSearchResponse.self
-            ) { [weak self] response in
-                guard let self else { return }
-                hideActivityIndicator()
-                switch response.result {
-                case .success(let response):
-                    appendSnapshot(items: response.items)
-                    isFinalPage = endpoint.isFinalPage(total: response.total)
-                case .failure(let error):
-                    Logger.error(error, with: endpoint)
+        NetworkService.shared.request(endpoint: endpoint)
+            .decode(type: NaverSearchResponse.self)
+            .receive(
+                onNext: { response in
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self else { return }
+                        appendSnapshot(items: response.items)
+                        isFinalPage = 
+                        endpoint.isFinalPage(total: response.total)
+                    }
+                },
+                onError: { [weak self] error in
+                    guard let self else { return }
+                    Logger.error(error, with: self.endpoint.queries)
+                    DispatchQueue.main.async {
+                        self.showToast(message: "요청에 실패했습니다.")
+                    }
+                },
+                onComplete: { [weak self] in
+                    guard let self else { return }
+                    isFetching = false
+                    DispatchQueue.main.async {
+                        self.hideActivityIndicator()
+                    }
                 }
-                isFetching = false
-            }
+            )
     }
     
     private func isSelectedButton(tag: Int) -> Bool {
