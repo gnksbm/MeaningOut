@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E2FD67F2C43BDD5008F68D5 /* CacheConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2FD67E2C43BDD5008F68D5 /* CacheConfiguration.swift */; };
+		8E2FD6812C43BDE9008F68D5 /* DataSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2FD6802C43BDE9008F68D5 /* DataSize.swift */; };
+		8E2FD6832C43BDF2008F68D5 /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2FD6822C43BDF2008F68D5 /* CacheService.swift */; };
+		8E2FD6852C43BF35008F68D5 /* CacheWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2FD6842C43BF35008F68D5 /* CacheWrapper.swift */; };
+		8E2FD6872C43BF52008F68D5 /* CacheStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2FD6862C43BF52008F68D5 /* CacheStorage.swift */; };
+		8E2FD6892C43CC8B008F68D5 /* CacheableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2FD6882C43CC8B008F68D5 /* CacheableObject.swift */; };
 		8EDCB8D62C2C4C2B006F7851 /* RegexValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCB8D52C2C4C2B006F7851 /* RegexValidator.swift */; };
 		8EDCB8D92C2C6F13006F7851 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCB8D82C2C6F13006F7851 /* BaseView.swift */; };
 		8EDCB8DB2C2C70FA006F7851 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCB8DA2C2C70FA006F7851 /* BaseButton.swift */; };
@@ -74,6 +80,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E2FD67E2C43BDD5008F68D5 /* CacheConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheConfiguration.swift; sourceTree = "<group>"; };
+		8E2FD6802C43BDE9008F68D5 /* DataSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSize.swift; sourceTree = "<group>"; };
+		8E2FD6822C43BDF2008F68D5 /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
+		8E2FD6842C43BF35008F68D5 /* CacheWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheWrapper.swift; sourceTree = "<group>"; };
+		8E2FD6862C43BF52008F68D5 /* CacheStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheStorage.swift; sourceTree = "<group>"; };
+		8E2FD6882C43CC8B008F68D5 /* CacheableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheableObject.swift; sourceTree = "<group>"; };
 		8EDCB8D52C2C4C2B006F7851 /* RegexValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexValidator.swift; sourceTree = "<group>"; };
 		8EDCB8D82C2C6F13006F7851 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		8EDCB8DA2C2C70FA006F7851 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
@@ -154,6 +166,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E2FD67D2C43B7AE008F68D5 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				8E2FD6882C43CC8B008F68D5 /* CacheableObject.swift */,
+				8E2FD67E2C43BDD5008F68D5 /* CacheConfiguration.swift */,
+				8E2FD6822C43BDF2008F68D5 /* CacheService.swift */,
+				8E2FD6862C43BF52008F68D5 /* CacheStorage.swift */,
+				8E2FD6842C43BF35008F68D5 /* CacheWrapper.swift */,
+				8E2FD6802C43BDE9008F68D5 /* DataSize.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		8EDCB8D72C2C6F09006F7851 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,6 +391,7 @@
 				BE76B3762C2FE7A000CEE3BA /* NetworkError.swift */,
 				BE76B3722C2FE77F00CEE3BA /* DataRequest.swift */,
 				BE76B3742C2FE78E00CEE3BA /* RequestStorage.swift */,
+				8E2FD67D2C43B7AE008F68D5 /* Cache */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -578,6 +604,7 @@
 				BE3FE3DA2C1DB6F800F58754 /* SettingViewController.swift in Sources */,
 				BE3FE3BD2C1C301400F58754 /* LargeButton.swift in Sources */,
 				BE3FE3EC2C1E0B7B00F58754 /* APIKey.swift in Sources */,
+				8E2FD67F2C43BDD5008F68D5 /* CacheConfiguration.swift in Sources */,
 				BE3FE3CA2C1D7D4B00F58754 /* NicknameValidator.swift in Sources */,
 				BE3FE3EE2C1EB4CD00F58754 /* SearchResultViewController.swift in Sources */,
 				BE3FE3DC2C1DB95C00F58754 /* EmptySearchHistoryView.swift in Sources */,
@@ -588,13 +615,16 @@
 				BE3FE3F22C1ECAFB00F58754 /* SearchResultCVCell.swift in Sources */,
 				BE3FE4002C1EE40000F58754 /* String+.swift in Sources */,
 				BE3FE3C42C1C4BA000F58754 /* Appearance.swift in Sources */,
+				8E2FD6832C43BDF2008F68D5 /* CacheService.swift in Sources */,
 				BE3FE3D42C1D894D00F58754 /* ProfileImageView.swift in Sources */,
 				BE3FE3792C1B01B600F58754 /* AppDelegate.swift in Sources */,
+				8E2FD6872C43BF52008F68D5 /* CacheStorage.swift in Sources */,
 				BEF7F9602C201B0600136FBA /* SettingTableViewCountCell.swift in Sources */,
 				BE3FE37B2C1B01B600F58754 /* SceneDelegate.swift in Sources */,
 				BE3FE3E02C1DBBC000F58754 /* ReuseIdentifiable.swift in Sources */,
 				BEF7F95C2C20133A00136FBA /* DateFormat.swift in Sources */,
 				BEF7F95A2C2009B000136FBA /* SettingProfileInfoTVCell.swift in Sources */,
+				8E2FD6852C43BF35008F68D5 /* CacheWrapper.swift in Sources */,
 				BE3FE3F02C1EBCFC00F58754 /* SearchResultSortButton.swift in Sources */,
 				BE3FE3A32C1B181F00F58754 /* UIKitPreviewHelper.swift in Sources */,
 				BE3FE3E62C1E035400F58754 /* EndpointRepresentable.swift in Sources */,
@@ -604,11 +634,13 @@
 				BE3FE3E92C1E055700F58754 /* NaverSearchEndpoint.swift in Sources */,
 				BE3FE3A92C1BC4BE00F58754 /* UserDefaultsWrapper.swift in Sources */,
 				BEF7F96F2C20809100136FBA /* ToastView.swift in Sources */,
+				8E2FD6812C43BDE9008F68D5 /* DataSize.swift in Sources */,
 				BE3FE3D62C1DB65C00F58754 /* TabBarController.swift in Sources */,
 				BE3FE3D02C1D87F000F58754 /* ProfileImageCVCell.swift in Sources */,
 				BEF7F92B2C1FB52A00136FBA /* BasketButton.swift in Sources */,
 				BEBFC3A02C2173DE00F35E82 /* ProfileViewType.swift in Sources */,
 				BE3FE3E22C1DBC0300F58754 /* SearchHistoryItemTVCell.swift in Sources */,
+				8E2FD6892C43CC8B008F68D5 /* CacheableObject.swift in Sources */,
 				8EDCB8DB2C2C70FA006F7851 /* BaseButton.swift in Sources */,
 				8EDCB8DF2C2C72DA006F7851 /* BaseCollectionViewCell.swift in Sources */,
 				BEBFC3A22C21785C00F35E82 /* UIFont+.swift in Sources */,
