@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Alamofire
-
 enum EndpointError: LocalizedError {
     case invalidURL
     case invalidURLRequest
@@ -37,7 +35,7 @@ enum Scheme: String {
  - 구성 요소를 타입으로 정의했기 때문에 컴파일 단계에서 부족한 요소를 쉽게 파악 가능
  - URLConvertible, URLRequestConvertible 프로토콜을 채택하여 Alamofire에서도 사용 가능
  */
-protocol EndpointRepresentable: URLConvertible, URLRequestConvertible {
+protocol EndpointRepresentable {
     var httpMethod: HTTPMethod { get }
     var scheme: Scheme { get }
     var host: String { get }

@@ -31,6 +31,18 @@ final class NetworkService: NSObject {
             return request
         }
     }
+    
+    func request(
+        url: URL?
+    ) -> AnyDataRequest<Data> {
+        guard let url else {
+            let failureRequest = AnyDataRequest<Data>(task: nil)
+            failureRequest.didReceive(error: NetworkError.invalidURL)
+            return failureRequest
+        }
+        let task = Self.session.dataTask(with: url)
+        return RequestStorage.makeRequest(task: task)
+    }
 }
 
 extension NetworkService: URLSessionDataDelegate {

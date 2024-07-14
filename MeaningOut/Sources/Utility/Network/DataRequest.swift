@@ -8,11 +8,15 @@
 import Foundation
 
 protocol DataRequest: AnyObject {
+    var bufferSize: Int { get }
+    
     func didReceive(data: Data)
     func didReceive(error: Error)
 }
 
-final class AnyDataRequest<T: Decodable>: DataRequest {
+final class AnyDataRequest<T: Decodable> {
+    var bufferSize: Int = 0
+    
     let task: URLSessionTask?
     
     private var onNextEvent: ((T) -> Void)?
@@ -53,6 +57,24 @@ final class AnyDataRequest<T: Decodable>: DataRequest {
         return self
     }
     
+    func cancel() {
+        onNextEvent = nil
+        onErrorEvent = nil
+        onCompleteEvent = nil
+        task?.cancel()
+    }
+    
+    @discardableResult
+    func logRetainCount(
+        file: String = #fileID,
+        line: Int = #line,
+        function: String = #function
+    ) -> Self {
+        return self
+    }
+}
+
+extension AnyDataRequest: DataRequest {
     func didReceive(data: Data) {
         if let data = data as? T {
             onNextEvent?(data)
@@ -68,21 +90,5 @@ final class AnyDataRequest<T: Decodable>: DataRequest {
     
     func didReceive(error: Error) {
         onErrorEvent?(error)
-    }
-    
-    func cancel() {
-        onNextEvent = nil
-        onErrorEvent = nil
-        onCompleteEvent = nil
-        task?.cancel()
-    }
-    
-    @discardableResult
-    func logRetainCount(
-        file: String = #fileID,
-        line: Int = #line,
-        function: String = #function
-    ) -> Self {
-        return self
     }
 }

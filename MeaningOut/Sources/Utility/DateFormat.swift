@@ -16,6 +16,7 @@ enum DateFormat: String {
     private static var cachedStorage = [DateFormat: DateFormatter]()
     
     case joinedDateOutput = "yyyy.MM.dd 가입"
+    case rfc1123 = "EEE, dd MMM yyyy HH:mm:ss 'GMT'"
     
     var formatter: DateFormatter {
         if let formatter = Self.cachedStorage[self] {
