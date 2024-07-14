@@ -13,6 +13,7 @@
 		8E2FD6852C43BF35008F68D5 /* CacheWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2FD6842C43BF35008F68D5 /* CacheWrapper.swift */; };
 		8E2FD6872C43BF52008F68D5 /* CacheStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2FD6862C43BF52008F68D5 /* CacheStorage.swift */; };
 		8E2FD6892C43CC8B008F68D5 /* CacheableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2FD6882C43CC8B008F68D5 /* CacheableObject.swift */; };
+		8E2FD68B2C43D135008F68D5 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2FD68A2C43D135008F68D5 /* UIImageView+.swift */; };
 		8EDCB8D62C2C4C2B006F7851 /* RegexValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCB8D52C2C4C2B006F7851 /* RegexValidator.swift */; };
 		8EDCB8D92C2C6F13006F7851 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCB8D82C2C6F13006F7851 /* BaseView.swift */; };
 		8EDCB8DB2C2C70FA006F7851 /* BaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EDCB8DA2C2C70FA006F7851 /* BaseButton.swift */; };
@@ -86,6 +87,7 @@
 		8E2FD6842C43BF35008F68D5 /* CacheWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheWrapper.swift; sourceTree = "<group>"; };
 		8E2FD6862C43BF52008F68D5 /* CacheStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheStorage.swift; sourceTree = "<group>"; };
 		8E2FD6882C43CC8B008F68D5 /* CacheableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheableObject.swift; sourceTree = "<group>"; };
+		8E2FD68A2C43D135008F68D5 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		8EDCB8D52C2C4C2B006F7851 /* RegexValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexValidator.swift; sourceTree = "<group>"; };
 		8EDCB8D82C2C6F13006F7851 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		8EDCB8DA2C2C70FA006F7851 /* BaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButton.swift; sourceTree = "<group>"; };
@@ -372,6 +374,7 @@
 				BEF7F9572C20030900136FBA /* UIViewController+.swift */,
 				BEBFC3A12C21785C00F35E82 /* UIFont+.swift */,
 				BEBFC3A32C217B4500F35E82 /* UICollectionView+.swift */,
+				8E2FD68A2C43D135008F68D5 /* UIImageView+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				BE3FE3AE2C1BC96500F58754 /* User.swift in Sources */,
 				BE3FE3BF2C1C33F100F58754 /* ProfileButton.swift in Sources */,
 				BE3FE3CC2C1D7D8B00F58754 /* BaseViewController.swift in Sources */,
+				8E2FD68B2C43D135008F68D5 /* UIImageView+.swift in Sources */,
 				BE3FE3F22C1ECAFB00F58754 /* SearchResultCVCell.swift in Sources */,
 				BE3FE4002C1EE40000F58754 /* String+.swift in Sources */,
 				BE3FE3C42C1C4BA000F58754 /* Appearance.swift in Sources */,

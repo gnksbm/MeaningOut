@@ -35,9 +35,8 @@ final class NetworkService: NSObject {
     func request(
         url: URL?
     ) -> AnyDataRequest<Data> {
-        let failureRequest = AnyDataRequest<Data>(task: nil)
-        
         guard let url else {
+            let failureRequest = AnyDataRequest<Data>(task: nil)
             failureRequest.didReceive(error: NetworkError.invalidURL)
             return failureRequest
         }

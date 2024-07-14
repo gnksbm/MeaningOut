@@ -20,6 +20,7 @@ protocol SearchResultCVCellData {
 
 final class SearchResultCVCell: BaseCollectionViewCell {
     var basketButtonHandler: (BasketButton) -> Void = { _ in }
+    private var task: URLSessionTask?
     
     private let productImageView = UIImageView().build { builder in
         builder.contentMode(.scaleAspectFill)
@@ -57,10 +58,14 @@ final class SearchResultCVCell: BaseCollectionViewCell {
         [storeNameLabel, productDescriptionLabel, priceLabel].forEach {
             $0.text = nil
         }
+        task?.cancel()
+        task = nil
     }
     
     func configureCell<T: SearchResultCVCellData>(data: T) {
-        productImageView.kf.setImage(with: data.imageURL)
+        if let url = data.imageURL {
+            task = productImageView.setImageWithCahe(with: url)
+        }
         basketButton.updateButtonColor(isLiked: data.isLiked)
         storeNameLabel.text = data.storeName
         productDescriptionLabel.text = data.productDescription
